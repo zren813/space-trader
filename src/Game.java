@@ -57,11 +57,15 @@ public class Game extends Application {
 
         //Configuration Scene
         Text nameText = new Text("Enter your name: ");
+        nameText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        nameText.setFill(Color.WHITE);
         TextField nameField = new TextField();
         HBox nameHB = new HBox();
         nameHB.getChildren().addAll(nameText, nameField);
 
         Text difficultyText = new Text("Choose difficulty: ");
+        difficultyText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        difficultyText.setFill(Color.WHITE);
         Button difficulty0 = new Button("0");
         Button difficulty1 = new Button("1");
         Button difficulty2 = new Button("2");
@@ -70,22 +74,32 @@ public class Game extends Application {
         difficultyHB.getChildren().addAll(difficultyText, difficulty0, difficulty1, difficulty2, difficulty3);
 
         Text skillText = new Text("Allocate your skills: ");
+        skillText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        skillText.setFill(Color.WHITE);
         Text pilotText = new Text("Pilot");
+        pilotText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        pilotText.setFill(Color.WHITE);
         ChoiceBox pilotCB = new ChoiceBox();
         pilotCB.getItems().add("1");
         pilotCB.getItems().add("2");
         pilotCB.getItems().add("3");
         Text fighterText = new Text("Fighter");
+        fighterText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        fighterText.setFill(Color.WHITE);
         ChoiceBox fighterCB = new ChoiceBox();
         fighterCB.getItems().add("1");
         fighterCB.getItems().add("2");
         fighterCB.getItems().add("3");
         Text merchantText = new Text("Merchant");
+        merchantText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        merchantText.setFill(Color.WHITE);
         ChoiceBox merchantCB = new ChoiceBox();
         merchantCB.getItems().add("1");
         merchantCB.getItems().add("2");
         merchantCB.getItems().add("3");
         Text engineerText = new Text("Engineer");
+        engineerText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 50));
+        engineerText.setFill(Color.WHITE);
         ChoiceBox engineerCB = new ChoiceBox();
         engineerCB.getItems().add("1");
         engineerCB.getItems().add("2");
@@ -103,8 +117,9 @@ public class Game extends Application {
 
         Button configContinueBtn = new Button("Continue");
 
-        VBox configVB = new VBox();
+        VBox configVB = new VBox(60);
         configVB.getChildren().addAll(nameHB, difficultyHB, skillGP, configContinueBtn);
+        configVB.setAlignment(Pos.TOP_CENTER);
         configVB.setBackground(background);
         configerationScrn = new Scene(configVB);
 

@@ -24,7 +24,6 @@ import javafx.event.ActionEvent;
  * @version 1.0
  */
 public class Game extends Application {
-
     private Stage window;
     private Scene welcomeScrn, configerationScrn;
 
@@ -64,7 +63,7 @@ public class Game extends Application {
         Button startBtn = new Button("START GAME");
         startBtn.setFont(Font.font(20));
         startBtn.setOnAction(e -> window.setScene(confScrn()));
-        //        welcomeScrn.getStylesheets().add(getClass().getResource("/fontstyle.css").toExternalForm());;
+//        welcomeScrn.getStylesheets().add(getClass().getResource("/fontstyle.css").toExternalForm());;
         VBox WelcomeVBox = new VBox(100);
         WelcomeVBox.getChildren().add(title);
         WelcomeVBox.getChildren().add(startBtn);
@@ -85,18 +84,19 @@ public class Game extends Application {
 
         //Configuration Scene
         GridPane configPane = new GridPane();
+      
         //Configuration Vbox setting
         VBox confVbox = new VBox(100);
         confVbox.setBackground(background);
         confVbox.setAlignment(Pos.CENTER);
         confVbox.setFillWidth(false);
-        //        confVbox.isFillWidth();
+//        confVbox.isFillWidth();
 
-        //Text lable "Enter name"
+            //Text lable "Enter name"
         Label confEnter = new Label("Enter name:");
         confEnter.setFont(Font.font("verdana", FontWeight.LIGHT, FontPosture.REGULAR, 28));
         confEnter.setTextFill(Color.WHITE);
-        //TextField and the hbox
+            //TextField and the hbox
         TextField enterName = new TextField();
         enterName.setPromptText("eg: Amy Smith");
         HBox nameAndText = new HBox();
@@ -106,7 +106,7 @@ public class Game extends Application {
         nameAndText.setAlignment(Pos.CENTER);
         nameAndText.getChildren().add(confEnter);
         nameAndText.getChildren().add(enterName);
-        //buttom
+        //botton
         Button submitBtn = new Button("SUBMIT");
 
         EventHandler<ActionEvent> getNameEvent = i -> {
@@ -119,6 +119,7 @@ public class Game extends Application {
         submitBtn.setFont(Font.font("verdana", FontWeight.LIGHT, FontPosture.REGULAR, 20));
         nameAndText.getChildren().add(submitBtn);
         submitBtn.setStyle(buttonSetting);
+
         //deficality Create TitledPane.
         TitledPane titledPane = new TitledPane();
         titledPane.setText("DIFFICULTY");
@@ -126,6 +127,7 @@ public class Game extends Application {
         titledPane.setPrefHeight(50);
         titledPane.setMinWidth(30);
         titledPane.setStyle(buttonSetting);
+
 
         // Content for TitledPane
         VBox content = new VBox();
@@ -146,6 +148,7 @@ public class Game extends Application {
 
 
         titledPane.setContent(content);
+
         // Set Expaneded.
         titledPane.setExpanded(false);
 

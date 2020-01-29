@@ -23,8 +23,7 @@ import javafx.event.ActionEvent;
  * @author Qifan Yang, Jingyi Wan, Kehan Wang, Ziyao Ren
  * @version 1.0
  */
-public class Welcome extends Application {
-
+public class Game extends Application {
     private Stage window;
     private Scene welcomeScrn, configerationScrn;
 
@@ -85,7 +84,8 @@ public class Welcome extends Application {
 
         //Configuration Scene
         GridPane configPane = new GridPane();
-            //Configuration Vbox setting
+      
+        //Configuration Vbox setting
         VBox confVbox = new VBox(100);
         confVbox.setBackground(background);
         confVbox.setAlignment(Pos.CENTER);
@@ -106,7 +106,7 @@ public class Welcome extends Application {
         nameAndText.setAlignment(Pos.CENTER);
         nameAndText.getChildren().add(confEnter);
         nameAndText.getChildren().add(enterName);
-            //buttom
+        //botton
         Button submitBtn = new Button("SUBMIT");
 
         EventHandler<ActionEvent> getNameEvent = i -> {
@@ -119,7 +119,8 @@ public class Welcome extends Application {
         submitBtn.setFont(Font.font("verdana", FontWeight.LIGHT, FontPosture.REGULAR, 20));
         nameAndText.getChildren().add(submitBtn);
         submitBtn.setStyle(buttonSetting);
-            //deficality Create TitledPane.
+
+        //deficality Create TitledPane.
         TitledPane titledPane = new TitledPane();
         titledPane.setText("DIFFICULTY");
         titledPane.setAlignment(Pos.CENTER);
@@ -127,7 +128,8 @@ public class Welcome extends Application {
         titledPane.setMinWidth(30);
         titledPane.setStyle(buttonSetting);
 
-            // Content for TitledPane
+
+        // Content for TitledPane
         VBox content = new VBox();
         Button easyBtn = new Button("EASY");
         Button hardBtn = new Button("HARD");
@@ -146,7 +148,8 @@ public class Welcome extends Application {
 
 
         titledPane.setContent(content);
-                // Set Expaneded.
+
+        // Set Expaneded.
         titledPane.setExpanded(false);
 
         //switch sence
@@ -155,7 +158,7 @@ public class Welcome extends Application {
         goBack.setOnAction(e -> window.setScene(welcomePage()));
         goBack.setStyle(buttonSetting);
 
-            //setting things into vBox
+        //setting things into vBox
         confVbox.getChildren().add(nameAndText);
         confVbox.getChildren().add(titledPane);
         configerationScrn = new Scene(confVbox);

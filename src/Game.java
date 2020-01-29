@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 /**
  * This is the game Space Trader.
  *
- * @author Qifan Yang, Jingyi Wan, Kehan Wang, Ziyao Ren
+ * @author Qifan Yang, Jingyi Wan, Kehan Wang, Ziyao Ren, Chiche Tsai
  * @version 1.0
  */
 public class Game extends Application {

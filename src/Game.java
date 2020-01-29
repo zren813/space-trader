@@ -3,6 +3,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
 /**
  * This is the game Space Trader.
  *
- * @author Qifan Yang, Jingyi Wan, Kehan Wang, Ziyao Ren
+ * @author Qifan Yang, Jingyi Wan, Kehan Wang, Ziyao Ren, Chiche Tsai
  * @version 1.0
  */
 public class Game extends Application {
@@ -55,13 +56,57 @@ public class Game extends Application {
                 " -fx-text-fill: #395306;");
 
         //Configuration Scene
-        Text name = new Text("Enter your name: ");
+        Text nameText = new Text("Enter your name: ");
         TextField nameField = new TextField();
-        GridPane configPane = new GridPane();
+        HBox nameHB = new HBox();
+        nameHB.getChildren().addAll(nameText, nameField);
 
+        Text difficultyText = new Text("Choose difficulty: ");
+        Button difficulty0 = new Button("0");
+        Button difficulty1 = new Button("1");
+        Button difficulty2 = new Button("2");
+        Button difficulty3 = new Button("3");
+        HBox difficultyHB = new HBox();
+        difficultyHB.getChildren().addAll(difficultyText, difficulty0, difficulty1, difficulty2, difficulty3);
 
-        configPane.setBackground(background);
-        configerationScrn = new Scene(configPane);
+        Text skillText = new Text("Allocate your skills: ");
+        Text pilotText = new Text("Pilot");
+        ChoiceBox pilotCB = new ChoiceBox();
+        pilotCB.getItems().add("1");
+        pilotCB.getItems().add("2");
+        pilotCB.getItems().add("3");
+        Text fighterText = new Text("Fighter");
+        ChoiceBox fighterCB = new ChoiceBox();
+        fighterCB.getItems().add("1");
+        fighterCB.getItems().add("2");
+        fighterCB.getItems().add("3");
+        Text merchantText = new Text("Merchant");
+        ChoiceBox merchantCB = new ChoiceBox();
+        merchantCB.getItems().add("1");
+        merchantCB.getItems().add("2");
+        merchantCB.getItems().add("3");
+        Text engineerText = new Text("Engineer");
+        ChoiceBox engineerCB = new ChoiceBox();
+        engineerCB.getItems().add("1");
+        engineerCB.getItems().add("2");
+        engineerCB.getItems().add("3");
+        GridPane skillGP = new GridPane();
+        skillGP.add(skillText, 0, 0, 3, 1);
+        skillGP.add(pilotText, 0, 1, 2, 1);
+        skillGP.add(pilotCB, 2, 1, 1, 1);
+        skillGP.add(fighterText, 0, 2, 2, 1);
+        skillGP.add(fighterCB, 2, 2, 1, 1);
+        skillGP.add(merchantText, 0, 3, 2, 1);
+        skillGP.add(merchantCB, 2, 3, 1, 1);
+        skillGP.add(engineerText, 0, 4, 2, 1);
+        skillGP.add(engineerCB, 2, 4, 1, 1);
+
+        Button configContinueBtn = new Button("Continue");
+
+        VBox configVB = new VBox();
+        configVB.getChildren().addAll(nameHB, difficultyHB, skillGP, configContinueBtn);
+        configVB.setBackground(background);
+        configerationScrn = new Scene(configVB);
 
 
 

@@ -5,20 +5,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class ConfigController {
-    @FXML
-    private TextField nameTextField;
-    @FXML
-    private ChoiceBox difficultyLevel;
-    @FXML
-    private ChoiceBox skill1Point;
-    @FXML
-    private ChoiceBox skill2Point;
-    @FXML
-    private ChoiceBox skill3Point;
-    @FXML
-    private ChoiceBox skill4Point;
-
-
+    @FXML private TextField nameTextField;
+    @FXML private ChoiceBox difficultyLevel;
+    @FXML private ChoiceBox skill1Point;
+    @FXML private ChoiceBox skill2Point;
+    @FXML private ChoiceBox skill3Point;
+    @FXML private ChoiceBox skill4Point;
 
     public void configBtnPressed(ActionEvent event) {
         if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
@@ -44,6 +36,4 @@ public class ConfigController {
         return ((int) skill1Point.getValue() + (int) skill2Point.getValue() + (int) skill3Point.getValue()
                 + (int) skill4Point.getValue() <= 6);
     }
-
-
 }

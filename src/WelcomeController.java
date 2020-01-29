@@ -8,6 +8,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class WelcomeController {
+
+    /**
+     * this method is used to switch to the next page.
+     */
     public void welcomeBtnPressed(ActionEvent event) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Configuration.fxml"));
         Scene configScene = new Scene(configParent);

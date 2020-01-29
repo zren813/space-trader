@@ -99,7 +99,7 @@ public class ConfigController {
      * @return int skill point
      */
     public static int getNumSkill2() {
-        return numSkill1;
+        return numSkill2;
     }
 
     /**
@@ -107,7 +107,7 @@ public class ConfigController {
      * @return int skill point
      */
     public static int getNumSkill3() {
-        return numSkill1;
+        return numSkill3;
     }
 
     /**
@@ -115,6 +115,6 @@ public class ConfigController {
      * @return int skill point
      */
     public static int getNumSkill4() {
-        return numSkill1;
+        return numSkill4;
     }
 }

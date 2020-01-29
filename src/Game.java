@@ -1,4 +1,3 @@
-import com.sun.xml.internal.txw2.TxwException;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

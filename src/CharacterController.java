@@ -2,7 +2,12 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 public class CharacterController {
-    @FXML private Text name, difficulty, skill1point, skill2point, skill3point, skill4point;
+    @FXML private Text name;
+    @FXML private Text difficulty;
+    @FXML private Text skill1point;
+    @FXML private Text skill2point;
+    @FXML private Text skill3point;
+    @FXML private Text skill4point;
 
     /**
      * This method is to initialize all numbers

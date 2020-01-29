@@ -15,11 +15,17 @@ public class ConfigController {
 
     @FXML private TextField nameTextField;
     @FXML private ChoiceBox difficultyLevel;
-    @FXML private ChoiceBox skill1Point, skill2Point, skill3Point, skill4Point;
+    @FXML private ChoiceBox skill1Point;
+    @FXML private ChoiceBox skill2Point;
+    @FXML private ChoiceBox skill3Point;
+    @FXML private ChoiceBox skill4Point;
 
     private static String name;
     private static int difficulty;
-    private static int numSkill1, numSkill2, numSkill3, numSkill4;
+    private static int numSkill1;
+    private static int numSkill2;
+    private static int numSkill3;
+    private static int numSkill4;
 
     /**
      * This method is to initialize all Choiceboxes
@@ -43,8 +49,8 @@ public class ConfigController {
      * @return true if total is less or equal than 6
      */
     public boolean calculateSkillPoints() {
-        return ((int) skill1Point.getValue() + (int) skill2Point.getValue() + (int) skill3Point.getValue()
-                + (int) skill4Point.getValue() <= 6);
+        return ((int) skill1Point.getValue() + (int) skill2Point.getValue()
+                + (int) skill3Point.getValue() + (int) skill4Point.getValue() <= 6);
     }
 
     /**

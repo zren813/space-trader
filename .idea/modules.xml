@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/Documents/2020 Spring/CS 1332/CS 1332.iml" filepath="$USER_HOME$/Documents/2020 Spring/CS 1332/CS 1332.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/2020 Spring/CS 1332/HW01/HW01.iml" filepath="$USER_HOME$/Documents/2020 Spring/CS 1332/HW01/HW01.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/2020 Spring/CS 1332/HW02/HW02.iml" filepath="$USER_HOME$/Documents/2020 Spring/CS 1332/HW02/HW02.iml" />
-      <module fileurl="file://$USER_HOME$/Documents/2020 Spring/CS 1332/HW03/HW03.iml" filepath="$USER_HOME$/Documents/2020 Spring/CS 1332/HW03/HW03.iml" />
       <module fileurl="file://$PROJECT_DIR$/M3.iml" filepath="$PROJECT_DIR$/M3.iml" />
     </modules>
   </component>

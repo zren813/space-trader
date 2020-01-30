@@ -11,8 +11,8 @@ public class WelcomeController {
 
     /**
      * this method is used to switch to the next page.
-     * @param event fired when button is pressed
      *
+     * @param event fired when button is pressed
      * @throws IOException some possible exception
      */
     public void welcomeBtnPressed(ActionEvent event) throws IOException {

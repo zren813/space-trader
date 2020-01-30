@@ -76,7 +76,7 @@ public class ConfigController {
 
             window.setScene(configScene);
             window.show();
-        }
+        } // add message
         if (!calculateSkillPoints() && nameTextField.getText().isEmpty()) {
             errorMessage.setText("You need to put a name!!! "
                    + "And the overall skill points have to be smaller than 6");

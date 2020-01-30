@@ -10,7 +10,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 1000, 600));
+        Scene scene = new Scene(root, 1000, 600);
+        scene.getStylesheets().add("app.css");
+        scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
@@ -19,3 +22,5 @@ public class Main extends Application {
         launch(args);
     }
 }
+
+

@@ -1,0 +1,6 @@
+#welcome-root {
+	-fx-background-image: url("./welcome-bg.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-attachment: fixed;
+	-fx-background-position: center;
+}

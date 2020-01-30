@@ -14,13 +14,20 @@ import java.io.IOException;
 
 public class ConfigController {
 
-    @FXML private TextField nameTextField;
-    @FXML private ChoiceBox difficultyLevel;
-    @FXML private ChoiceBox skill1Point;
-    @FXML private ChoiceBox skill2Point;
-    @FXML private ChoiceBox skill3Point;
-    @FXML private ChoiceBox skill4Point;
-    @FXML private Text errorMessage;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private ChoiceBox<Integer> difficultyLevel;
+    @FXML
+    private ChoiceBox<Integer> skill1Point;
+    @FXML
+    private ChoiceBox<Integer> skill2Point;
+    @FXML
+    private ChoiceBox<Integer> skill3Point;
+    @FXML
+    private ChoiceBox<Integer> skill4Point;
+    @FXML
+    private Text errorMessage;
 
     private static String name;
     private static int difficulty;
@@ -49,25 +56,27 @@ public class ConfigController {
 
     /**
      * This method is to add all skill points and check if total is larger than 6
+     *
      * @return true if total is less or equal than 6
      */
     public boolean calculateSkillPoints() {
-        return ((int) skill1Point.getValue() + (int) skill2Point.getValue()
-                + (int) skill3Point.getValue() + (int) skill4Point.getValue() <= 6);
+        return (skill1Point.getValue() + skill2Point.getValue()
+                + skill3Point.getValue() + skill4Point.getValue() <= 6);
     }
 
     /**
      * This method is to support the continue button
+     *
      * @param event fired when the button is pressed
      * @throws IOException throw IOException
      */
     public void configBtnPressed(ActionEvent event) throws IOException {
         if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
             name = nameTextField.getText();
-            numSkill1 = (int) skill1Point.getValue();
-            numSkill2 = (int) skill2Point.getValue();
-            numSkill3 = (int) skill3Point.getValue();
-            numSkill4 = (int) skill4Point.getValue();
+            numSkill1 = skill1Point.getValue();
+            numSkill2 = skill2Point.getValue();
+            numSkill3 = skill3Point.getValue();
+            numSkill4 = skill4Point.getValue();
 
             Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
             Scene configScene = new Scene(configParent);
@@ -79,7 +88,7 @@ public class ConfigController {
         }
         if (!calculateSkillPoints() && nameTextField.getText().isEmpty()) {
             errorMessage.setText("You need to put a name!!! "
-                   + "And the overall skill points have to be smaller than 6");
+                    + "And the overall skill points have to be smaller than 6");
         } else if (!calculateSkillPoints()) {
             errorMessage.setText("The overall skill points have to be smaller than 6");
         } else {
@@ -89,6 +98,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of name
+     *
      * @return String name
      */
     public static String getName() {
@@ -97,6 +107,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of difficulty
+     *
      * @return int difficulty
      */
     public static int getDifficulty() {
@@ -105,6 +116,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of skill 1 points
+     *
      * @return int skill point
      */
     public static int getNumSkill1() {
@@ -113,6 +125,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of skill 2 points
+     *
      * @return int skill point
      */
     public static int getNumSkill2() {
@@ -121,6 +134,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of skill 3 points
+     *
      * @return int skill point
      */
     public static int getNumSkill3() {
@@ -129,6 +143,7 @@ public class ConfigController {
 
     /**
      * This method is the getter of skill 4 points
+     *
      * @return int skill point
      */
     public static int getNumSkill4() {

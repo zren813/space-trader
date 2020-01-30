@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,7 @@ public class ConfigController {
     @FXML private ChoiceBox skill2Point;
     @FXML private ChoiceBox skill3Point;
     @FXML private ChoiceBox skill4Point;
+    @FXML private Text errorMessage;
 
     private static String name;
     private static int difficulty;
@@ -26,6 +28,7 @@ public class ConfigController {
     private static int numSkill2;
     private static int numSkill3;
     private static int numSkill4;
+
 
     /**
      * This method is to initialize all Choiceboxes
@@ -73,6 +76,14 @@ public class ConfigController {
 
             window.setScene(configScene);
             window.show();
+        }
+        if (!calculateSkillPoints() && nameTextField.getText().isEmpty()) {
+            errorMessage.setText("You need to put a name!!! "
+                   + "And the overall skill points have to be smaller than 6");
+        } else if (!calculateSkillPoints()) {
+            errorMessage.setText("The overall skill points have to be smaller than 6");
+        } else {
+            errorMessage.setText("You need to put a name!!!");
         }
     }
 

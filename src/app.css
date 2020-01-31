@@ -1,6 +1,11 @@
-#welcome-root {
+* {
+	-fx-color: white;
+}
+
+.cus-root {
 	-fx-background-image: url("./welcome-bg.jpg");
 	-fx-background-repeat: no-repeat;
 	-fx-background-attachment: fixed;
 	-fx-background-position: center;
+	-fx-background-size: 100% 100%;
 }

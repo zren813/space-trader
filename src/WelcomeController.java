@@ -18,6 +18,8 @@ public class WelcomeController {
     public void welcomeBtnPressed(ActionEvent event) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Configuration.fxml"));
         Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

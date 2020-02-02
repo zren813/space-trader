@@ -1,6 +1,6 @@
 # CS2340 M3
 
-This is an user interface for Space Trader game. This repository is for Spring 2020 CS 2340 class. The code is written by Team 20 "Team Not Found".
+This is an user interface for Space Trader game. This repository is for Spring 2020 CS2340 class. The code is written by Team 20 "Team Not Found".
 
 ## Authors
 

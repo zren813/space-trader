@@ -1,4 +1,4 @@
-# Project Title
+# CS2340 M3
 
 One Paragraph of project description goes here
 

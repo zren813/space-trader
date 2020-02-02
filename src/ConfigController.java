@@ -1,3 +1,5 @@
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +19,9 @@ public class ConfigController {
     @FXML
     private TextField nameTextField;
     @FXML
-    private ChoiceBox<Integer> difficultyLevel;
+    private ChoiceBox<String> difficultyLevel;
+    @FXML
+    private Text availableSkillPoint;
     @FXML
     private ChoiceBox<Integer> skill1Point;
     @FXML
@@ -30,7 +34,8 @@ public class ConfigController {
     private Text errorMessage;
 
     private static String name;
-    private static int difficulty;
+    private static String difficulty;
+    private static int availableSkill;
     private static int numSkill1;
     private static int numSkill2;
     private static int numSkill3;
@@ -42,16 +47,30 @@ public class ConfigController {
      */
     @FXML
     public void initialize() {
-        difficultyLevel.setValue(0);
+        difficultyLevel.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number number2) {
+                if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer) number2))) {
+                    availableSkillPoint.setText("Please allocate your skill points (you have 2 points total): ");
+                } else if ("Hard".equals(difficultyLevel.getItems().get((Integer) number2))) {
+                    availableSkillPoint.setText("Please allocate your skill points (you have 4 points total): ");
+                } else if ("Medium".equals(difficultyLevel.getItems().get((Integer) number2))) {
+                    availableSkillPoint.setText("Please allocate your skill points (you have 6 points total): ");
+                } else {
+                    availableSkillPoint.setText("Please allocate your skill points (you have 8 points total): ");
+                }
+            }
+        });
         skill1Point.setValue(0);
         skill2Point.setValue(0);
         skill3Point.setValue(0);
         skill4Point.setValue(0);
-        difficultyLevel.setItems(FXCollections.observableArrayList(0, 1, 2, 3));
-        skill1Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3));
-        skill2Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3));
-        skill3Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3));
-        skill4Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3));
+        difficultyLevel.setItems(FXCollections.observableArrayList("Easy", "Medium", "Hard", "Literally Impossible"));
+        difficultyLevel.setValue("Easy");
+        skill1Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
+        skill2Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
+        skill3Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
+        skill4Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
     }
 
     /**
@@ -60,8 +79,16 @@ public class ConfigController {
      * @return true if total is less or equal than 6
      */
     public boolean calculateSkillPoints() {
-        return (skill1Point.getValue() + skill2Point.getValue()
-                + skill3Point.getValue() + skill4Point.getValue() <= 6);
+        int points = skill1Point.getValue() + skill2Point.getValue() + skill3Point.getValue() + skill4Point.getValue();
+        if ("Literally Impossible".equals(difficultyLevel.getValue())) {
+            return points <= 2;
+        } else if ("Hard".equals(difficultyLevel.getValue())) {
+            return points <= 4;
+        } else if ("Medium".equals(difficultyLevel.getValue())) {
+            return points <= 6;
+        } else {
+            return points <= 8;
+        }
     }
 
     /**
@@ -73,6 +100,7 @@ public class ConfigController {
     public void configBtnPressed(ActionEvent event) throws IOException {
         if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
             name = nameTextField.getText();
+            difficulty = difficultyLevel.getValue();
             numSkill1 = skill1Point.getValue();
             numSkill2 = skill2Point.getValue();
             numSkill3 = skill3Point.getValue();
@@ -89,10 +117,10 @@ public class ConfigController {
             window.show();
         }
         if (!calculateSkillPoints() && nameTextField.getText().isEmpty()) {
-            errorMessage.setText("You need to put a name!!! "
-                    + "And the overall skill points have to be smaller than 6");
+            errorMessage.setText("You need to put a name "
+                    + "and overall skill points exceed the limit!!!");
         } else if (!calculateSkillPoints()) {
-            errorMessage.setText("The overall skill points have to be smaller than 6");
+            errorMessage.setText("Overall skill points exceed the limit!!!");
         } else {
             errorMessage.setText("You need to put a name!!!");
         }
@@ -112,8 +140,17 @@ public class ConfigController {
      *
      * @return int difficulty
      */
-    public static int getDifficulty() {
+    public static String getDifficulty() {
         return difficulty;
+    }
+    
+    /**
+     * This method is the getter of availableSkill
+     *
+     * @return int availableSkill
+     */
+    public static int getAvailableSkill() {
+        return availableSkill;
     }
 
     /**

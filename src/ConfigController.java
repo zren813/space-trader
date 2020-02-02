@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,13 +24,13 @@ public class ConfigController {
     @FXML
     private Text availableSkillPoint;
     @FXML
-    private ChoiceBox<Integer> skill1Point;
+    private Spinner<Integer> skill1Point;
     @FXML
-    private ChoiceBox<Integer> skill2Point;
+    private Spinner<Integer> skill2Point;
     @FXML
-    private ChoiceBox<Integer> skill3Point;
+    private Spinner<Integer> skill3Point;
     @FXML
-    private ChoiceBox<Integer> skill4Point;
+    private Spinner<Integer> skill4Point;
     @FXML
     private Text errorMessage;
 
@@ -54,33 +55,25 @@ public class ConfigController {
                                         Number number, Number number2) {
                         if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
                                 number2))) {
-                            availableSkillPoint.setText("Please allocate "
-                                    + "your skill points (you have 2 points total): ");
+                            availableSkillPoint.setText("Please allocate your "
+                                    + "skill points (you have 2 points total): ");
                         } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
                                 number2))) {
-                            availableSkillPoint.setText("Please allocate "
-                                    + "your skill points (you have 4 points total): ");
+                            availableSkillPoint.setText("Please allocate your "
+                                    + "skill points (you have 4 points total): ");
                         } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
                                 number2))) {
-                            availableSkillPoint.setText("Please allocate "
-                                    + "your skill points (you have 6 points total): ");
+                            availableSkillPoint.setText("Please allocate your "
+                                    + "skill points (you have 6 points total): ");
                         } else {
-                            availableSkillPoint.setText("Please allocate "
-                                    + "your skill points (you have 8 points total): ");
+                            availableSkillPoint.setText("Please allocate your "
+                                    + "skill points (you have 8 points total): ");
                         }
                     }
                 });
-        skill1Point.setValue(0);
-        skill2Point.setValue(0);
-        skill3Point.setValue(0);
-        skill4Point.setValue(0);
-        difficultyLevel.setItems(FXCollections.observableArrayList("Easy", "Medium",
-                "Hard", "Literally Impossible"));
+        difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
+                "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");
-        skill1Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
-        skill2Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
-        skill3Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
-        skill4Point.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4));
     }
 
     /**
@@ -154,7 +147,7 @@ public class ConfigController {
     public static String getDifficulty() {
         return difficulty;
     }
-    
+
     /**
      * This method is the getter of availableSkill
      *

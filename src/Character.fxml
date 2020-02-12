@@ -128,6 +128,6 @@
             </Text>
          </children>
       </GridPane>
-      <Button fx:id="startBtn" mnemonicParsing="false" text="Let's Start!" />
+      <Button mnemonicParsing="false" onAction="#startBtnPressed" prefHeight="51.0" prefWidth="527.0" styleClass="btn, btn-primary" text="Let's Start!" />
    </children>
 </VBox>

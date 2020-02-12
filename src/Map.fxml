@@ -16,6 +16,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Circle fx:id="planet1" centerX= centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

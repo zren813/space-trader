@@ -17,5 +17,14 @@
         </rowConstraints>
       </GridPane>
       <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet2" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet3" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet4" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet5" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet6" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet7" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet8" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet9" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+       <Circle fx:id="planet10" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </AnchorPane>

@@ -27,7 +27,7 @@ public class Planet {
         return discription;
     }
 
-    public int getYCoordinate() {
+    public int getxCoordinate() {
         return xCoordinate;
     }
 

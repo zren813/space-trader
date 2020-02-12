@@ -7,6 +7,6 @@ This is an user interface for Space Trader game. This repository is for Spring 2
 * **Qifan Yang** - [Email](qyang95@gatech.edu)
 * **Kehan Wang** - [Email](kwang457@gatech.edu)
 * **Jingyi Wan** - [Email](jwan64@gatech.edu)
-* **Zixiao Ren** - [Email](zren46@gatech.edu)
+* **Ziyao Ren** - [Email](zren46@gatech.edu)
 * **Chiche Tsai** - [Email](ctsai84@gatech.edu)
 

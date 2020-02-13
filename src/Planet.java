@@ -19,7 +19,7 @@ public class Planet {
         name = NameGenerator.getName();
         technologyLevel = random.nextInt(10);
         xCoordinate = random.nextInt(600) + 200;
-        yCoordinate = random.nextInt(400) + 100;
+        yCoordinate = random.nextInt(400) + 20;
         visited = false;
         discription = "";
         paint = paintArray[random.nextInt(paintArray.length)];

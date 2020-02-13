@@ -83,6 +83,7 @@ public class MapController {
             worldGenerator = new WorldGenerator();
             player = new Player();
         }
+        player = new Player();
         planetArray = worldGenerator.getPlanetArray();
 
         fixPlanetCoordinates();

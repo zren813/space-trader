@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
@@ -53,6 +54,7 @@ public class MapController {
     private int xRange;
     private int xOffset;
     private int yOffset;
+    private static int planetClicked = 0;
 
 
 
@@ -152,5 +154,138 @@ public class MapController {
 
         window.setScene(configScene);
         window.show();
+    }
+    public void explore1BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 1;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore2BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 2;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore3BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 3;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore4BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 4;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore5BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 5;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore6BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 6;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore7BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 7;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore8BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 8;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore9BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 9;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public void explore0BtnPressed(MouseEvent event) throws IOException {
+        planetClicked = 0;
+        worldGenerator.setPlanetArray(planetArray);
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+    public static int getPlanetClicked() {
+        return planetClicked;
     }
 }

@@ -44,6 +44,7 @@ public class MapController {
     private Planet[] planetArray = new Planet[10];
     private static WorldGenerator worldGenerator;
     private static boolean opened;
+    private static Player player;
 
 
     @FXML
@@ -69,13 +70,15 @@ public class MapController {
         } else {
             worldGenerator = new WorldGenerator();
         }
+        player = new Player();
         planetArray = worldGenerator.getPlanetArray();
         for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
             circleArray[i].setCenterY(planetArray[i].getYCoordinate());
             circleArray[i].setFill(planetArray[i].getPaint());
-            toolTipArray[i].setText(planetArray[i].displayInfo());
+            toolTipArray[i].setText(planetArray[i].displayInfo() + "\n" +"Distance: " + player.getDistanceArray()[i] +
+                    "\n" + "[" + planetArray[i].getXCoordinate() + ", " + planetArray[i].getYCoordinate() + "]");
             Tooltip.install(circleArray[i],toolTipArray[i]);
         }
     }

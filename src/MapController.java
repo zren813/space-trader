@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,6 +38,9 @@ public class MapController {
     private Label infoLabel;
     @FXML
     private Button exploreBtn;
+    @FXML
+    private Rectangle rectangle;
+
 
     private Circle[] circleArray = new Circle[10];
     private Tooltip[] toolTipArray = new Tooltip[10];

@@ -25,7 +25,6 @@ public class WelcomeController {
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-
         window.setScene(configScene);
         window.show();
     }

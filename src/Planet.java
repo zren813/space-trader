@@ -14,6 +14,7 @@ public class Planet {
 
     @SuppressWarnings("checkstyle:OperatorWrap")
     public Planet() {
+
         Random random = new Random();
         name = NameGenerator.getName();
         technologyLevel = random.nextInt(10) + 1;
@@ -26,7 +27,18 @@ public class Planet {
                 unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
     }
-
+    public int generateXCoordinate(){
+        Random random = new Random();
+        int offset = 26;
+        int width = 825;
+        return random.nextInt(width)+offset;
+    }
+    public int generateYCoordinate(){
+        Random random = new Random();
+        int offset = 14;
+        int width = 825;
+        return random.nextInt(width)+offset;
+    }
     public String getName() {
         return name;
     }

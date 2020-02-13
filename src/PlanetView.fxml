@@ -36,7 +36,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Discription: " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description: " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
@@ -81,7 +81,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="discription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="551.48046875" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="551.48046875" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>

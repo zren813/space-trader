@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class MapController {
     @FXML
     private Circle planet10;
     @FXML
-    private Label infoLabel;
+    private Text TextInfo;
     @FXML
     private Button exploreBtn;
     @FXML
@@ -51,6 +52,12 @@ public class MapController {
 
     @FXML
     public void initialize() {
+        TextInfo.setText("Credits: to be continue" + "\n" +
+                "Pilot skill point: " + ConfigController.getNumPilotSP() + "\n" +
+                "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" +
+                "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" +
+                "Engineer skill point:  " + ConfigController.getNumEngineerSP());
+
         circleArray[0] = planet1;
         circleArray[1] = planet2;
         circleArray[2] = planet3;
@@ -75,7 +82,6 @@ public class MapController {
             toolTipArray[i].setText(planetArray[i].displayInfo());
             Tooltip.install(circleArray[i],toolTipArray[i]);
         }
-        infoLabel = new Label();
     }
 
     public static WorldGenerator getWorldGenerator() {

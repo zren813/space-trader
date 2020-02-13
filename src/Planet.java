@@ -18,8 +18,8 @@ public class Planet {
         Random random = new Random();
         name = NameGenerator.getName();
         technologyLevel = random.nextInt(10) + 1;
-        xCoordinate = random.nextInt(700) + 40;
-        yCoordinate = random.nextInt(400) + 40;
+        xCoordinate = random.nextInt(690) + 40;
+        yCoordinate = random.nextInt(390) + 40;
         visited = false;
         String[] unit = {"thousand.", "million.", "billion."};
         description = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +

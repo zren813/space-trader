@@ -55,22 +55,22 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Spinner fx:id="skill1Point" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Spinner fx:id="pilotSP" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <valueFactory>
                         <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10"/>
                      </valueFactory>
                   </Spinner>
-                  <Spinner fx:id="skill2Point" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Spinner fx:id="fighterSP" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <valueFactory>
                         <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10"/>
                      </valueFactory>
                   </Spinner>
-                  <Spinner fx:id="skill3Point" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <Spinner fx:id="merchantSP" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <valueFactory>
                         <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10"/>
                      </valueFactory>
                   </Spinner>
-                  <Spinner fx:id="skill4Point" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <Spinner fx:id="engineerSP" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <valueFactory>
                         <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10"/>
                      </valueFactory>

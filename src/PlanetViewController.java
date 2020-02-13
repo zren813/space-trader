@@ -34,7 +34,7 @@ public class PlanetViewController {
     public void initialize() {
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        index = 0;
+        index = MapController.getPlanetClicked();
         planetViewCurve.setFill(planetArray[index].getPaint());
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));

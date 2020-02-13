@@ -79,6 +79,18 @@ public class PlanetViewController {
         planetArray[index].setVisited(true);
     }
 
+    public void marketBtnPressed(ActionEvent event) throws IOException {
+        Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }

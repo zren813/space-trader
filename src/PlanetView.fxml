@@ -93,5 +93,6 @@
       <Button fx:id="prevBtn" layoutX="182.0" layoutY="400.0" mnemonicParsing="false" onAction="#prevBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Previous Planet" />
       <Button fx:id="returnBtn" layoutX="431.0" layoutY="400.0" mnemonicParsing="false" onAction="#returnBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Return to Galaxy" />
       <Button fx:id="nextBtn" layoutX="680.0" layoutY="400.0" mnemonicParsing="false" onAction="#nextBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Next Planet" />
+      <Button fx:id="marketBtn" layoutX="431.0" layoutY="500.0" mnemonicParsing="false" onAction="#marketBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Enter Market" />
    </children>
 </AnchorPane>

@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -28,6 +29,8 @@ public class GameController {
     private Circle planet9;
     @FXML
     private Circle planet10;
+    @FXML
+    private Label infoLabel;
 
     private Circle[] circleArray = new Circle[10];
     private Planet[] planetArray = new Planet[10];
@@ -55,5 +58,6 @@ public class GameController {
             toolTipArray[i].setText(planetArray[i].displayInfo());
             Tooltip.install(circleArray[i],toolTipArray[i]);
         }
+        infoLabel = new Label();
     }
 }

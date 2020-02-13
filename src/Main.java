@@ -3,11 +3,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
+    static Media music = new Media(Main.class.getResource("Feel_it_still.mp3").toExternalForm());
+    static MediaPlayer player = new MediaPlayer(music);
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        player.setAutoPlay(true);
+        player.play();
         Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
         primaryStage.setTitle("Hello World");
         Scene scene = new Scene(root, 1000, 600);

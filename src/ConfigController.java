@@ -74,7 +74,9 @@ public class ConfigController {
         difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
                 "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");
+
     }
+
 
     /**
      * This method is to add all skill points and check if total is larger than 6

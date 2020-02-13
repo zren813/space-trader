@@ -22,7 +22,7 @@ public class PlanetViewController {
     @FXML
     Text color;
     @FXML
-    Text discription;
+    Text description;
 
     private static WorldGenerator worldGenerator;
     private Planet[] planetArray;
@@ -38,7 +38,7 @@ public class PlanetViewController {
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
-        discription.setText(planetArray[index].getDescription());
+        description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
     }
 
@@ -65,7 +65,7 @@ public class PlanetViewController {
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
-        discription.setText(planetArray[index].getDescription());
+        description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
     }
 
@@ -75,7 +75,7 @@ public class PlanetViewController {
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
-        discription.setText(planetArray[index].getDescription());
+        description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
     }
 

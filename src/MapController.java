@@ -8,7 +8,7 @@ import javafx.scene.control.Tooltip;
 
 import java.util.Random;
 
-public class GameController {
+public class MapController {
     @FXML
     private Circle planet1;
     @FXML

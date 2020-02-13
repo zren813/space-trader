@@ -4,7 +4,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 
+<<<<<<< HEAD
 <AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameController">
+=======
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
+>>>>>>> 933d88a6e4d9386e91e299650a4e85e48827d3fb
    <children>
       <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
        <Circle fx:id="planet2" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />

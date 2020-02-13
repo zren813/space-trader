@@ -15,6 +15,7 @@ public class Planet {
         xCoordinate = random.nextInt(600) + 200;
         yCoordinate = random.nextInt(400) + 100;
         visited = false;
+        discription = "";
     }
 
     public String getName() {
@@ -25,11 +26,11 @@ public class Planet {
         return technologyLevel;
     }
 
-    public String getDiscription() {
+    public String getDescription() {
         return discription;
     }
 
-    public int getxCoordinate() {
+    public int getXCoordinate() {
         return xCoordinate;
     }
 
@@ -43,5 +44,13 @@ public class Planet {
 
     public boolean isVisited() {
         return visited;
+    }
+
+    public String displayInfo() {
+        if (isVisited()) {
+            return (getName() + "\n" + getTechnologyLevel() + "\n" + getDescription());
+        } else {
+            return "UNKNOWN";
+        }
     }
 }

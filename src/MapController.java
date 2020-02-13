@@ -110,14 +110,15 @@ public class MapController {
     }
     public void fixPlanetCoordinates(){
         for (int i = 0; i < 10; i++) {
-            int xCooridnate = generateCoordinates(xOffset,xRange);
-            int yCooridnate = generateCoordinates(yOffset,yRange);
+
+            planetArray[i].setxCoordinate(generateCoordinates(xOffset,xRange));
+            planetArray[i].setyCoordinate(generateCoordinates(yOffset,yRange));
             for (int j = 0; j < i-1; j++) {
                 int xx = planetArray[j].getXCoordinate();
                 int yy = planetArray[j].getYCoordinate();
-                while(Math.abs(xCooridnate-xx)<10 || Math.abs(yCooridnate-yy)<10){
-                    xCooridnate = generateCoordinates(xOffset,xRange);
-                    yCooridnate = generateCoordinates(yOffset,yRange);
+                while(Math.abs(planetArray[i].getXCoordinate()-xx)<10 || Math.abs(planetArray[i].getYCoordinate()-yy)<10){
+                    planetArray[i].setxCoordinate(generateCoordinates(xOffset,xRange));
+                    planetArray[i].setyCoordinate(generateCoordinates(yOffset,yRange));
                     j=0;
                 }
             }

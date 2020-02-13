@@ -49,12 +49,11 @@ public class MapController {
     private static WorldGenerator worldGenerator;
     private static boolean opened;
     private static Player player;
+    private int yRange;
+    private int xRange;
+    private int xOffset;
+    private int yOffset;
 
-    int numberOfPlanet = 10;
-    int xRange = (int)rectangle.getWidth();
-    int yRange = (int)rectangle.getHeight();
-    int xOffset = (int)rectangle.getLayoutX();
-    int yOffset = (int)rectangle.getLayoutY();
 
 
     @FXML
@@ -65,7 +64,10 @@ public class MapController {
                 "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" +
                 "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" +
                 "Engineer skill point:  " + ConfigController.getNumEngineerSP());
-
+        xRange = (int)rectangle.getWidth();
+        yRange = (int)rectangle.getHeight();
+        xOffset = (int)rectangle.getLayoutX();
+        yOffset = (int)rectangle.getLayoutY();
         circleArray[0] = planet1;
         circleArray[1] = planet2;
         circleArray[2] = planet3;

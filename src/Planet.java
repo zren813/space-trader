@@ -11,8 +11,6 @@ public class Planet {
     private int yCoordinate;
     private boolean visited;
     private Paint paint;
-    private Paint[] paintArray = {Color.BLUE, Color.CYAN, Color.YELLOW, Color.PURPLE, Color.PINK, Color.AQUA,
-        Color.WHEAT, Color.RED, Color.HONEYDEW, Color.GREEN, Color.DARKGREEN, Color.LIGHTYELLOW};
 
     public Planet() {
         Random random = new Random();
@@ -22,7 +20,7 @@ public class Planet {
         yCoordinate = random.nextInt(400) + 20;
         visited = false;
         discription = "";
-        paint = paintArray[random.nextInt(paintArray.length)];
+        paint = Color.color(Math.random(), Math.random(), Math.random());
     }
 
     public String getName() {
@@ -59,8 +57,7 @@ public class Planet {
 
     public String displayInfo() {
         if (isVisited()) {
-            return ("Planet Name: " + getName() + "\nTechnology Level: " + getTechnologyLevel()
-                    + "\nDiscription: " + getDescription());
+            return (getName() + "\n" + getTechnologyLevel() + "\n" + getDescription());
         } else {
             return "UNKNOWN (Please visit first)";
         }

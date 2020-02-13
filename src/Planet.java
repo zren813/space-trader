@@ -1,3 +1,6 @@
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+
 import java.util.Random;
 
 public class Planet {
@@ -7,6 +10,9 @@ public class Planet {
     private int xCoordinate;
     private int yCoordinate;
     private boolean visited;
+    private Paint paint;
+    private Paint[] paintArray = {Color.BLUE, Color.CYAN, Color.YELLOW, Color.PURPLE, Color.PINK, Color.AQUA,
+        Color.WHEAT, Color.RED, Color.HONEYDEW, Color.GREEN, Color.DARKGREEN};
 
     public Planet() {
         Random random = new Random();
@@ -16,6 +22,7 @@ public class Planet {
         yCoordinate = random.nextInt(400) + 100;
         visited = false;
         discription = "";
+        paint = paintArray[random.nextInt(paintArray.length)];
     }
 
     public String getName() {
@@ -46,11 +53,16 @@ public class Planet {
         return visited;
     }
 
+    public Paint getPaint() {
+        return paint;
+    }
+
     public String displayInfo() {
         if (isVisited()) {
-            return (getName() + "\n" + getTechnologyLevel() + "\n" + getDescription());
+            return ("Planet Name: " + getName() + "\nTechnology Level: " + getTechnologyLevel()
+                    + "\nDiscription: " + getDescription());
         } else {
-            return "UNKNOWN";
+            return "UNKNOWN (Please visit first)";
         }
     }
 }

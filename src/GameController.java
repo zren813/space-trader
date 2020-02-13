@@ -1,7 +1,11 @@
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
+
+import java.util.Random;
 
 public class GameController {
     @FXML
@@ -29,6 +33,7 @@ public class GameController {
     private Planet[] planetArray = new Planet[10];
     private Tooltip[] toolTipArray = new Tooltip[10];
 
+
     @FXML
     public void initialize() {
         circleArray[0] = planet1;
@@ -46,6 +51,7 @@ public class GameController {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
             circleArray[i].setCenterY(planetArray[i].getYCoordinate());
+            circleArray[i].setFill(planetArray[i].getPaint());
             toolTipArray[i].setText(planetArray[i].displayInfo());
             Tooltip.install(circleArray[i],toolTipArray[i]);
         }

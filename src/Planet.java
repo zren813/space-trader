@@ -12,14 +12,22 @@ public class Planet {
     private boolean visited;
     private Paint paint;
 
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
+    }
+
     @SuppressWarnings("checkstyle:OperatorWrap")
     public Planet() {
 
         Random random = new Random();
         name = NameGenerator.getName();
         technologyLevel = random.nextInt(10) + 1;
-        xCoordinate = random.nextInt(690) + 40;
-        yCoordinate = random.nextInt(390) + 40;
+        xCoordinate = random.nextInt(300);
+        yCoordinate = random.nextInt(300);
         visited = false;
         String[] unit = {"thousand.", "million.", "billion."};
         description = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +
@@ -27,18 +35,7 @@ public class Planet {
                 unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
     }
-    public int generateXCoordinate(){
-        Random random = new Random();
-        int offset = 26;
-        int width = 825;
-        return random.nextInt(width)+offset;
-    }
-    public int generateYCoordinate(){
-        Random random = new Random();
-        int offset = 14;
-        int width = 825;
-        return random.nextInt(width)+offset;
-    }
+
     public String getName() {
         return name;
     }

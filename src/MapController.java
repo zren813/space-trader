@@ -11,9 +11,10 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.IOException;
-
+import java.util.*;
 public class MapController {
     @FXML
     private Circle planet1;
@@ -42,16 +43,22 @@ public class MapController {
     @FXML
     private Rectangle rectangle;
 
-
     private Circle[] circleArray = new Circle[10];
     private Tooltip[] toolTipArray = new Tooltip[10];
     private Planet[] planetArray = new Planet[10];
     private static WorldGenerator worldGenerator;
     private static boolean opened;
 
+    int numberOfPlanet = 10;
+    int xRange = (int)rectangle.getWidth();
+    int yRange = (int)rectangle.getHeight();
+    int xOffset = (int)rectangle.getLayoutX();
+    int yOffset = (int)rectangle.getLayoutY();
+
 
     @FXML
     public void initialize() {
+
         TextInfo.setText("Credits: to be continue" + "\n" +
                 "Pilot skill point: " + ConfigController.getNumPilotSP() + "\n" +
                 "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" +
@@ -74,6 +81,9 @@ public class MapController {
             worldGenerator = new WorldGenerator();
         }
         planetArray = worldGenerator.getPlanetArray();
+
+        fixPlanetCoordinates();
+
         for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
@@ -90,7 +100,25 @@ public class MapController {
     public static void setOpened(boolean isOpened) {
         opened = isOpened;
     }
-
+    public void fixPlanetCoordinates(){
+        for (int i = 0; i < 10; i++) {
+            int xCooridnate = generateCoordinates(xOffset,xRange);
+            int yCooridnate = generateCoordinates(yOffset,yRange);
+            for (int j = 0; j < i-1; j++) {
+                int xx = planetArray[j].getXCoordinate();
+                int yy = planetArray[j].getYCoordinate();
+                while(Math.abs(xCooridnate-xx)<10 || Math.abs(yCooridnate-yy)<10){
+                    xCooridnate = generateCoordinates(xOffset,xRange);
+                    yCooridnate = generateCoordinates(yOffset,yRange);
+                    j=0;
+                }
+            }
+        }
+    }
+    public int generateCoordinates(int offset, int range){
+        Random random = new Random();
+        return random.nextInt(range)+offset;
+    }
     public void exploreBtnPressed(ActionEvent event) throws IOException {
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));

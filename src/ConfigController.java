@@ -24,23 +24,23 @@ public class ConfigController {
     @FXML
     private Text availableSkillPoint;
     @FXML
-    private Spinner<Integer> skill1Point;
+    private Spinner<Integer> pilotSP;
     @FXML
-    private Spinner<Integer> skill2Point;
+    private Spinner<Integer> fighterSP;
     @FXML
-    private Spinner<Integer> skill3Point;
+    private Spinner<Integer> merchantSP;
     @FXML
-    private Spinner<Integer> skill4Point;
+    private Spinner<Integer> engineerSP;
     @FXML
     private Text errorMessage;
 
     private static String name;
     private static String difficulty;
     private static int availableSkill;
-    private static int numSkill1;
-    private static int numSkill2;
-    private static int numSkill3;
-    private static int numSkill4;
+    private static int numPilotSP;
+    private static int numFighterSP;
+    private static int numMerchantSP;
+    private static int numEngineerSP;
 
 
     /**
@@ -50,27 +50,27 @@ public class ConfigController {
     public void initialize() {
         difficultyLevel.getSelectionModel().
                 selectedIndexProperty().addListener(new ChangeListener<Number>() {
-                    @Override
-                    public void changed(ObservableValue<? extends Number> observableValue,
-                                        Number number, Number number2) {
-                        if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
-                                number2))) {
-                            availableSkillPoint.setText("Please allocate your "
-                                    + "skill points (you have 2 points total): ");
-                        } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
-                                number2))) {
-                            availableSkillPoint.setText("Please allocate your "
-                                    + "skill points (you have 4 points total): ");
-                        } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
-                                number2))) {
-                            availableSkillPoint.setText("Please allocate your "
-                                    + "skill points (you have 6 points total): ");
-                        } else {
-                            availableSkillPoint.setText("Please allocate your "
-                                    + "skill points (you have 8 points total): ");
-                        }
-                    }
-                });
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue,
+                                Number number, Number number2) {
+                if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 2 points total): ");
+                } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 4 points total): ");
+                } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 6 points total): ");
+                } else {
+                    availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 8 points total): ");
+                }
+            }
+        });
         difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
                 "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");
@@ -84,8 +84,8 @@ public class ConfigController {
      * @return true if total is less or equal than 6
      */
     public boolean calculateSkillPoints() {
-        int points = skill1Point.getValue() + skill2Point.getValue()
-                + skill3Point.getValue() + skill4Point.getValue();
+        int points = pilotSP.getValue() + fighterSP.getValue()
+                + merchantSP.getValue() + engineerSP.getValue();
         if ("Literally Impossible".equals(difficultyLevel.getValue())) {
             return points <= 2;
         } else if ("Hard".equals(difficultyLevel.getValue())) {
@@ -107,10 +107,10 @@ public class ConfigController {
         if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
             name = nameTextField.getText();
             difficulty = difficultyLevel.getValue();
-            numSkill1 = skill1Point.getValue();
-            numSkill2 = skill2Point.getValue();
-            numSkill3 = skill3Point.getValue();
-            numSkill4 = skill4Point.getValue();
+            numPilotSP = pilotSP.getValue();
+            numFighterSP = fighterSP.getValue();
+            numMerchantSP = merchantSP.getValue();
+            numEngineerSP = engineerSP.getValue();
 
             Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
             Scene configScene = new Scene(configParent);
@@ -164,8 +164,8 @@ public class ConfigController {
      *
      * @return int skill point
      */
-    public static int getNumSkill1() {
-        return numSkill1;
+    public static int getNumPilotSP() {
+        return numPilotSP;
     }
 
     /**
@@ -173,8 +173,8 @@ public class ConfigController {
      *
      * @return int skill point
      */
-    public static int getNumSkill2() {
-        return numSkill2;
+    public static int getNumFighterSP() {
+        return numFighterSP;
     }
 
     /**
@@ -182,8 +182,8 @@ public class ConfigController {
      *
      * @return int skill point
      */
-    public static int getNumSkill3() {
-        return numSkill3;
+    public static int getNumMerchantSP() {
+        return numMerchantSP;
     }
 
     /**
@@ -191,7 +191,7 @@ public class ConfigController {
      *
      * @return int skill point
      */
-    public static int getNumSkill4() {
-        return numSkill4;
+    public static int getNumEngineerSP() {
+        return numEngineerSP;
     }
 }

@@ -53,7 +53,7 @@
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="skill1point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="TextpilotSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="23.0" />
                </font>
@@ -73,17 +73,17 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="skill2point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="TextfighterSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="skill3point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="TextmerchantSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="skill4point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="TextengineerSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="23.0" />
                </font>
@@ -98,22 +98,22 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="skill4point" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="TextengineerSP" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="skill1point" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="TextpilotSP" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="skill2point" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="TextfighterSP" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="skill3point" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="TextmerchantSP" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
                </font>

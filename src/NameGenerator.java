@@ -9,6 +9,7 @@ public class NameGenerator {
 
     public static String getName() {
         Random random = new Random();
-        return romanNumeral[random.nextInt(romanNumeral.length)] + galaxyNames[random.nextInt(galaxyNames.length)];
+        return romanNumeral[random.nextInt(romanNumeral.length)] + " "
+                + galaxyNames[random.nextInt(galaxyNames.length)];
     }
 }

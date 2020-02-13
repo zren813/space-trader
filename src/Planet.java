@@ -15,9 +15,9 @@ public class Planet {
     public Planet() {
         Random random = new Random();
         name = NameGenerator.getName();
-        technologyLevel = random.nextInt(10);
-        xCoordinate = random.nextInt(600) + 200;
-        yCoordinate = random.nextInt(400) + 20;
+        technologyLevel = random.nextInt(10) + 1;
+        xCoordinate = random.nextInt(700) + 40;
+        yCoordinate = random.nextInt(400) + 40;
         visited = false;
         discription = "";
         paint = Color.color(Math.random(), Math.random(), Math.random());

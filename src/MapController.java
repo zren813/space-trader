@@ -67,10 +67,11 @@ public class MapController {
         circleArray[9] = planet10;
         if (opened) {
             worldGenerator = MapController.getWorldGenerator();
+            player = MapController.getPlayer();
         } else {
             worldGenerator = new WorldGenerator();
+            player = new Player();
         }
-        player = new Player();
         planetArray = worldGenerator.getPlanetArray();
         for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
@@ -86,6 +87,7 @@ public class MapController {
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }
+    public static Player getPlayer() {return player; }
     public static void setOpened(boolean isOpened) {
         opened = isOpened;
     }

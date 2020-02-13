@@ -61,7 +61,8 @@ public class Planet {
 
     public String displayInfo() {
         if (isVisited()) {
-            return (getName() + "\n" + getTechnologyLevel() + "\n" + getDescription());
+            return ("Name: " + getName() + "\n" + "Technology level" + getTechnologyLevel()
+                    + "\n" + "Description: " + getDescription());
         } else {
             return "UNKNOWN (Please visit first)";
         }

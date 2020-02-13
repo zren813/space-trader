@@ -6,7 +6,7 @@ import java.util.Random;
 public class Planet {
     private String name;
     private int technologyLevel;
-    private String discription;
+    private String description;
     private int xCoordinate;
     private int yCoordinate;
     private boolean visited;
@@ -21,7 +21,7 @@ public class Planet {
         yCoordinate = random.nextInt(400) + 40;
         visited = false;
         String[] unit = {"thousand.", "million.", "billion."};
-        discription = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +
+        description = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +
                 "The population on this planet is " + random.nextInt(1000) + " " +
                 unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
@@ -36,7 +36,7 @@ public class Planet {
     }
 
     public String getDescription() {
-        return discription;
+        return description;
     }
 
     public int getXCoordinate() {

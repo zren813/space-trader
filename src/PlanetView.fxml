@@ -81,7 +81,7 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="discription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="discription" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="551.48046875" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
@@ -89,8 +89,8 @@
          </children>
       </GridPane>
       <AnchorPane prefHeight="59.0" prefWidth="1002.0" />
-      <CubicCurve fx:id="planetViewCurve" controlX1="34.99995422363281" controlX2="688.61083984375" controlY1="-195.0" controlY2="-194.99996948242188" endX="941.1851806640625" endY="26.65789794921875" fill="DODGERBLUE" layoutX="150.0" layoutY="595.0" startX="-207.4814910888672" startY="26.65789794921875" stroke="BLACK" />
-      <Button fx:id="prevBtn" layoutX="185.0" layoutY="400.0" mnemonicParsing="false" onAction="#prevBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Previous Planet" />
+      <CubicCurve fx:id="planetViewCurve" controlX1="10.609130859375" controlX2="688.61083984375" controlY1="-194.99996948242188" controlY2="-194.99996948242188" endX="941.1851806640625" endY="26.65789794921875" fill="DODGERBLUE" layoutX="150.0" layoutY="595.0" startX="-207.4814910888672" startY="26.65789794921875" stroke="BLACK" />
+      <Button fx:id="prevBtn" layoutX="182.0" layoutY="400.0" mnemonicParsing="false" onAction="#prevBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Previous Planet" />
       <Button fx:id="returnBtn" layoutX="431.0" layoutY="400.0" mnemonicParsing="false" onAction="#returnBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Return to Galaxy" />
       <Button fx:id="nextBtn" layoutX="680.0" layoutY="400.0" mnemonicParsing="false" onAction="#nextBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Next Planet" />
    </children>

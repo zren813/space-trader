@@ -12,6 +12,7 @@ public class Planet {
     private boolean visited;
     private Paint paint;
 
+    @SuppressWarnings("checkstyle:OperatorWrap")
     public Planet() {
         Random random = new Random();
         name = NameGenerator.getName();
@@ -19,7 +20,10 @@ public class Planet {
         xCoordinate = random.nextInt(700) + 40;
         yCoordinate = random.nextInt(400) + 40;
         visited = false;
-        discription = "";
+        String[] unit = {"thousand.", "million.", "billion."};
+        discription = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +
+                "The population on this planet is " + random.nextInt(1000) + " " +
+                unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
     }
 

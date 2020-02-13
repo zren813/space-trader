@@ -57,7 +57,6 @@ public class MapController {
         circleArray[7] = planet8;
         circleArray[8] = planet9;
         circleArray[9] = planet10;
-        System.out.println(opened);
         if (opened) {
             worldGenerator = MapController.getWorldGenerator();
         } else {
@@ -85,6 +84,19 @@ public class MapController {
     public void exploreBtnPressed(ActionEvent event) throws IOException {
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+
+    public void jumpBtnPressed(ActionEvent event) throws IOException {
+        MapController.setOpened(false);
+        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
         configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");

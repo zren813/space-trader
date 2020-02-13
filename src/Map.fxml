@@ -19,9 +19,13 @@
        <Circle fx:id="planet9" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
        <Circle fx:id="planet10" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="infoLabel" layoutX="10.0" layoutY="411.0" prefHeight="187.0" prefWidth="986.0" text="Label" />
-      <Button fx:id="exploreBtn" layoutX="870.0" layoutY="124.0" mnemonicParsing="false" onAction="#exploreBtnPressed" prefHeight="225.0" prefWidth="101.0" text="Ready to&#10;Explore&#10;Planets!!">
+      <Button fx:id="exploreBtn" layoutX="870.0" layoutY="70.0" mnemonicParsing="false" onAction="#exploreBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Explore&#10;Planets" textAlignment="CENTER">
          <font>
-            <Font size="18.0" />
+            <Font size="16.0" />
          </font></Button>
+       <Button fx:id="jumpBtn" layoutX="870.0" layoutY="270.0" mnemonicParsing="false" onAction="#jumpBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Jump to&#10;Hyperspace&#10;(NO &#10;TURNING &#10;BACK!)" textAlignment="CENTER">
+           <font>
+               <Font size="15.0" />
+           </font></Button>
    </children>
 </AnchorPane>

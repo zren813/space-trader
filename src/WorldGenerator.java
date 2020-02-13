@@ -10,4 +10,8 @@ public class WorldGenerator {
     public Planet[] getPlanetArray() {
         return planetArray;
     }
+
+    public void setPlanetArray(Planet[] planetArray) {
+        this.planetArray = planetArray;
+    }
 }

@@ -7,7 +7,7 @@
 
 <AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
    <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" height="425.0" layoutX="30.0" layoutY="14.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="821.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="458.0" layoutX="30.0" layoutY="14.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="821.0" />
       <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
        <Circle fx:id="planet2" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
        <Circle fx:id="planet3" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
@@ -19,7 +19,7 @@
        <Circle fx:id="planet9" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
        <Circle fx:id="planet10" centerX="50.0" centerY="50.0" fill="DODGERBLUE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
       <Label fx:id="infoLabel" layoutX="10.0" layoutY="411.0" prefHeight="187.0" prefWidth="986.0" text="Label" />
-      <Button fx:id="exploreBtn" layoutX="871.0" layoutY="173.0" mnemonicParsing="false" onAction="#exploreBtnPressed" prefHeight="225.0" prefWidth="101.0" text="Ready to&#10;Explore&#10;Planets!!">
+      <Button fx:id="exploreBtn" layoutX="870.0" layoutY="124.0" mnemonicParsing="false" onAction="#exploreBtnPressed" prefHeight="225.0" prefWidth="101.0" text="Ready to&#10;Explore&#10;Planets!!">
          <font>
             <Font size="18.0" />
          </font></Button>

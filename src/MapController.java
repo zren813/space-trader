@@ -6,9 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
@@ -45,6 +42,7 @@ public class MapController {
     private Tooltip[] toolTipArray = new Tooltip[10];
     private Planet[] planetArray = new Planet[10];
     private static WorldGenerator worldGenerator;
+    private static boolean opened;
 
 
     @FXML
@@ -59,7 +57,12 @@ public class MapController {
         circleArray[7] = planet8;
         circleArray[8] = planet9;
         circleArray[9] = planet10;
-        worldGenerator = new WorldGenerator();
+        System.out.println(opened);
+        if (opened) {
+            worldGenerator = MapController.getWorldGenerator();
+        } else {
+            worldGenerator = new WorldGenerator();
+        }
         planetArray = worldGenerator.getPlanetArray();
         for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
@@ -75,8 +78,12 @@ public class MapController {
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }
+    public static void setOpened(boolean isOpened) {
+        opened = isOpened;
+    }
 
     public void exploreBtnPressed(ActionEvent event) throws IOException {
+        worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

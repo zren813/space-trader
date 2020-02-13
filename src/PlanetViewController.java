@@ -24,7 +24,7 @@ public class PlanetViewController {
     @FXML
     Text discription;
 
-    private WorldGenerator worldGenerator;
+    private static WorldGenerator worldGenerator;
     private Planet[] planetArray;
     private int index;
 
@@ -33,18 +33,18 @@ public class PlanetViewController {
     public void initialize() {
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        for (int i = 0; i < 10; i++) {
-            planetArray[i] = new Planet();
-        }
         index = 0;
         planetViewCurve.setFill(planetArray[index].getPaint());
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
         discription.setText(planetArray[index].getDescription());
+        planetArray[index].setVisited(true);
     }
 
     public void returnBtnPressed(ActionEvent event) throws IOException {
+        worldGenerator.setPlanetArray(planetArray);
+        MapController.setOpened(true);
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -66,6 +66,7 @@ public class PlanetViewController {
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
         discription.setText(planetArray[index].getDescription());
+        planetArray[index].setVisited(true);
     }
 
     public void nextBtnPressed(ActionEvent event) throws IOException {
@@ -75,5 +76,10 @@ public class PlanetViewController {
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
         discription.setText(planetArray[index].getDescription());
+        planetArray[index].setVisited(true);
+    }
+
+    public static WorldGenerator getWorldGenerator() {
+        return worldGenerator;
     }
 }

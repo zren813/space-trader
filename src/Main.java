@@ -15,7 +15,7 @@ public class Main extends Application {
         player.setAutoPlay(true);
         player.play();
         Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Space Trader");
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add("app.css");
         scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");

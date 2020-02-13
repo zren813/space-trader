@@ -12,7 +12,7 @@ public class Planet {
     private boolean visited;
     private Paint paint;
     private Paint[] paintArray = {Color.BLUE, Color.CYAN, Color.YELLOW, Color.PURPLE, Color.PINK, Color.AQUA,
-        Color.WHEAT, Color.RED, Color.HONEYDEW, Color.GREEN, Color.DARKGREEN};
+        Color.WHEAT, Color.RED, Color.HONEYDEW, Color.GREEN, Color.DARKGREEN, Color.LIGHTYELLOW};
 
     public Planet() {
         Random random = new Random();

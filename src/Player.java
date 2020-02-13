@@ -2,11 +2,14 @@ import java.util.Random;
 public class Player {
     private String name = ConfigController.getName();
     private Planet currentPlanet;
-    private static WorldGenerator worldGenerator = MapController.getWorldGenerator();
-    private Planet[] planetArray = worldGenerator.getPlanetArray();
+    private static WorldGenerator worldGenerator;
+    private static Planet[] planetArray;
+    Random random = new Random();
     public Player() {
-        Random random = new Random();
+        worldGenerator = MapController.getWorldGenerator();
+        planetArray = worldGenerator.getPlanetArray();
         currentPlanet = planetArray[random.nextInt(10)];
+        currentPlanet.setVisited(true);
     }
     public int[] getDistanceArray(){
         int[] distanceArray = new int[10];

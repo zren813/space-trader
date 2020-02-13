@@ -27,6 +27,7 @@ public class PlanetViewController {
     private static WorldGenerator worldGenerator;
     private Planet[] planetArray;
     private int index;
+    private static Player player;
 
 
     @FXML
@@ -40,6 +41,8 @@ public class PlanetViewController {
         color.setText(planetArray[index].getPaint().toString());
         description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
+        player = MapController.getPlayer();
+        player.setCurrentPlanet(planetArray[index]);
     }
 
     public void returnBtnPressed(ActionEvent event) throws IOException {
@@ -67,6 +70,8 @@ public class PlanetViewController {
         color.setText(planetArray[index].getPaint().toString());
         description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
+        player.setCurrentPlanet(planetArray[index]);
+
     }
 
     public void nextBtnPressed(ActionEvent event) throws IOException {
@@ -77,6 +82,7 @@ public class PlanetViewController {
         color.setText(planetArray[index].getPaint().toString());
         description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
+        player.setCurrentPlanet(planetArray[index]);
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {

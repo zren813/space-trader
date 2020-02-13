@@ -48,6 +48,7 @@ public class MapController {
     private Planet[] planetArray = new Planet[10];
     private static WorldGenerator worldGenerator;
     private static boolean opened;
+    private static Player player;
 
     int numberOfPlanet = 10;
     int xRange = (int)rectangle.getWidth();
@@ -77,8 +78,10 @@ public class MapController {
         circleArray[9] = planet10;
         if (opened) {
             worldGenerator = MapController.getWorldGenerator();
+            player = MapController.getPlayer();
         } else {
             worldGenerator = new WorldGenerator();
+            player = new Player();
         }
         planetArray = worldGenerator.getPlanetArray();
 
@@ -89,7 +92,8 @@ public class MapController {
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
             circleArray[i].setCenterY(planetArray[i].getYCoordinate());
             circleArray[i].setFill(planetArray[i].getPaint());
-            toolTipArray[i].setText(planetArray[i].displayInfo());
+            toolTipArray[i].setText(planetArray[i].displayInfo() + "\n" +"Distance: " + player.getDistanceArray()[i] +
+                    "\n" + "[" + planetArray[i].getXCoordinate() + ", " + planetArray[i].getYCoordinate() + "]");
             Tooltip.install(circleArray[i],toolTipArray[i]);
         }
     }
@@ -97,6 +101,7 @@ public class MapController {
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }
+    public static Player getPlayer() {return player; }
     public static void setOpened(boolean isOpened) {
         opened = isOpened;
     }

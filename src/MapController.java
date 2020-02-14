@@ -66,10 +66,10 @@ public class MapController {
             "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" +
             "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" +
             "Engineer skill point:  " + ConfigController.getNumEngineerSP());
-        xRange = (int) rectangle.getWidth() - 20;
-        yRange = (int) rectangle.getHeight() - 20;
-        xOffset = (int) rectangle.getLayoutX() + 10;
-        yOffset = (int) rectangle.getLayoutY() + 10;
+        xRange = (int) rectangle.getWidth()-25;
+        yRange = (int) rectangle.getHeight() -40;
+        xOffset = (int) rectangle.getLayoutX()-60;
+        yOffset = (int) rectangle.getLayoutY() +10;
         circleArray[0] = planet1;
         circleArray[1] = planet2;
         circleArray[2] = planet3;
@@ -119,21 +119,10 @@ public class MapController {
 
     public void fixPlanetCoordinates() {
         for (int i = 0; i < 10; i++) {
-            int j = 0;
-            planetArray[i].setxCoordinate(generateCoordinates(xOffset, xRange));
+            planetArray[i].setxCoordinate(generateCoordinates(xOffset+xRange/10*(i+1), xRange/10));
             planetArray[i].setyCoordinate(generateCoordinates(yOffset, yRange));
-            while (j < i-1) {
-                int x = planetArray[i].getXCoordinate();
-                int y = planetArray[i].getYCoordinate();
-                int xx = planetArray[j].getXCoordinate();
-                int yy = planetArray[j].getYCoordinate();
-                if (Math.abs(x - xx) < 10 || Math.abs(y - yy) < 10) {
-                    planetArray[i].setxCoordinate(generateCoordinates(xOffset, xRange));
-                    planetArray[i].setyCoordinate(generateCoordinates(yOffset, yRange));
-                    j = 0;
-                } else {
-                    j++;
-                }
+            if(i !=0 && Math.abs(planetArray[i].getYCoordinate() - planetArray[i-1].getYCoordinate()) < 35){
+                i--;
             }
         }
     }

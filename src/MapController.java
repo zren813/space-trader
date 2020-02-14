@@ -87,7 +87,6 @@ public class MapController {
             worldGenerator = new WorldGenerator();
             player = new Player();
         }
-        player = new Player();
         planetArray = worldGenerator.getPlanetArray();
 
         if (!opened) {
@@ -159,6 +158,7 @@ public class MapController {
     }
     public void explore1BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 1;
+        player.setCurrentPlanet(planetArray[1]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -172,6 +172,7 @@ public class MapController {
     }
     public void explore2BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 2;
+        player.setCurrentPlanet(planetArray[2]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -185,6 +186,7 @@ public class MapController {
     }
     public void explore3BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 3;
+        player.setCurrentPlanet(planetArray[3]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -198,6 +200,7 @@ public class MapController {
     }
     public void explore4BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 4;
+        player.setCurrentPlanet(planetArray[4]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -211,6 +214,7 @@ public class MapController {
     }
     public void explore5BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 5;
+        player.setCurrentPlanet(planetArray[5]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -224,6 +228,7 @@ public class MapController {
     }
     public void explore6BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 6;
+        player.setCurrentPlanet(planetArray[6]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -237,6 +242,7 @@ public class MapController {
     }
     public void explore7BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 7;
+        player.setCurrentPlanet(planetArray[7]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -250,6 +256,7 @@ public class MapController {
     }
     public void explore8BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 8;
+        player.setCurrentPlanet(planetArray[8]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -263,6 +270,7 @@ public class MapController {
     }
     public void explore9BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 9;
+        player.setCurrentPlanet(planetArray[9]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -276,6 +284,7 @@ public class MapController {
     }
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 0;
+        player.setCurrentPlanet(planetArray[0]);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);

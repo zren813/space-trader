@@ -8,7 +8,7 @@ public class Player {
     public Player() {
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        currentPlanet = planetArray[random.nextInt(10)];
+        currentPlanet = planetArray[0];
         currentPlanet.setVisited(true);
     }
     public int[] getDistanceArray(){
@@ -23,7 +23,7 @@ public class Player {
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
-    public void setCurrentPlanet(Planet currentPlanet) {
-        this.currentPlanet = currentPlanet;
+    public void setCurrentPlanet(Planet newCurrentPlanet) {
+        currentPlanet = newCurrentPlanet;
     }
 }

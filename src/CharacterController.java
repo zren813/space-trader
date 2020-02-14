@@ -58,5 +58,4 @@ public class CharacterController {
         window.setScene(configScene);
         window.show();
     }
-
 }

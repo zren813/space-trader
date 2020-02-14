@@ -7,7 +7,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
-    static Media music = new Media(Main.class.getResource("Feel_it_still.mp3").toExternalForm());
+    static Media music = new Media(Main.class.getResource("bgm.mp3").toExternalForm());
     static MediaPlayer player = new MediaPlayer(music);
 
     @Override

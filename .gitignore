@@ -1,3 +1,4 @@
 checkstyle-*.jar
 out/
 /target/
+/build/

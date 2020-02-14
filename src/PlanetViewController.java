@@ -32,16 +32,15 @@ public class PlanetViewController {
     @FXML
     public void initialize() {
         worldGenerator = MapController.getWorldGenerator();
+        player = MapController.getPlayer();
         planetArray = worldGenerator.getPlanetArray();
         index = MapController.getPlanetClicked();
-        planetViewCurve.setFill(planetArray[index].getPaint());
-        name.setText(planetArray[index].getName());
-        technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
-        color.setText(planetArray[index].getPaint().toString());
-        description.setText(planetArray[index].getDescription());
-        planetArray[index].setVisited(true);
-        player = MapController.getPlayer();
-        player.setCurrentPlanet(planetArray[index]);
+        planetViewCurve.setFill(player.getCurrentPlanet().getPaint());
+        name.setText(player.getCurrentPlanet().getName());
+        technologyLevel.setText(String.valueOf(player.getCurrentPlanet().getTechnologyLevel()));
+        color.setText(player.getCurrentPlanet().getPaint().toString());
+        description.setText(player.getCurrentPlanet().getDescription());
+        player.getCurrentPlanet().setVisited(true);
     }
 
     public void returnBtnPressed(ActionEvent event) throws IOException {

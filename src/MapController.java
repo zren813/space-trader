@@ -17,7 +17,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 import java.io.IOException;
 import java.util.*;
@@ -44,7 +43,7 @@ public class MapController {
     @FXML
     private Circle planet10;
     @FXML
-    private Text TextInfo;
+    private Text textInfo;
     @FXML
     private Button exploreBtn;
     @FXML
@@ -68,15 +67,15 @@ public class MapController {
     @FXML
     public void initialize() {
 
-        TextInfo.setText("Credits: to be continue" + "\n" +
-            "Pilot skill point: " + ConfigController.getNumPilotSP() + "\n" +
-            "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" +
-            "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" +
-            "Engineer skill point:  " + ConfigController.getNumEngineerSP());
-        xRange = (int) rectangle.getWidth()-25;
-        yRange = (int) rectangle.getHeight() -40;
-        xOffset = (int) rectangle.getLayoutX()-60;
-        yOffset = (int) rectangle.getLayoutY() +10;
+        textInfo.setText("Credits: to be continue" + "\n" 
+            + "Pilot skill point: " + ConfigController.getNumPilotSP() + "\n"
+            + "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" 
+            + "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" 
+            + "Engineer skill point:  " + ConfigController.getNumEngineerSP());
+        xRange = (int) rectangle.getWidth() - 25;
+        yRange = (int) rectangle.getHeight() - 40;
+        xOffset = (int) rectangle.getLayoutX() - 60;
+        yOffset = (int) rectangle.getLayoutY() + 10;
         circleArray[0] = planet1;
         circleArray[1] = planet2;
         circleArray[2] = planet3;
@@ -97,16 +96,22 @@ public class MapController {
         planetArray = worldGenerator.getPlanetArray();
         if (!opened) {
             fixPlanetCoordinates();
-        }for (int i = 0; i < 10; i++) {
+        }
+        for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
             circleArray[i].setCenterY(planetArray[i].getYCoordinate());
             circleArray[i].setFill(planetArray[i].getPaint());
-            toolTipArray[i].setText(planetArray[i].displayInfo() + "\n" + "Distance: " + player.getDistanceArray()[i] +
-                    "\n" + "[" + planetArray[i].getXCoordinate() + ", " + planetArray[i].getYCoordinate() + "]");
+            toolTipArray[i].setText(planetArray[i].displayInfo() + "\n" 
+                + "Distance: " + player.getDistanceArray()[i] + "\n" + "[" 
+                + planetArray[i].getXCoordinate() + ", " 
+                + planetArray[i].getYCoordinate() + "]");
             Tooltip.install(circleArray[i], toolTipArray[i]);
         }
-        hereLabel.setBackground(new Background(new BackgroundFill(Color.hsb(25, 0.5, 0.5), CornerRadii.EMPTY, Insets.EMPTY)));
+        hereLabel.setBackground(new Background(
+                new BackgroundFill(
+                        Color.hsb(25, 0.5, 0.5), 
+                        CornerRadii.EMPTY, Insets.EMPTY)));
         hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate());
         hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate() - 25);
     }
@@ -125,9 +130,14 @@ public class MapController {
 
     public void fixPlanetCoordinates() {
         for (int i = 0; i < 10; i++) {
-            planetArray[i].setxCoordinate(generateCoordinates(xOffset+xRange/10*(i+1), xRange/10));
-            planetArray[i].setyCoordinate(generateCoordinates(yOffset, yRange));
-            if(i !=0 && Math.abs(planetArray[i].getYCoordinate() - planetArray[i-1].getYCoordinate()) < 35){
+            planetArray[i].setxCoordinate(
+                generateCoordinates(xOffset + xRange / 10 * (i + 1), xRange / 10)
+            );
+            planetArray[i].setyCoordinate(
+                generateCoordinates(yOffset, yRange)
+            );
+            if (i != 0 && Math.abs(planetArray[i].getYCoordinate() 
+                    - planetArray[i - 1].getYCoordinate()) < 35) {
                 i--;
             }
         }
@@ -292,7 +302,9 @@ public class MapController {
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 0;
         player.setCurrentPlanet(planetArray[0]);
-        setHereLabel(player.getCurrentPlanet().getYCoordinate(), player.getCurrentPlanet().getXCoordinate() - 20);
+        setHereLabel(
+                player.getCurrentPlanet().getYCoordinate(), 
+                player.getCurrentPlanet().getXCoordinate() - 20);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);

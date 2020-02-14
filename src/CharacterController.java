@@ -17,13 +17,13 @@ public class CharacterController {
     @FXML
     private Text credits;
     @FXML
-    private Text TextpilotSP;
+    private Text textpilotSP;
     @FXML
-    private Text TextfighterSP;
+    private Text textfighterSP;
     @FXML
-    private Text TextmerchantSP;
+    private Text textmerchantSP;
     @FXML
-    private Text TextengineerSP;
+    private Text textengineerSP;
 
     /**
      * This method is to initialize all numbers
@@ -41,10 +41,10 @@ public class CharacterController {
         } else {
             credits.setText("2000");
         }
-        TextpilotSP.setText(Integer.toString(ConfigController.getNumPilotSP()));
-        TextfighterSP.setText(Integer.toString(ConfigController.getNumFighterSP()));
-        TextmerchantSP.setText(Integer.toString(ConfigController.getNumMerchantSP()));
-        TextengineerSP.setText(Integer.toString(ConfigController.getNumEngineerSP()));
+        textpilotSP.setText(Integer.toString(ConfigController.getNumPilotSP()));
+        textfighterSP.setText(Integer.toString(ConfigController.getNumFighterSP()));
+        textmerchantSP.setText(Integer.toString(ConfigController.getNumMerchantSP()));
+        textengineerSP.setText(Integer.toString(ConfigController.getNumEngineerSP()));
     }
 
     public void startBtnPressed(ActionEvent event) throws IOException {

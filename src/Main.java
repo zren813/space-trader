@@ -7,8 +7,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 public class Main extends Application {
-    static Media music = new Media(Main.class.getResource("bgm.mp3").toExternalForm());
-    static MediaPlayer player = new MediaPlayer(music);
+    private static Media music = new Media(Main.class.getResource("bgm.mp3").toExternalForm());
+    private static MediaPlayer player = new MediaPlayer(music);
 
     @Override
     public void start(Stage primaryStage) throws Exception {

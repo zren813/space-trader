@@ -8,20 +8,19 @@ import javafx.scene.shape.CubicCurve;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class PlanetViewController {
     @FXML
-    CubicCurve planetViewCurve;
+    private CubicCurve planetViewCurve;
     @FXML
-    Text name;
+    private Text name;
     @FXML
-    Text technologyLevel;
+    private Text technologyLevel;
     @FXML
-    Text color;
+    private Text color;
     @FXML
-    Text description;
+    private Text description;
 
     private static WorldGenerator worldGenerator;
     private Planet[] planetArray;
@@ -95,8 +94,4 @@ public class PlanetViewController {
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }
-
-//    private void changeHereLocation(Label hereLabel) {
-//
-//    }
 }

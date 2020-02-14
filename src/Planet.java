@@ -30,9 +30,10 @@ public class Planet {
         yCoordinate = random.nextInt(300);
         visited = false;
         String[] unit = {"thousand.", "million.", "billion."};
-        description = "This planet is called " + name + " and the technology level is " + technologyLevel + ". " +
-                "The population on this planet is " + random.nextInt(1000) + " " +
-                unit[random.nextInt(3)];
+        description = "This planet is called " 
+            + name + " and the technology level is " 
+            + technologyLevel + ". " + "The population on this planet is " 
+            + random.nextInt(1000) + " " + unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
     }
 

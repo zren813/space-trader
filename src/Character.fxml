@@ -76,17 +76,17 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="TextfighterSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="textfighterSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="TextmerchantSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="textmerchantSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="TextengineerSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="textengineerSP" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="23.0" />
                </font>
@@ -106,22 +106,22 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="TextengineerSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Text fx:id="textengineerSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="TextpilotSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="textpilotSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="TextfighterSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="textfighterSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="TextmerchantSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="textmerchantSP" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="24.0" />
                </font>

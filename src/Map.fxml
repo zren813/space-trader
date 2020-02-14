@@ -29,7 +29,7 @@
            <font>
                <Font size="15.0" />
            </font></Button>
-      <Text fx:id="TextInfo" fill="WHITE" layoutX="261.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
+      <Text fx:id="textInfo" fill="WHITE" layoutX="261.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
          <font>
             <Font size="23.0" />
          </font>

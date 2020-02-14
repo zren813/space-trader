@@ -8,6 +8,7 @@ import javafx.scene.shape.CubicCurve;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class PlanetViewController {
@@ -50,15 +51,14 @@ public class PlanetViewController {
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
         configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
-
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
         window.setScene(configScene);
         window.show();
     }
 
     public void prevBtnPressed(ActionEvent event) throws IOException {
         index = (index - 1) % planetArray.length;
+        player.setCurrentPlanet(planetArray[index]);
         if (index < 0) {
             index += planetArray.length;
         }
@@ -68,19 +68,17 @@ public class PlanetViewController {
         color.setText(planetArray[index].getPaint().toString());
         description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
-        player.setCurrentPlanet(planetArray[index]);
-
     }
 
     public void nextBtnPressed(ActionEvent event) throws IOException {
         index = (index + 1) % planetArray.length;
+        player.setCurrentPlanet(planetArray[index]);
         planetViewCurve.setFill(planetArray[index].getPaint());
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
         color.setText(planetArray[index].getPaint().toString());
         description.setText(planetArray[index].getDescription());
         planetArray[index].setVisited(true);
-        player.setCurrentPlanet(planetArray[index]);
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {
@@ -98,4 +96,8 @@ public class PlanetViewController {
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }
+
+//    private void changeHereLocation(Label hereLabel) {
+//
+//    }
 }

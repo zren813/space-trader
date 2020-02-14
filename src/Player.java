@@ -10,6 +10,7 @@ public class Player {
         planetArray = worldGenerator.getPlanetArray();
         currentPlanet = planetArray[0];
         currentPlanet.setVisited(true);
+        setCurrentPlanet(planetArray[0]);
     }
     public int[] getDistanceArray(){
         int[] distanceArray = new int[10];

@@ -1,12 +1,17 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Tooltip;
 import javafx.scene.shape.Rectangle;
@@ -44,6 +49,8 @@ public class MapController {
     private Button exploreBtn;
     @FXML
     private Rectangle rectangle;
+    @FXML
+    private Label hereLabel;
 
     private Circle[] circleArray = new Circle[10];
     private Tooltip[] toolTipArray = new Tooltip[10];
@@ -88,20 +95,20 @@ public class MapController {
             player = new Player();
         }
         planetArray = worldGenerator.getPlanetArray();
-
         if (!opened) {
             fixPlanetCoordinates();
-        }
-
-        for (int i = 0; i < 10; i++) {
+        }for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
             circleArray[i].setCenterY(planetArray[i].getYCoordinate());
             circleArray[i].setFill(planetArray[i].getPaint());
             toolTipArray[i].setText(planetArray[i].displayInfo() + "\n" + "Distance: " + player.getDistanceArray()[i] +
-                "\n" + "[" + planetArray[i].getXCoordinate() + ", " + planetArray[i].getYCoordinate() + "]");
+                    "\n" + "[" + planetArray[i].getXCoordinate() + ", " + planetArray[i].getYCoordinate() + "]");
             Tooltip.install(circleArray[i], toolTipArray[i]);
         }
+        hereLabel.setBackground(new Background(new BackgroundFill(Color.hsb(25, 0.5, 0.5), CornerRadii.EMPTY, Insets.EMPTY)));
+        hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate());
+        hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate() - 25);
     }
 
     public static WorldGenerator getWorldGenerator() {
@@ -285,6 +292,7 @@ public class MapController {
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 0;
         player.setCurrentPlanet(planetArray[0]);
+        setHereLabel(player.getCurrentPlanet().getYCoordinate(), player.getCurrentPlanet().getXCoordinate() - 20);
         worldGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
@@ -298,5 +306,10 @@ public class MapController {
     }
     public static int getPlanetClicked() {
         return planetClicked;
+    }
+
+    public void setHereLabel(int x, int y) {
+        hereLabel.setLayoutX(x);
+        hereLabel.setLayoutY(y);
     }
 }

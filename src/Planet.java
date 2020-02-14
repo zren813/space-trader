@@ -22,6 +22,7 @@ public class Planet {
 
     @SuppressWarnings("checkstyle:OperatorWrap")
     public Planet() {
+
         Random random = new Random();
         name = NameGenerator.getName();
         technologyLevel = random.nextInt(10) + 1;
@@ -69,7 +70,7 @@ public class Planet {
 
     public String displayInfo() {
         if (isVisited()) {
-            return ("Name: " + getName() + "\n" + "Technology level: " + getTechnologyLevel()
+            return ("Name: " + getName() + "\n" + "Technology level" + getTechnologyLevel()
                     + "\n" + "Description: " + getDescription());
         } else {
             return "UNKNOWN (Please visit first)";

@@ -204,6 +204,11 @@
                   <Font size="19.0" />
                </font>
             </Text>
+            <Text fx:id="playerAndShipNameText1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory:">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Text>
             <Text fx:id="good1InfoText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
                   <Font size="19.0" />

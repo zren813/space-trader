@@ -36,11 +36,10 @@ public class ConfigController {
 
     private static String name;
     private static String difficulty;
-    private static int availableSkill;
-    private static int numPilotSP;
-    private static int numFighterSP;
-    private static int numMerchantSP;
-    private static int numEngineerSP;
+    private static int pilotSkill;
+    private static int fighterSkill;
+    private static int merchantSkill;
+    private static int engineerSkill;
 
 
     /**
@@ -107,10 +106,10 @@ public class ConfigController {
         if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
             name = nameTextField.getText();
             difficulty = difficultyLevel.getValue();
-            numPilotSP = pilotSP.getValue();
-            numFighterSP = fighterSP.getValue();
-            numMerchantSP = merchantSP.getValue();
-            numEngineerSP = engineerSP.getValue();
+            pilotSkill = pilotSP.getValue();
+            fighterSkill = fighterSP.getValue();
+            merchantSkill = merchantSP.getValue();
+            engineerSkill = engineerSP.getValue();
 
             Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
             Scene configScene = new Scene(configParent);
@@ -132,66 +131,27 @@ public class ConfigController {
         }
     }
 
-    /**
-     * This method is the getter of name
-     *
-     * @return String name
-     */
     public static String getName() {
         return name;
     }
 
-    /**
-     * This method is the getter of difficulty
-     *
-     * @return int difficulty
-     */
     public static String getDifficulty() {
         return difficulty;
     }
 
-    /**
-     * This method is the getter of availableSkill
-     *
-     * @return int availableSkill
-     */
-    public static int getAvailableSkill() {
-        return availableSkill;
+    public static int getPilotSkill() {
+        return pilotSkill;
     }
 
-    /**
-     * This method is the getter of skill 1 points
-     *
-     * @return int skill point
-     */
-    public static int getNumPilotSP() {
-        return numPilotSP;
+    public static int getFighterSkill() {
+        return fighterSkill;
     }
 
-    /**
-     * This method is the getter of skill 2 points
-     *
-     * @return int skill point
-     */
-    public static int getNumFighterSP() {
-        return numFighterSP;
+    public static int getMerchantSkill() {
+        return merchantSkill;
     }
 
-    /**
-     * This method is the getter of skill 3 points
-     *
-     * @return int skill point
-     */
-    public static int getNumMerchantSP() {
-        return numMerchantSP;
-    }
-
-    /**
-     * This method is the getter of skill 4 points
-     *
-     * @return int skill point
-     */
-    public static int getNumEngineerSP() {
-        return numEngineerSP;
+    public static int getEngineerSkill() {
+        return engineerSkill;
     }
 }

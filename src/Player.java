@@ -8,6 +8,13 @@ public class Player {
     private Ship ship;
     private int balance;
     private String name;
+    // charachter's skills
+    private int pilotSkill;
+    private int fighterSkill;
+    private int merchantSkill;
+    private int engineerSkill;
+
+
     public Player() {
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
@@ -18,6 +25,11 @@ public class Player {
         this.balance = 1000;
         ship = new Ship("Apollo 11", 50, 100, 100);
         this.name = ConfigController.getName();
+        //initialize skills
+        pilotSkill = ConfigController.getPilotSkill();
+        fighterSkill = ConfigController.getFighterSkill();
+        merchantSkill = ConfigController.getMerchantSkill();
+        engineerSkill = ConfigController.getEngineerSkill();
     }
     public int[] getDistanceArray() {
         int[] distanceArray = new int[10];
@@ -59,5 +71,37 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPilotSkill() {
+        return pilotSkill;
+    }
+
+    public void setPilotSkill(int pilotSkill) {
+        this.pilotSkill = pilotSkill;
+    }
+
+    public int getFighterSkill() {
+        return fighterSkill;
+    }
+
+    public void setFighterSkill(int fighterSkill) {
+        this.fighterSkill = fighterSkill;
+    }
+
+    public int getMerchantSkill() {
+        return merchantSkill;
+    }
+
+    public void setMerchantSkill(int merchantSkill) {
+        this.merchantSkill = merchantSkill;
+    }
+
+    public int getEngineerSkill() {
+        return engineerSkill;
+    }
+
+    public void setEngineerSkill(int engineerSkill) {
+        this.engineerSkill = engineerSkill;
     }
 }

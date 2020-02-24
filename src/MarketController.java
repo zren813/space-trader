@@ -4,12 +4,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import java.util.Map;
 
 public class MarketController {
 
@@ -73,7 +70,7 @@ public class MarketController {
         player = MapController.getPlayer();
         ship = player.getShip();
         shipInventory = ship.getItemInventory();
-        if(shipInventory==null){
+        if (shipInventory == null) {
             shipInventory = new Good[GoodGenerater.getNumberOfGood()];
             for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
                 shipInventory[i] = new Good(good[0].getName(), good[0].getTechLevel(), good[0].getVolume());
@@ -85,9 +82,9 @@ public class MarketController {
         good1NameText.setText(good[0].getName());
         good2NameText.setText(good[1].getName());
         good3NameText.setText(good[2].getName());
-        good1PriceText.setText("$" + good[0].getPrice() + "/$" + (int)(good[0].getPrice() * discount));
-        good2PriceText.setText("$" + good[1].getPrice() + "/$" + (int)(good[1].getPrice() * discount));
-        good3PriceText.setText("$" + good[2].getPrice() + "/$" + (int)(good[2].getPrice() * discount));
+        good1PriceText.setText("$" + good[0].getPrice() + "/$" + (int) (good[0].getPrice() * discount));
+        good2PriceText.setText("$" + good[1].getPrice() + "/$" + (int) (good[1].getPrice() * discount));
+        good3PriceText.setText("$" + good[2].getPrice() + "/$" + (int) (good[2].getPrice() * discount));
         good1CapacityText.setText(String.valueOf(good[0].getVolume()));
         good2CapacityText.setText(String.valueOf(good[1].getVolume()));
         good3CapacityText.setText(String.valueOf(good[2].getVolume()));
@@ -96,20 +93,34 @@ public class MarketController {
         good3TechLevelText.setText(String.valueOf(good[2].getTechLevel()));
         updateCharacterInfo();
     }
-    public void updateCharacterInfo(){
-        playerAndShipNameText.setText(String.format("%s(%s)",player.getName(), ship.getName()));
-        balanceText.setText(String.format("Balance: %d",player.getBalance()));
-        capacityText.setText(String.valueOf(String.format("Capacity: %d",ship.getCargoCapacity())));
-        good1InfoText.setText(String.format("Good1: %d", ship.getItemInventory()[0].getQuantity()));
-        good2InfoText.setText(String.format("Good2: %d", ship.getItemInventory()[1].getQuantity()));
-        good3InfoText.setText(String.format("Good3: %d", ship.getItemInventory()[2].getQuantity()));
+
+    public void updateCharacterInfo() {
+        playerAndShipNameText.setText(String.format("%s(%s)", player.getName(), ship.getName()));
+        balanceText.setText(String.format("Balance: %d", player.getBalance()));
+        capacityText.setText(String.valueOf(String.format("Capacity: %d", ship.getCargoCapacity())));
+        good1InfoText.setText(String.format("%s: %d", good[0].getName(),ship.getItemInventory()[0].getQuantity()));
+        good2InfoText.setText(String.format("%s: %d", good[1].getName(),ship.getItemInventory()[1].getQuantity()));
+        good3InfoText.setText(String.format("%s: %d", good[2].getName(),ship.getItemInventory()[2].getQuantity()));
     }
-    public void resetSpinner(){
+
+    public void resetSpinner() {
         good1Spinner.getValueFactory().setValue(0);
         good2Spinner.getValueFactory().setValue(0);
         good3Spinner.getValueFactory().setValue(0);
     }
-    public void characterUpgradeBtnPressed(ActionEvent actionEvent) {
+
+    public void characterUpgradeBtnPressed(ActionEvent actionEvent) throws Exception {
+        System.out.println("haha");
+        Parent configParent = FXMLLoader.load(getClass().getResource("CharacterUpgrade.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+
     }
 
     public void exitBtnPressed(ActionEvent actionEvent) throws Exception {
@@ -137,13 +148,13 @@ public class MarketController {
             ship.setCargoCapacity(ship.getCargoCapacity() - totalCapacity);
 
             if (good1Spinner.getValue() != 0) {
-                shipInventory[0].setQuantity(shipInventory[0].getQuantity()+good1Spinner.getValue());
+                shipInventory[0].setQuantity(shipInventory[0].getQuantity() + good1Spinner.getValue());
             }
             if (good2Spinner.getValue() != 0) {
-                shipInventory[1].setQuantity(shipInventory[1].getQuantity()+good2Spinner.getValue());
+                shipInventory[1].setQuantity(shipInventory[1].getQuantity() + good2Spinner.getValue());
             }
             if (good3Spinner.getValue() != 0) {
-                shipInventory[2].setQuantity(shipInventory[2].getQuantity()+good3Spinner.getValue());
+                shipInventory[2].setQuantity(shipInventory[2].getQuantity() + good3Spinner.getValue());
             }
             ship.setItemInventory(shipInventory);
 
@@ -164,18 +175,17 @@ public class MarketController {
         int wts2 = good2Spinner.getValue();
         int wts3 = good3Spinner.getValue();
         // check if ship have enough items to sell
-        if (wts1 <= shipInventory[0].getQuantity() && wts2 <= shipInventory[1].getQuantity() &&wts3 <= shipInventory[2].getQuantity()) {
+        if (wts1 <= shipInventory[0].getQuantity() && wts2 <= shipInventory[1].getQuantity() && wts3 <= shipInventory[2].getQuantity()) {
             // update player's balance and ship's capacity and inventory
-            int totalRevenue =(int) discount*( wts1*good[0].getPrice()+ wts2*good[1].getPrice()+wts3*good[2].getPrice());
-            int totalGainCapacity = wts1*good[0].getVolume()+wts2*good[1].getVolume()+wts3*good[2].getVolume();
-            player.setBalance(player.getBalance()+totalRevenue);
-            ship.setCargoCapacity(ship.getCargoCapacity()+totalGainCapacity);
-            shipInventory[0].setQuantity(shipInventory[0].getQuantity()-wts1);
-            shipInventory[1].setQuantity(shipInventory[1].getQuantity()-wts2);
-            shipInventory[2].setQuantity(shipInventory[2].getQuantity()-wts3);
+            int totalRevenue = (int) (discount * (wts1 * good[0].getPrice() + wts2 * good[1].getPrice() + wts3 * good[2].getPrice()));
+            int totalGainCapacity = wts1 * good[0].getVolume() + wts2 * good[1].getVolume() + wts3 * good[2].getVolume();
+            player.setBalance(player.getBalance() + totalRevenue);
+            ship.setCargoCapacity(ship.getCargoCapacity() + totalGainCapacity);
+            shipInventory[0].setQuantity(shipInventory[0].getQuantity() - wts1);
+            shipInventory[1].setQuantity(shipInventory[1].getQuantity() - wts2);
+            shipInventory[2].setQuantity(shipInventory[2].getQuantity() - wts3);
             ship.setItemInventory(shipInventory);
-        }
-        else{
+        } else {
             errorMessage.setText("You don't have enough items to sell!");
         }
         //reset spinner

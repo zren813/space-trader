@@ -41,10 +41,10 @@ public class CharacterController {
         } else {
             credits.setText("2000");
         }
-        textpilotSP.setText(Integer.toString(ConfigController.getNumPilotSP()));
-        textfighterSP.setText(Integer.toString(ConfigController.getNumFighterSP()));
-        textmerchantSP.setText(Integer.toString(ConfigController.getNumMerchantSP()));
-        textengineerSP.setText(Integer.toString(ConfigController.getNumEngineerSP()));
+        textpilotSP.setText(Integer.toString(ConfigController.getPilotSkill()));
+        textfighterSP.setText(Integer.toString(ConfigController.getFighterSkill()));
+        textmerchantSP.setText(Integer.toString(ConfigController.getMerchantSkill()));
+        textengineerSP.setText(Integer.toString(ConfigController.getEngineerSkill()));
     }
 
     public void startBtnPressed(ActionEvent event) throws IOException {

@@ -68,10 +68,10 @@ public class MapController {
     public void initialize() {
 
         textInfo.setText("Credits: to be continue" + "\n" 
-            + "Pilot skill point: " + ConfigController.getNumPilotSP() + "\n"
-            + "Fighter skill point: " + ConfigController.getNumFighterSP() + "\n" 
-            + "Merchant skill point: " + ConfigController.getNumMerchantSP() + "\n" 
-            + "Engineer skill point:  " + ConfigController.getNumEngineerSP());
+            + "Pilot skill point: " + ConfigController.getPilotSkill() + "\n"
+            + "Fighter skill point: " + ConfigController.getFighterSkill() + "\n"
+            + "Merchant skill point: " + ConfigController.getMerchantSkill() + "\n"
+            + "Engineer skill point:  " + ConfigController.getEngineerSkill());
         xRange = (int) rectangle.getWidth() - 25;
         yRange = (int) rectangle.getHeight() - 40;
         xOffset = (int) rectangle.getLayoutX() - 60;

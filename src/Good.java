@@ -3,18 +3,19 @@ public class Good {
     private int quantity;
     private int techLevel;
     private int price;
-    private int capacity;
+    private int volume;
     private static int basePrice = 10;
 
-    public Good(String name, int techLevel, int capacity) {
+    public Good(String name, int techLevel, int volume) {
         this.name = name;
-        this.techLevel = techLevel;
-        this.capacity = capacity;
         this.quantity = 0;
+        this.techLevel = techLevel;
+        this.volume = volume;
         calculatePrice();
     }
-    public void calculatePrice(){
-        this.price = this.getBasePrice()* this.techLevel;
+
+    public void calculatePrice() {
+        this.price = this.getBasePrice() * this.techLevel;
     }
 
     public String getName() {
@@ -51,12 +52,12 @@ public class Good {
         calculatePrice();
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getVolume() {
+        return volume;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 
     public int getPrice() {

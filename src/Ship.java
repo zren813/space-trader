@@ -17,8 +17,10 @@ public class Ship {
     public Ship(String name, int cargoCapacity, int fuelCapacity, int health) {
         this.name = name;
         this.cargoCapacity = cargoCapacity;
+        this.itemInventory = null;
         this.fuelCapacity = fuelCapacity;
         this.health = health;
+
     }
 
     // Getters and setters

@@ -7,6 +7,7 @@ public class Player {
     // in order to buy items from market, player needs to have a ship and balance
     private Ship ship;
     private int balance;
+    private String name;
     public Player() {
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
@@ -16,6 +17,7 @@ public class Player {
         //initialize balance and a ship
         this.balance = 1000;
         ship = new Ship("Apollo 11", 50, 100, 100);
+        this.name = ConfigController.getName();
     }
     public int[] getDistanceArray() {
         int[] distanceArray = new int[10];
@@ -49,5 +51,13 @@ public class Player {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -1,12 +1,22 @@
 public class Good {
     private String name;
-    private double base_price;
-    private int number;
-    public Good(String name, double base_price) {
+    private int quantity;
+    private int techLevel;
+    private int price;
+    private int capacity;
+    private static int basePrice = 10;
+
+    public Good(String name, int techLevel, int capacity) {
         this.name = name;
-        this.base_price = base_price;
-        this.number = 0;
+        this.techLevel = techLevel;
+        this.capacity = capacity;
+        this.quantity = 0;
+        calculatePrice();
     }
+    public void calculatePrice(){
+        this.price = this.getBasePrice()* this.techLevel;
+    }
+
     public String getName() {
         return name;
     }
@@ -15,19 +25,41 @@ public class Good {
         this.name = name;
     }
 
-    public double getBase_price() {
-        return base_price;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setBase_price(double base_price) {
-        this.base_price = base_price;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public int getNumber() {
-        return number;
+    public int getTechLevel() {
+        return techLevel;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setTechLevel(int techLevel) {
+        this.techLevel = techLevel;
+        calculatePrice();
+    }
+
+    public int getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+        calculatePrice();
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

@@ -117,8 +117,9 @@ public class CharacterUpgradeController {
             player.setEngineerSkill(level[3]);
         }else{
             errorMessage.setText("You don't have enough balance");
-            resetSkillSpinner();
+
         }
+        resetSkillSpinner();
         updateCharacterInfo();
     }
 

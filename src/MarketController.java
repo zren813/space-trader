@@ -110,7 +110,6 @@ public class MarketController {
     }
 
     public void characterUpgradeBtnPressed(ActionEvent actionEvent) throws Exception {
-        System.out.println("haha");
         Parent configParent = FXMLLoader.load(getClass().getResource("CharacterUpgrade.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

@@ -111,7 +111,7 @@ public class CharacterUpgradeController {
             if (playerEquipment[i] != null) {
                 itemCheckBox[i].setSelected(true);
             }
-            if( player.getEquipped()[i]){
+            if (player.getEquipped()[i]) {
                 itemEquippedCheckBox[i].setSelected(true);
             }
 

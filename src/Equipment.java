@@ -6,6 +6,7 @@ public class Equipment {
     private int merchantAbilityIncrement;
     private int engineerAbilityIncrement;
     private String description;
+
     public Equipment(String name, int price, int pilotAbilityIncrement, int fighterAbilityIncrement, int merchantAbilityIncrement, int engineerAbilityIncrement) {
         this.name = name;
         this.price = price;
@@ -13,18 +14,18 @@ public class Equipment {
         this.fighterAbilityIncrement = fighterAbilityIncrement;
         this.merchantAbilityIncrement = merchantAbilityIncrement;
         this.engineerAbilityIncrement = engineerAbilityIncrement;
-        this.description= "";
-        if(pilotAbilityIncrement!=0){
-            description+= "pilot+"+pilotAbilityIncrement;
+        this.description = "";
+        if (pilotAbilityIncrement != 0) {
+            description += "pilot+" + pilotAbilityIncrement;
         }
-        if(fighterAbilityIncrement!=0){
-            description+= "fighter+"+fighterAbilityIncrement;
+        if (fighterAbilityIncrement != 0) {
+            description += "fighter+" + fighterAbilityIncrement;
         }
-        if(merchantAbilityIncrement!=0){
-            description+= "merchant+"+merchantAbilityIncrement;
+        if (merchantAbilityIncrement != 0) {
+            description += "merchant+" + merchantAbilityIncrement;
         }
-        if(engineerAbilityIncrement!=0){
-            description+= "engineer+"+engineerAbilityIncrement;
+        if (engineerAbilityIncrement != 0) {
+            description += "engineer+" + engineerAbilityIncrement;
         }
     }
 

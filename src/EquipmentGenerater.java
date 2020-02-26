@@ -13,6 +13,7 @@ public class EquipmentGenerater {
         player = MapController.getPlayer();
         player.setEquipment(new Equipment[equipmentNumber]);
         player.setEquipped(new Boolean[]{false, false, false, false, false});
+
     }
 
     public Equipment[] getEquipment() {

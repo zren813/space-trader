@@ -108,6 +108,7 @@ public class MarketController {
     public void updateCharacterInfo() {
         String playerInfo = "";
         playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
+        playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
         playerInfo += String.format("Capacity: %d", ship.getCargoCapacity()) +"\n";
         playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
 

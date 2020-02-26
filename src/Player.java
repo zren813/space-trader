@@ -8,6 +8,7 @@ public class Player {
     private Ship ship;
     private int balance;
     private String name;
+    private Equipment equipment[];
     // charachter's skills
     private int pilotSkill;
     private int fighterSkill;
@@ -31,15 +32,17 @@ public class Player {
         merchantSkill = ConfigController.getMerchantSkill();
         engineerSkill = ConfigController.getEngineerSkill();
     }
+
     public int[] getDistanceArray() {
         int[] distanceArray = new int[10];
         for (int i = 0; i < 10; i++) {
-            distanceArray[i] = (int) Math.sqrt(Math.pow(planetArray[i].getXCoordinate() 
-                    - currentPlanet.getXCoordinate(), 2) + Math.pow(planetArray[i].getYCoordinate()
-                    - currentPlanet.getYCoordinate(), 2));
+            distanceArray[i] = (int) Math.sqrt(Math.pow(planetArray[i].getXCoordinate()
+                - currentPlanet.getXCoordinate(), 2) + Math.pow(planetArray[i].getYCoordinate()
+                - currentPlanet.getYCoordinate(), 2));
         }
         return distanceArray;
     }
+
     // Getters and setters
     public Planet getCurrentPlanet() {
         return currentPlanet;
@@ -103,5 +106,25 @@ public class Player {
 
     public void setEngineerSkill(int engineerSkill) {
         this.engineerSkill = engineerSkill;
+    }
+
+    public int[] getSkill() {
+        int skill[] = {this.getPilotSkill(), this.getFighterSkill(), this.getMerchantSkill(), this.getEngineerSkill()};
+        return skill;
+    }
+
+    public void setSkill(int skill[]) {
+        this.setPilotSkill(skill[0]);
+        this.setFighterSkill(skill[1]);
+        this.setMerchantSkill(skill[2]);
+        this.setEngineerSkill(skill[3]);
+    }
+
+    public Equipment[] getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(Equipment[] equipment) {
+        this.equipment = equipment;
     }
 }

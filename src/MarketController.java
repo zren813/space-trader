@@ -65,27 +65,25 @@ public class MarketController {
     private static boolean isopened = false;
 
     public void initialize() {
+        // add all UI as arrays
         goodNameText = new Text[]{good1NameText, good2NameText, good3NameText};
         goodPriceText = new Text[]{good1PriceText, good2PriceText, good3PriceText};
         goodCapacityText = new Text[]{good1CapacityText, good2CapacityText, good3CapacityText};
         goodTechLevelText = new Text[]{good1TechLevelText, good2TechLevelText, good3TechLevelText};
         goodSpinner = new Spinner[]{good1Spinner, good2Spinner, good3Spinner};
 
-        // initialize goods and assign good, player and the ship
+        // initialize goods
         if(!isopened){
             isopened = true;
             goodGenerater = new GoodGenerater();
         }
+
+        // assign needed object
         numberOfGood =goodGenerater.getNumberOfGood();
         good = goodGenerater.getGood();
 
         player = MapController.getPlayer();
         merchantDiscount = (10.0 - player.getMerchantSkill()) / 10;
-        // update goods' price due to merchant discount
-        Good.setBasePrice((int) (Good.getBasePrice() * merchantDiscount));
-        for (int i = 0; i < numberOfGood; i++) {
-            good[i].calculatePrice();
-        }
 
         ship = player.getShip();
         shipInventory = ship.getItemInventory();
@@ -98,15 +96,24 @@ public class MarketController {
         ship.setItemInventory(shipInventory);
 
         // set up layout of the UI
+        updateGoodInfo();
+        updateCharacterInfo();
+    }
+
+    public void updateGoodInfo(){
+        // update goods' price according to merchant discount
+        Good.setBasePrice((int) (Good.getBasePrice() * merchantDiscount));
+        for (int i = 0; i < numberOfGood; i++) {
+            good[i].calculatePrice();
+        }
+
         for (int i = 0; i < numberOfGood; i++) {
             goodNameText[i].setText(good[i].getName());
             goodPriceText[i].setText("$" + good[i].getPrice() + "/$" + (int) (good[i].getPrice() * sellDiscount));
             goodCapacityText[i].setText(String.valueOf(good[i].getVolume()));
             goodTechLevelText[i].setText(String.valueOf(good[i].getTechLevel()));
         }
-        updateCharacterInfo();
     }
-
     public void updateCharacterInfo() {
         String playerInfo = "";
         playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
@@ -123,16 +130,15 @@ public class MarketController {
     }
 
     public void resetSpinner() {
-        good1Spinner.getValueFactory().setValue(0);
-        good2Spinner.getValueFactory().setValue(0);
-        good3Spinner.getValueFactory().setValue(0);
+        for (int i = 0; i < numberOfGood; i++) {
+            goodSpinner[i].getValueFactory().setValue(0);
+        }
     }
 
     public void characterUpgradeBtnPressed(ActionEvent actionEvent) throws Exception {
         Parent configParent = FXMLLoader.load(getClass().getResource("CharacterUpgrade.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -145,7 +151,6 @@ public class MarketController {
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -154,7 +159,7 @@ public class MarketController {
     }
 
 
-    public void good1BuyBtnPressed(ActionEvent actionEvent) {
+    public void goodBuyBtnPressed(ActionEvent actionEvent) {
         int totalCapacity = 0;
         int totalCost = 0;
         totalCapacity = good1Spinner.getValue() + good2Spinner.getValue() + good3Spinner.getValue();
@@ -187,7 +192,7 @@ public class MarketController {
 
     }
 
-    public void good1SellBtnPressed(ActionEvent actionEvent) {
+    public void goodSellBtnPressed(ActionEvent actionEvent) {
         // want to sell quantity
         int wts1 = good1Spinner.getValue();
         int wts2 = good2Spinner.getValue();

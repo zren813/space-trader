@@ -80,41 +80,49 @@ public class CharacterUpgradeController {
     private static boolean isopened = false;
 
     public void initialize() {
-        if (!isopened) {
-            isopened = true;
-            equipmentGenerater = new EquipmentGenerater();
-        }
-        player = MapController.getPlayer();
-        equipmentNumber = equipmentGenerater.getEquipmentNumber();
-        equipment = equipmentGenerater.getEquipment();
-        playerEquipment = player.getEquipment();
-
+        // save all ui item into arrays
         itemNameText = new Text[]{item1NameText, item2NameText, item3NameText, item4NameText};
         itemPriceText = new Text[]{item1PriceText, item2PriceText, item3PriceText, item4PriceText};
         itemAbilityText = new Text[]{item1AbilityText, item2AbilityText, item3AbilityText, item4AbilityText};
         itemCheckBox = new CheckBox[]{item1CheckBox, item2CheckBox, item3CheckBox, item4CheckBox};
         itemEquippedCheckBox = new CheckBox[]{item1EquippedCheckBox, item2EquippedCheckBox, item3EquippedCheckBox, item4EquippedCheckBox};
+
+        // initialize equipments
+        if (!isopened) {
+            isopened = true;
+            equipmentGenerater = new EquipmentGenerater();
+        }
+
+        // assign all needed objects
+        player = MapController.getPlayer();
+        equipmentNumber = equipmentGenerater.getEquipmentNumber();
+        equipment = equipmentGenerater.getEquipment();
+        playerEquipment = player.getEquipment();
+
         // initialize UI info
+        updateEquipmentInfo();
+        resetCheckBox();
+        updateCharacterInfo();
+    }
+
+    public void updateEquipmentInfo(){
         for (int i = 0; i < itemNumber; i++) {
             itemNameText[i].setText(equipment[i].getName());
             itemPriceText[i].setText(String.valueOf(equipment[i].getPrice()));
             itemAbilityText[i].setText(equipment[i].getDescription());
         }
-
-        resetCheckBox();
-        updateCharacterInfo();
     }
-
-    //     reset checkboxes, if the equipment is bought, the box will be set as checked
+    // reset checkboxes, if the equipment is bought, the box will be set as checked
     public void resetCheckBox() {
         for (int i = 0; i < equipmentNumber; i++) {
             if (playerEquipment[i] != null) {
                 itemCheckBox[i].setSelected(true);
+            } else{
+                itemCheckBox[i].setSelected(false);
             }
             if (player.getEquipped()[i]) {
                 itemEquippedCheckBox[i].setSelected(true);
             }
-
         }
     }
 
@@ -132,7 +140,6 @@ public class CharacterUpgradeController {
         Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -144,7 +151,6 @@ public class CharacterUpgradeController {
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
@@ -153,10 +159,12 @@ public class CharacterUpgradeController {
     }
 
     public void confirmBtnPressed(ActionEvent actionEvent) {
+        // set all chechkboxes into an array
         Boolean isItemChecked[] = new Boolean[equipmentNumber];
         for (int i = 0; i < isItemChecked.length; i++) {
             isItemChecked[i] = itemCheckBox[i].isSelected();
         }
+        // calculate total cost
         int totalCost = 0;
         for (int i = 0; i < equipmentNumber; i++) {
             if (isItemChecked[i] == true && playerEquipment[i] == null) {
@@ -170,12 +178,8 @@ public class CharacterUpgradeController {
             player.setBalance(player.getBalance() - totalCost);
             for (int i = 0; i < equipmentNumber; i++) {
                 if (isItemChecked[i] == true && playerEquipment[i] == null) {
-                    player.setPilotSkill(player.getPilotSkill() + equipment[i].getPilotAbilityIncrement());
-                    player.setFighterSkill(player.getFighterSkill() + equipment[i].getFighterAbilityIncrement());
-                    player.setMerchantSkill(player.getMerchantSkill() + equipment[i].getMerchantAbilityIncrement());
-                    player.setEngineerSkill(player.getEngineerSkill() + equipment[i].getEngineerAbilityIncrement());
+                    increaseSkill(i);
                     playerEquipment[i] = equipment[i];
-                    itemEquippedCheckBox[i].setSelected(true);
                     player.setEquipped(i, true);
                 }
                 player.setEquipment(playerEquipment);

@@ -172,12 +172,12 @@
             </Text>
          </children>
       </GridPane>
-      <Button fx:id="buyBtn" layoutX="356.0" layoutY="536.0" mnemonicParsing="false" onAction="#good1BuyBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Buy">
+      <Button fx:id="buyBtn" layoutX="356.0" layoutY="536.0" mnemonicParsing="false" onAction="#goodBuyBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Buy">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="sellBtn" layoutX="579.0" layoutY="536.0" mnemonicParsing="false" onAction="#good1SellBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Sell">
+      <Button fx:id="sellBtn" layoutX="579.0" layoutY="536.0" mnemonicParsing="false" onAction="#goodSellBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Sell">
          <font>
             <Font size="14.0" />
          </font>

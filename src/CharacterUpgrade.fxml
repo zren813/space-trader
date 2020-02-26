@@ -182,22 +182,22 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <CheckBox fx:id="item1EquippedCheckBox" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <CheckBox fx:id="item1EquippedCheckBox" mnemonicParsing="false" onMouseClicked="#item1EquippedPressed" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="item2EquippedCheckBox" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <CheckBox fx:id="item2EquippedCheckBox" mnemonicParsing="false" onMouseClicked="#item2EquippedPressed" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="item3EquippedCheckBox" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <CheckBox fx:id="item3EquippedCheckBox" mnemonicParsing="false" onMouseClicked="#item3EquippedPressed" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="item4EquippedCheckBox" mnemonicParsing="false" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <CheckBox fx:id="item4EquippedCheckBox" mnemonicParsing="false" onMouseClicked="#item4EquippedPressed" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin>

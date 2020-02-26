@@ -9,6 +9,7 @@ public class Player {
     private int balance;
     private String name;
     private Equipment equipment[];
+    private Boolean equipped[];
     // charachter's skills
     private int pilotSkill;
     private int fighterSkill;
@@ -126,5 +127,17 @@ public class Player {
 
     public void setEquipment(Equipment[] equipment) {
         this.equipment = equipment;
+    }
+
+    public Boolean[] getEquipped() {
+        return equipped;
+    }
+
+    public void setEquipped(Boolean[] equipped) {
+        this.equipped = equipped;
+    }
+
+    public void setEquipped(int whichItem, boolean equipped) {
+        this.equipped[whichItem] = equipped;
     }
 }

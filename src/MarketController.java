@@ -141,7 +141,7 @@ public class MarketController {
         totalCapacity = good1Spinner.getValue() + good2Spinner.getValue() + good3Spinner.getValue();
         totalCost = good1Spinner.getValue() * good[0].getPrice() + good2Spinner.getValue() * good[1].getPrice() + good3Spinner.getValue() * good[2].getPrice();
         //check if the capacity and balance are enough
-        if (totalCapacity < ship.getCargoCapacity() && totalCost < player.getBalance()) {
+        if (totalCapacity <= ship.getCargoCapacity() && totalCost <= player.getBalance()) {
             // if they are enough, update balance, capacity and add items to the ship
             player.setBalance(player.getBalance() - totalCost);
             ship.setCargoCapacity(ship.getCargoCapacity() - totalCapacity);

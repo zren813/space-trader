@@ -4,13 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import jdk.nashorn.internal.runtime.ECMAException;
 
 public class CharacterUpgradeController {
     @FXML
@@ -79,17 +76,23 @@ public class CharacterUpgradeController {
     private Equipment playerEquipment[];
     private int equipmentNumber;
     private Equipment equipment[];
+    private static EquipmentGenerater equipmentGenerater;
+    private static boolean isopened = false;
+
     public void initialize() {
+        if (!isopened) {
+            isopened = true;
+            equipmentGenerater = new EquipmentGenerater();
+        }
         player = MapController.getPlayer();
-        EquipmentGenerater equipmentGenerater= new EquipmentGenerater();
         equipmentNumber = equipmentGenerater.getEquipmentNumber();
         equipment = equipmentGenerater.getEquipment();
         playerEquipment = player.getEquipment();
 
-        itemNameText = new Text[] {item1NameText, item2NameText, item3NameText, item4NameText};
-        itemPriceText= new Text[] {item1PriceText, item2PriceText, item3PriceText, item4PriceText};
-        itemAbilityText = new Text[] {item1AbilityText, item2AbilityText, item3AbilityText, item4AbilityText};
-        itemCheckBox= new CheckBox[] {item1CheckBox, item2CheckBox, item3CheckBox, item4CheckBox};
+        itemNameText = new Text[]{item1NameText, item2NameText, item3NameText, item4NameText};
+        itemPriceText = new Text[]{item1PriceText, item2PriceText, item3PriceText, item4PriceText};
+        itemAbilityText = new Text[]{item1AbilityText, item2AbilityText, item3AbilityText, item4AbilityText};
+        itemCheckBox = new CheckBox[]{item1CheckBox, item2CheckBox, item3CheckBox, item4CheckBox};
         itemEquippedCheckBox = new CheckBox[]{item1EquippedCheckBox, item2EquippedCheckBox, item3EquippedCheckBox, item4EquippedCheckBox};
         // initialize UI info
         for (int i = 0; i < itemNumber; i++) {
@@ -98,32 +101,34 @@ public class CharacterUpgradeController {
             itemAbilityText[i].setText(equipment[i].getDescription());
         }
 
-        resetSkillCheckBox();
+        resetCheckBox();
         updateCharacterInfo();
     }
 
-//     reset checkboxes, if the equipment is bought, the box will be set as checked
-    public void resetSkillCheckBox() {
+    //     reset checkboxes, if the equipment is bought, the box will be set as checked
+    public void resetCheckBox() {
         for (int i = 0; i < equipmentNumber; i++) {
-            if(playerEquipment[i]!=null){
+            if (playerEquipment[i] != null) {
                 itemCheckBox[i].setSelected(true);
-            }else{
-                itemCheckBox[i].setSelected(false);
             }
+            if( player.getEquipped()[i]){
+                itemEquippedCheckBox[i].setSelected(true);
+            }
+
         }
     }
 
     public void updateCharacterInfo() {
         playerAndShipNameText.setText(String.format("%s(%s)", player.getName(), player.getShip().getName()));
         balanceText.setText(String.format("Balance: %d", player.getBalance()));
-        pilotSkillText.setText(String.valueOf("Pilot: "+player.getPilotSkill()));
-        fighterSkillText.setText(String.valueOf("Fighter: "+player.getFighterSkill()));
-        merchantSkillText.setText(String.valueOf("Merchant: "+player.getMerchantSkill()));
-        engineerSkillText.setText(String.valueOf("Engineer: "+player.getEngineerSkill()));
+        pilotSkillText.setText(String.valueOf("Pilot: " + player.getPilotSkill()));
+        fighterSkillText.setText(String.valueOf("Fighter: " + player.getFighterSkill()));
+        merchantSkillText.setText(String.valueOf("Merchant: " + player.getMerchantSkill()));
+        engineerSkillText.setText(String.valueOf("Engineer: " + player.getEngineerSkill()));
 
     }
 
-    public void marketBtnPressed(ActionEvent actionEvent) throws Exception{
+    public void marketBtnPressed(ActionEvent actionEvent) throws Exception {
         Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -135,7 +140,7 @@ public class CharacterUpgradeController {
         window.show();
     }
 
-    public void exitPressed(ActionEvent actionEvent)throws Exception {
+    public void exitPressed(ActionEvent actionEvent) throws Exception {
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -148,40 +153,112 @@ public class CharacterUpgradeController {
     }
 
     public void confirmBtnPressed(ActionEvent actionEvent) {
-        Boolean isItemChecked []= new Boolean[equipmentNumber];
+        Boolean isItemChecked[] = new Boolean[equipmentNumber];
         for (int i = 0; i < isItemChecked.length; i++) {
             isItemChecked[i] = itemCheckBox[i].isSelected();
         }
         int totalCost = 0;
         for (int i = 0; i < equipmentNumber; i++) {
-            if(isItemChecked[i]==true && playerEquipment[i]== null){
+            if (isItemChecked[i] == true && playerEquipment[i] == null) {
                 totalCost += equipment[i].getPrice();
             }
         }
 
         //check if the player has enough balance
-        if(totalCost <= player.getBalance()){
+        if (totalCost <= player.getBalance()) {
             //update player's balance and skills and add the equipment to player
-            player.setBalance(player.getBalance()-totalCost);
+            player.setBalance(player.getBalance() - totalCost);
             for (int i = 0; i < equipmentNumber; i++) {
-                if(isItemChecked[i]==true && playerEquipment[i]== null){
-                    player.setPilotSkill(player.getPilotSkill()+equipment[i].getPilotAbilityIncrement());
-                    player.setFighterSkill(player.getFighterSkill()+equipment[i].getFighterAbilityIncrement());
-                    player.setMerchantSkill(player.getMerchantSkill()+equipment[i].getMerchantAbilityIncrement());
-                    player.setEngineerSkill(player.getEngineerSkill()+equipment[i].getEngineerAbilityIncrement());
+                if (isItemChecked[i] == true && playerEquipment[i] == null) {
+                    player.setPilotSkill(player.getPilotSkill() + equipment[i].getPilotAbilityIncrement());
+                    player.setFighterSkill(player.getFighterSkill() + equipment[i].getFighterAbilityIncrement());
+                    player.setMerchantSkill(player.getMerchantSkill() + equipment[i].getMerchantAbilityIncrement());
+                    player.setEngineerSkill(player.getEngineerSkill() + equipment[i].getEngineerAbilityIncrement());
                     playerEquipment[i] = equipment[i];
                     itemEquippedCheckBox[i].setSelected(true);
+                    player.setEquipped(i, true);
                 }
+                player.setEquipment(playerEquipment);
             }
-        }else{
+        } else {
             errorMessage.setText("You don't have enough balance");
         }
 
-        resetSkillCheckBox();
+        resetCheckBox();
         updateCharacterInfo();
     }
 
     public void cancelBtnPressed(ActionEvent actionEvent) {
-        resetSkillCheckBox();
+        resetCheckBox();
+    }
+
+    public void item1EquippedPressed(MouseEvent keyEvent) {
+        if (itemEquippedCheckBox[0].isSelected() && player.getEquipment()[0] != null) {
+            player.setEquipped(0, true);
+            increaseSkill(0);
+        } else if (itemEquippedCheckBox[0].isSelected()) {
+            itemEquippedCheckBox[0].setSelected(false);
+            errorMessage.setText("You haven't bought this item");
+        } else {
+            player.setEquipped(0, false);
+            deductSkill(0);
+        }
+        updateCharacterInfo();
+    }
+
+    public void item2EquippedPressed(MouseEvent keyEvent) {
+        if (itemEquippedCheckBox[1].isSelected() && player.getEquipment()[1] != null) {
+            player.setEquipped(1, true);
+            increaseSkill(1);
+        } else if (itemEquippedCheckBox[1].isSelected()) {
+            itemEquippedCheckBox[1].setSelected(false);
+            errorMessage.setText("You haven't bought this item");
+        } else {
+            player.setEquipped(1, false);
+            deductSkill(1);
+        }
+        updateCharacterInfo();
+    }
+
+    public void item3EquippedPressed(MouseEvent keyEvent) {
+        if (itemEquippedCheckBox[2].isSelected() && player.getEquipment()[2] != null) {
+            player.setEquipped(2, true);
+            increaseSkill(2);
+        } else if (itemEquippedCheckBox[2].isSelected()) {
+            itemEquippedCheckBox[2].setSelected(false);
+            errorMessage.setText("You haven't bought this item");
+        } else {
+            player.setEquipped(2, false);
+            deductSkill(2);
+        }
+        updateCharacterInfo();
+    }
+
+    public void item4EquippedPressed(MouseEvent keyEvent) {
+        if (itemEquippedCheckBox[3].isSelected() && player.getEquipment()[3] != null) {
+            player.setEquipped(3, true);
+            increaseSkill(3);
+        } else if (itemEquippedCheckBox[3].isSelected()) {
+            itemEquippedCheckBox[3].setSelected(false);
+            errorMessage.setText("You haven't bought this item");
+        } else {
+            player.setEquipped(3, false);
+            deductSkill(3);
+        }
+        updateCharacterInfo();
+    }
+
+    public void increaseSkill(int whichItem) {
+        player.setPilotSkill(player.getPilotSkill() + equipment[whichItem].getPilotAbilityIncrement());
+        player.setFighterSkill(player.getFighterSkill() + equipment[whichItem].getFighterAbilityIncrement());
+        player.setMerchantSkill(player.getMerchantSkill() + equipment[whichItem].getMerchantAbilityIncrement());
+        player.setEngineerSkill(player.getEngineerSkill() + equipment[whichItem].getEngineerAbilityIncrement());
+    }
+
+    public void deductSkill(int whichItem) {
+        player.setPilotSkill(player.getPilotSkill() - equipment[whichItem].getPilotAbilityIncrement());
+        player.setFighterSkill(player.getFighterSkill() - equipment[whichItem].getFighterAbilityIncrement());
+        player.setMerchantSkill(player.getMerchantSkill() - equipment[whichItem].getMerchantAbilityIncrement());
+        player.setEngineerSkill(player.getEngineerSkill() - equipment[whichItem].getEngineerAbilityIncrement());
     }
 }

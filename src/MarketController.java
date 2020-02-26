@@ -90,7 +90,7 @@ public class MarketController {
         if (shipInventory == null) {
             shipInventory = new Good[GoodGenerater.getNumberOfGood()];
             for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
-                shipInventory[i] = new Good(good[0].getName(), good[0].getTechLevel(), good[0].getVolume());
+                shipInventory[i] = new Good(good[i].getName(), good[i].getTechLevel(), good[i].getVolume());
             }
         }
         ship.setItemInventory(shipInventory);
@@ -106,7 +106,7 @@ public class MarketController {
         for (int i = 0; i < numberOfGood; i++) {
             good[i].calculatePrice();
         }
-
+        // update all ui texts
         for (int i = 0; i < numberOfGood; i++) {
             goodNameText[i].setText(good[i].getName());
             goodPriceText[i].setText("$" + good[i].getPrice() + "/$" + (int) (good[i].getPrice() * sellDiscount));
@@ -170,14 +170,10 @@ public class MarketController {
             player.setBalance(player.getBalance() - totalCost);
             ship.setCargoCapacity(ship.getCargoCapacity() - totalCapacity);
 
-            if (good1Spinner.getValue() != 0) {
-                shipInventory[0].setQuantity(shipInventory[0].getQuantity() + good1Spinner.getValue());
-            }
-            if (good2Spinner.getValue() != 0) {
-                shipInventory[1].setQuantity(shipInventory[1].getQuantity() + good2Spinner.getValue());
-            }
-            if (good3Spinner.getValue() != 0) {
-                shipInventory[2].setQuantity(shipInventory[2].getQuantity() + good3Spinner.getValue());
+            for (int i = 0; i < numberOfGood; i++) {
+                if(goodSpinner[i].getValue() !=0){
+                    shipInventory[i].setQuantity(shipInventory[i].getQuantity() + goodSpinner[i].getValue());
+                }
             }
             ship.setItemInventory(shipInventory);
 
@@ -185,9 +181,8 @@ public class MarketController {
         } else {
             errorMessage.setText("You don't have enough capacity/balance!");
         }
-        //reset spinner
+        //update UI
         resetSpinner();
-        // update UI of character's info
         updateCharacterInfo();
 
     }
@@ -204,6 +199,7 @@ public class MarketController {
             int totalGainCapacity = wts1 * good[0].getVolume() + wts2 * good[1].getVolume() + wts3 * good[2].getVolume();
             player.setBalance(player.getBalance() + totalRevenue);
             ship.setCargoCapacity(ship.getCargoCapacity() + totalGainCapacity);
+
             shipInventory[0].setQuantity(shipInventory[0].getQuantity() - wts1);
             shipInventory[1].setQuantity(shipInventory[1].getQuantity() - wts2);
             shipInventory[2].setQuantity(shipInventory[2].getQuantity() - wts3);
@@ -211,9 +207,8 @@ public class MarketController {
         } else {
             errorMessage.setText("You don't have enough items to sell!");
         }
-        //reset spinner
+        // update UI
         resetSpinner();
-        // update UI of character's info
         updateCharacterInfo();
     }
 }

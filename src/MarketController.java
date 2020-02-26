@@ -42,32 +42,49 @@ public class MarketController {
     @FXML
     private Spinner<Integer> good3Spinner;
     @FXML
-    private Text playerAndShipNameText;
-    @FXML
-    private Text balanceText;
-    @FXML
-    private Text capacityText;
-    @FXML
-    private Text good1InfoText;
-    @FXML
-    private Text good2InfoText;
-    @FXML
-    private Text good3InfoText;
+    private Text playerInfoText;
+
     @FXML
     private Text errorMessage;
+    private Text goodNameText[];
+    private Text goodPriceText[];
+    private Text goodCapacityText[];
+    private Text goodTechLevelText[];
+    private Spinner<Integer> goodSpinner[];
+    private Text goodInfoText[];
 
     private Good good[];
     private Player player;
     private Ship ship;
     private Good[] shipInventory;
-    private double discount = 0.8;
-
+    private double sellDiscount = 0.8;
+    private double merchantDiscount;
+    private int numberOfGood;
+    private static GoodGenerater goodGenerater;
+    private static boolean isopened = false;
     public void initialize() {
+        goodNameText = new Text[]{good1NameText, good2NameText, good3NameText};
+        goodPriceText = new Text[]{good1PriceText, good2PriceText, good3PriceText};
+        goodCapacityText = new Text[]{good1CapacityText, good2CapacityText, good3CapacityText};
+        goodTechLevelText = new Text[]{good1TechLevelText, good2TechLevelText, good3TechLevelText};
+        goodSpinner = new Spinner[]{good1Spinner, good2Spinner, good3Spinner};
+
         // initialize goods and assign good, player and the ship
-        GoodGenerater goodGenerater = new GoodGenerater();
+        if(!isopened){
+            isopened = true;
+            goodGenerater = new GoodGenerater();
+        }
+        numberOfGood =goodGenerater.getNumberOfGood();
         good = goodGenerater.getGood();
 
         player = MapController.getPlayer();
+        merchantDiscount = (10.0-player.getMerchantSkill())/10;
+        // update goods' price due to merchant discount
+        Good.setBasePrice((int)(Good.getBasePrice()*merchantDiscount));
+        for (int i = 0; i < numberOfGood; i++) {
+            good[i].calculatePrice();
+        }
+
         ship = player.getShip();
         shipInventory = ship.getItemInventory();
         if (shipInventory == null) {
@@ -79,28 +96,25 @@ public class MarketController {
         ship.setItemInventory(shipInventory);
 
         // set up layout of the UI
-        good1NameText.setText(good[0].getName());
-        good2NameText.setText(good[1].getName());
-        good3NameText.setText(good[2].getName());
-        good1PriceText.setText("$" + good[0].getPrice() + "/$" + (int) (good[0].getPrice() * discount));
-        good2PriceText.setText("$" + good[1].getPrice() + "/$" + (int) (good[1].getPrice() * discount));
-        good3PriceText.setText("$" + good[2].getPrice() + "/$" + (int) (good[2].getPrice() * discount));
-        good1CapacityText.setText(String.valueOf(good[0].getVolume()));
-        good2CapacityText.setText(String.valueOf(good[1].getVolume()));
-        good3CapacityText.setText(String.valueOf(good[2].getVolume()));
-        good1TechLevelText.setText(String.valueOf(good[0].getTechLevel()));
-        good2TechLevelText.setText(String.valueOf(good[1].getTechLevel()));
-        good3TechLevelText.setText(String.valueOf(good[2].getTechLevel()));
+        for (int i = 0; i < numberOfGood; i++) {
+            goodNameText[i].setText(good[i].getName());
+            goodPriceText[i].setText("$" + good[i].getPrice() + "/$" + (int) (good[i].getPrice() * sellDiscount));
+            goodCapacityText[i].setText(String.valueOf(good[i].getVolume()));
+            goodTechLevelText[i].setText(String.valueOf(good[i].getTechLevel()));
+        }
         updateCharacterInfo();
     }
 
     public void updateCharacterInfo() {
-        playerAndShipNameText.setText(String.format("%s(%s)", player.getName(), ship.getName()));
-        balanceText.setText(String.format("Balance: %d", player.getBalance()));
-        capacityText.setText(String.valueOf(String.format("Capacity: %d", ship.getCargoCapacity())));
-        good1InfoText.setText(String.format("%s: %d", good[0].getName(),ship.getItemInventory()[0].getQuantity()));
-        good2InfoText.setText(String.format("%s: %d", good[1].getName(),ship.getItemInventory()[1].getQuantity()));
-        good3InfoText.setText(String.format("%s: %d", good[2].getName(),ship.getItemInventory()[2].getQuantity()));
+        String playerInfo = "";
+        playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
+        playerInfo += String.format("Capacity: %d", ship.getCargoCapacity()) +"\n";
+        playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
+
+        playerInfo += String.format("%s: %d", good[0].getName(), ship.getItemInventory()[0].getQuantity()) +"\n";
+        playerInfo += String.format("%s: %d", good[1].getName(), ship.getItemInventory()[1].getQuantity()) +"\n";
+        playerInfo += String.format("%s: %d", good[2].getName(), ship.getItemInventory()[2].getQuantity()) +"\n";
+        playerInfoText.setText(playerInfo);
     }
 
     public void resetSpinner() {
@@ -176,7 +190,7 @@ public class MarketController {
         // check if ship have enough items to sell
         if (wts1 <= shipInventory[0].getQuantity() && wts2 <= shipInventory[1].getQuantity() && wts3 <= shipInventory[2].getQuantity()) {
             // update player's balance and ship's capacity and inventory
-            int totalRevenue = (int) (discount * (wts1 * good[0].getPrice() + wts2 * good[1].getPrice() + wts3 * good[2].getPrice()));
+            int totalRevenue = (int) (sellDiscount * (wts1 * good[0].getPrice() + wts2 * good[1].getPrice() + wts3 * good[2].getPrice()));
             int totalGainCapacity = wts1 * good[0].getVolume() + wts2 * good[1].getVolume() + wts3 * good[2].getVolume();
             player.setBalance(player.getBalance() + totalRevenue);
             ship.setCargoCapacity(ship.getCargoCapacity() + totalGainCapacity);

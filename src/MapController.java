@@ -67,11 +67,6 @@ public class MapController {
     @FXML
     public void initialize() {
 
-        textInfo.setText("Credits: to be continue" + "\n" 
-            + "Pilot skill point: " + ConfigController.getPilotSkill() + "\n"
-            + "Fighter skill point: " + ConfigController.getFighterSkill() + "\n"
-            + "Merchant skill point: " + ConfigController.getMerchantSkill() + "\n"
-            + "Engineer skill point:  " + ConfigController.getEngineerSkill());
         xRange = (int) rectangle.getWidth() - 25;
         yRange = (int) rectangle.getHeight() - 40;
         xOffset = (int) rectangle.getLayoutX() - 60;
@@ -86,17 +81,15 @@ public class MapController {
         circleArray[7] = planet8;
         circleArray[8] = planet9;
         circleArray[9] = planet10;
-        if (opened) {
-            worldGenerator = MapController.getWorldGenerator();
-            player = MapController.getPlayer();
-        } else {
+        if (!opened) {
             worldGenerator = new WorldGenerator();
             player = new Player();
         }
+        worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        if (!opened) {
-            fixPlanetCoordinates();
-        }
+        if(!opened){fixPlanetCoordinates();}
+        player = MapController.getPlayer();
+        updatePlayerInfo();
         for (int i = 0; i < 10; i++) {
             toolTipArray[i] = new Tooltip();
             circleArray[i].setCenterX(planetArray[i].getXCoordinate());
@@ -115,7 +108,14 @@ public class MapController {
         hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate());
         hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate() - 25);
     }
-
+    public void updatePlayerInfo(){
+        String playerInfo = "Balance: "+ player.getBalance() + "\n"
+            + "Pilot skill point: " + player.getPilotSkill() + "\n"
+            + "Fighter skill point: " +player.getFighterSkill()+ "\n"
+            + "Merchant skill point: " + player.getMerchantSkill() + "\n"
+            + "Engineer skill point:  " + player.getEngineerSkill();
+        textInfo.setText(playerInfo);
+    }
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
     }

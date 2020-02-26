@@ -189,37 +189,7 @@
       </Text>
       <VBox layoutX="27.0" layoutY="278.0" prefHeight="275.0" prefWidth="207.0">
          <children>
-            <Text fx:id="playerAndShipNameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="balanceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="capacityText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="playerAndShipNameText1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventory:">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="good1InfoText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="good2InfoText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </Text>
-            <Text fx:id="good3InfoText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+            <Text fx:id="playerInfoText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
                <font>
                   <Font size="19.0" />
                </font>

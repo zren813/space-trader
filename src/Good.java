@@ -15,7 +15,7 @@ public class Good {
     }
 
     public void calculatePrice() {
-        this.price = this.getBasePrice() * this.techLevel;
+        this.price = basePrice * this.techLevel;
     }
 
     public String getName() {
@@ -43,13 +43,12 @@ public class Good {
         calculatePrice();
     }
 
-    public int getBasePrice() {
+    public static int getBasePrice() {
         return basePrice;
     }
 
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-        calculatePrice();
+    public static void setBasePrice(int newBasePrice) {
+        basePrice = newBasePrice;
     }
 
     public int getVolume() {

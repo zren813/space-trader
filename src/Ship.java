@@ -20,7 +20,6 @@ public class Ship {
         this.itemInventory = null;
         this.fuelCapacity = fuelCapacity;
         this.health = health;
-
     }
 
     // Getters and setters

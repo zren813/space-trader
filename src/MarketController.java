@@ -54,6 +54,7 @@ public class MarketController {
     private Text goodInfoText[];
 
     private Good good[];
+
     private Player player;
     private Ship ship;
     private Good[] shipInventory;
@@ -62,6 +63,7 @@ public class MarketController {
     private int numberOfGood;
     private static GoodGenerater goodGenerater;
     private static boolean isopened = false;
+
     public void initialize() {
         goodNameText = new Text[]{good1NameText, good2NameText, good3NameText};
         goodPriceText = new Text[]{good1PriceText, good2PriceText, good3PriceText};
@@ -78,9 +80,9 @@ public class MarketController {
         good = goodGenerater.getGood();
 
         player = MapController.getPlayer();
-        merchantDiscount = (10.0-player.getMerchantSkill())/10;
+        merchantDiscount = (10.0 - player.getMerchantSkill()) / 10;
         // update goods' price due to merchant discount
-        Good.setBasePrice((int)(Good.getBasePrice()*merchantDiscount));
+        Good.setBasePrice((int) (Good.getBasePrice() * merchantDiscount));
         for (int i = 0; i < numberOfGood; i++) {
             good[i].calculatePrice();
         }
@@ -109,9 +111,11 @@ public class MarketController {
         String playerInfo = "";
         playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
         playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
-        playerInfo += String.format("Capacity: %d", ship.getCargoCapacity()) +"\n";
+        playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) +"\n";
+        playerInfo += String.format("Ship Health: %d", ship.getHealth()) +"\n";
         playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
 
+        playerInfo += String.format("Inventory:") +"\n";
         playerInfo += String.format("%s: %d", good[0].getName(), ship.getItemInventory()[0].getQuantity()) +"\n";
         playerInfo += String.format("%s: %d", good[1].getName(), ship.getItemInventory()[1].getQuantity()) +"\n";
         playerInfo += String.format("%s: %d", good[2].getName(), ship.getItemInventory()[2].getQuantity()) +"\n";

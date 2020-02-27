@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Ship {
     private String name;
     private int cargoCapacity;
-    private Good[] itemInventory;
+    private Good[] shipInventory;
     /**
      * fuel capacity between 0 - 100
      */
@@ -17,7 +17,7 @@ public class Ship {
     public Ship(String name, int cargoCapacity, int fuelCapacity, int health) {
         this.name = name;
         this.cargoCapacity = cargoCapacity;
-        this.itemInventory = null;
+        this.shipInventory = null;
         this.fuelCapacity = fuelCapacity;
         this.health = health;
     }
@@ -40,11 +40,11 @@ public class Ship {
     }
 
     public Good[] getItemInventory() {
-        return itemInventory;
+        return shipInventory;
     }
 
     public void setItemInventory(Good[] itemInventory) {
-        this.itemInventory = itemInventory;
+        this.shipInventory = itemInventory;
     }
 
     public int getFuelCapacity() {

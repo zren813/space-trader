@@ -105,7 +105,6 @@ public class ShipInventoryController {
     private Text playerInfoText;
 
     @FXML
-    private Text errorMessage;
     private Text goodNameText[];
     private Text goodCapacityText[];
     private Text goodQuantityText[];
@@ -113,13 +112,7 @@ public class ShipInventoryController {
     private Good good[];
 
     private Player player;
-    private Ship ship;
     private Good[] shipInventory;
-    private int currentPlanetTechLevel;
-    private int[] currentMarketBuyingPrices;
-    private int[] currentMarketSellingPrices;
-    private double sellDiscount = 0.8;
-    private double merchantDiscount;
     private int numberOfGood;
     private static GoodGenerater goodGenerater;
     private static boolean isopened = false;
@@ -139,25 +132,14 @@ public class ShipInventoryController {
                 good12Quantity, good13Quantity, good14Quantity, good15Quantity};
 
         // initialize goods and assign good, player and the ship
-        if (!isopened){
-            isopened = true;
-            goodGenerater = new GoodGenerater();
-        }
+//        if (!isopened){
+//            isopened = true;
+//            goodGenerater = new GoodGenerater();
+//        }
         numberOfGood = goodGenerater.getNumberOfGood();
         good = goodGenerater.getGood();
-
         player = MapController.getPlayer();
-        merchantDiscount = (10.0 - player.getMerchantSkill()) / 10;
-
-        ship = player.getShip();
-        shipInventory = ship.getItemInventory();
-        if (shipInventory == null) {
-            shipInventory = new Good[GoodGenerater.getNumberOfGood()];
-            for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
-                shipInventory[i] = new Good(good[i].getName(), good[i].getPrice(), good[i].getVolume());
-            }
-        }
-        ship.setItemInventory(shipInventory);
+        shipInventory = MapController.getPlayer().getShip().getItemInventory();
 
         // set up layout of the UI
         updateGoodInfo();
@@ -169,17 +151,16 @@ public class ShipInventoryController {
         for (int i = 0; i < numberOfGood; i++) {
             goodNameText[i].setText(good[i].getName());
             goodCapacityText[i].setText(String.valueOf(good[i].getVolume()));
-            goodQuantityText[i].setText(String.valueOf(good[i].getQuantity()));
+            goodQuantityText[i].setText(String.valueOf(shipInventory[i].getQuantity()));
         }
     }
 
     public void updateCharacterInfo() {
         String playerInfo = "";
-        playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
+        playerInfo += String.format("%s(%s)", player.getName(), player.getShip().getName()) +"\n";
         playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
-        playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) +"\n";
-        playerInfo += String.format("Ship Health: %d", ship.getHealth()) +"\n";
-        playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
+        playerInfo += String.format("Ship Capacity: %d", player.getShip().getCargoCapacity()) +"\n";
+        playerInfo += String.format("Ship Health: %d", player.getShip().getHealth()) +"\n";
 
         playerInfoText.setText(playerInfo);
     }

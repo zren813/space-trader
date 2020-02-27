@@ -87,7 +87,7 @@ public class MapController {
         }
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        if(!opened){fixPlanetCoordinates();}
+        if(!opened) {fixPlanetCoordinates();}
         player = MapController.getPlayer();
         updatePlayerInfo();
         for (int i = 0; i < 10; i++) {

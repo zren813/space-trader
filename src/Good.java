@@ -1,23 +1,19 @@
 public class Good {
     private String name;
     private int quantity;
-    private int price;
+    private int basePrice;
     private int volume;
 
     public Good(String name, int price, int volume) {
         this.name = name;
-        this.quantity = 0;
-        this.price = price;
+        this.basePrice = price;
         this.volume = volume;
+        quantity = 0;
     }
 
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getQuantity() {
@@ -32,15 +28,7 @@ public class Good {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public int getBasePrice() {
+        return basePrice;
     }
 }

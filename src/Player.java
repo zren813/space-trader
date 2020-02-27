@@ -1,20 +1,18 @@
-import java.util.ArrayList;
-
 public class Player {
     private Planet currentPlanet;
     private static WorldGenerator worldGenerator;
     private static Planet[] planetArray;
     // in order to buy items from market, player needs to have a ship and balance
-    private Ship ship;
-    private int balance;
-    private String name;
+    private static Ship ship;
+    private static int balance;
+    private static String name;
     private Equipment equipment[];
     private Boolean equipped[];
     // charachter's skills
-    private int pilotSkill;
-    private int fighterSkill;
-    private int merchantSkill;
-    private int engineerSkill;
+    private static int pilotSkill;
+    private static int fighterSkill;
+    private static int merchantSkill;
+    private static int engineerSkill;
 
 
     public Player() {

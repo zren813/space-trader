@@ -5,15 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MarketController">
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShipInventoryController">
    <children>
-      <Button fx:id="characterUpgradeBtn" layoutX="51.0" layoutY="84.0" mnemonicParsing="false" onAction="#characterUpgradeBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Character Upgrade" />
       <Button fx:id="exitBtn" layoutX="51.0" layoutY="166.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Exit" />
       <GridPane layoutX="225.0" layoutY="40.0" prefHeight="457.0" prefWidth="666.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="10.0" prefWidth="121.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="171.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="121.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="200.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -111,207 +110,7 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Spinner fx:id="good1Spinner" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good2Spinner" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good3Spinner" GridPane.columnIndex="4" GridPane.rowIndex="3">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good4Spinner" GridPane.columnIndex="4" GridPane.rowIndex="4">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good5Spinner" GridPane.columnIndex="4" GridPane.rowIndex="5">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good6Spinner" GridPane.columnIndex="4" GridPane.rowIndex="6">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good7Spinner" GridPane.columnIndex="4" GridPane.rowIndex="7">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good8Spinner" GridPane.columnIndex="4" GridPane.rowIndex="8">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good9Spinner" GridPane.columnIndex="4" GridPane.rowIndex="9">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good10Spinner" GridPane.columnIndex="4" GridPane.rowIndex="10">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good11Spinner" GridPane.columnIndex="4" GridPane.rowIndex="11">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good12Spinner" GridPane.columnIndex="4" GridPane.rowIndex="12">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good13Spinner" GridPane.columnIndex="4" GridPane.rowIndex="13">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good14Spinner" GridPane.columnIndex="4" GridPane.rowIndex="14">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Spinner fx:id="good15Spinner" GridPane.columnIndex="4" GridPane.rowIndex="15">
-               <valueFactory>
-                  <SpinnerValueFactory.IntegerSpinnerValueFactory max="10" min="0" />
-               </valueFactory>
-            </Spinner>
-            <Text fx:id="good1PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good2PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good3PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good4PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good5PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good6PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good7PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good8PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="8">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good9PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="9">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good10PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="10">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good11PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="11">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good12PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="12">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good13PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="13">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good14PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="14">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
-            <Text fx:id="good15PriceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="15">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="40.0" />
-               </GridPane.margin>
-            </Text>
             <Text fx:id="good1Text1" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Item">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Text fx:id="good1Text11" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Buy/Sell Price" GridPane.columnIndex="1">
                <font>
                   <Font size="20.0" />
                </font>
@@ -452,18 +251,128 @@
                   <Insets left="55.0" />
                </GridPane.margin>
             </Text>
+            <Text fx:id="good1Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good2Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="2">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good3Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good4Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good5Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good6Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="6">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good7Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="7">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good8Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="8">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good9Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="9">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good10Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="10">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good11Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="11">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good12Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="12">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good13Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="13">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good14Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="14">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
+            <Text fx:id="good15Quantity" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="4" GridPane.rowIndex="15">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="55.0" />
+               </GridPane.margin>
+            </Text>
          </children>
       </GridPane>
-      <Button fx:id="buyBtn" layoutX="356.0" layoutY="536.0" mnemonicParsing="false" onAction="#goodBuyBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Buy">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button fx:id="sellBtn" layoutX="579.0" layoutY="536.0" mnemonicParsing="false" onAction="#goodSellBtnPressed" prefHeight="34.0" prefWidth="100.0" styleClass="btn, btn-primary" text="Sell">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
       <Text fx:id="errorMessage" fill="#f50303" layoutX="191.0" layoutY="514.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="733.22900390625">
          <font>
             <Font size="18.0" />
@@ -478,6 +387,5 @@
             </Text>
          </children>
       </VBox>
-      <Button fx:id="exitBtn1" layoutX="51.0" layoutY="245.0" mnemonicParsing="false" onAction="#shipInventoryBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Ship Inventory" />
    </children>
 </AnchorPane>

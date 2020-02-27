@@ -23,6 +23,7 @@ public class PlanetViewController {
     private Text description;
 
     private static WorldGenerator worldGenerator;
+    private static int indexPass;
     private Planet[] planetArray;
     private int index;
     private static Player player;
@@ -80,6 +81,8 @@ public class PlanetViewController {
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {
+        indexPass = index;
+
         Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -93,5 +96,9 @@ public class PlanetViewController {
 
     public static WorldGenerator getWorldGenerator() {
         return worldGenerator;
+    }
+
+    public static int getIndexPass() {
+        return indexPass;
     }
 }

@@ -206,9 +206,10 @@ public class MarketController {
         currentMarketSellingPrices = new int[numberOfGood];
         //calculate prices
         for (int i = 0; i < numberOfGood; i++) {
-            currentMarketBuyingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1));
-            currentMarketSellingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1));
+            currentMarketBuyingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1) * merchantDiscount);
+            currentMarketSellingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1) * merchantDiscount);
         }
+
 
         // set up layout of the UI
         updateGoodInfo();

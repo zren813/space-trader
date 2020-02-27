@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
+import java.lang.Math;
 import java.util.Random;
 
 public class MarketController {
@@ -193,7 +193,7 @@ public class MarketController {
         if (shipInventory == null) {
             shipInventory = new Good[GoodGenerater.getNumberOfGood()];
             for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
-                shipInventory[i] = new Good(good[i].getName(), good[i].getBasePrice(), good[i].getVolume());
+                shipInventory[i] = new Good(good[i].getName(), good[i].getBasePrice(), good[i].getVolume(), good[i].getTechLevel());
             }
         }
         ship.setItemInventory(shipInventory);
@@ -206,8 +206,8 @@ public class MarketController {
         currentMarketSellingPrices = new int[numberOfGood];
         //calculate prices
         for (int i = 0; i < numberOfGood; i++) {
-            currentMarketBuyingPrices[i] = good[i].getBasePrice() + (currentPlanetTechLevel * 10) + random.nextInt(100);
-            currentMarketSellingPrices[i] =good[i].getBasePrice() + ((10 - currentPlanetTechLevel) * 10) + random.nextInt(100);
+            currentMarketBuyingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1));
+            currentMarketSellingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1));
         }
 
         // set up layout of the UI

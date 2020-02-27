@@ -3,11 +3,13 @@ public class Good {
     private int quantity;
     private int basePrice;
     private int volume;
+    private int techLevel;
 
-    public Good(String name, int price, int volume) {
+    public Good(String name, int price, int volume, int techLevel) {
         this.name = name;
         this.basePrice = price;
         this.volume = volume;
+        this.techLevel = techLevel;
         quantity = 0;
     }
 
@@ -30,5 +32,8 @@ public class Good {
 
     public int getBasePrice() {
         return basePrice;
+    }
+    public int getTechLevel() {
+        return techLevel;
     }
 }

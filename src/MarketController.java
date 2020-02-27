@@ -152,6 +152,8 @@ public class MarketController {
     private int currentPlanetTechLevel;
     private int[] currentMarketBuyingPrices;
     private int[] currentMarketSellingPrices;
+    private int[] numOfItemToBuy;
+    private int[] numOfItemToSell;
     private double sellDiscount = 0.8;
     private double merchantDiscount;
     private int numberOfGood;
@@ -234,7 +236,13 @@ public class MarketController {
         playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) +"\n";
         playerInfo += String.format("Ship Health: %d", ship.getHealth()) +"\n";
         playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
-
+        if (!isopened){
+            for (int i = 0; i < numberOfGood; i++) {
+                ship.getItemInventory()[i].setQuantity(ship.getItemInventory()[i].getQuantity() + numOfItemToBuy[i] - numOfItemToSell[i]);
+                numOfItemToBuy[i] = 0;
+                numOfItemToSell[i] = 0;
+            }
+        }
         playerInfoText.setText(playerInfo);
     }
 
@@ -280,7 +288,7 @@ public class MarketController {
 
 
     public void goodBuyBtnPressed(ActionEvent actionEvent) {
-        int[] numOfItemToBuy = new int[numberOfGood];
+        numOfItemToBuy = new int[numberOfGood];
         int totalCapacity = 0;
         int totalCost = 0;
         for (int i = 0; i < numberOfGood; i++) {
@@ -309,7 +317,7 @@ public class MarketController {
 
     public void goodSellBtnPressed(ActionEvent actionEvent) {
         // want to sell quantity
-        int[] numOfItemToSell = new int[numberOfGood];
+        numOfItemToSell = new int[numberOfGood];
         for (int i = 0; i < numberOfGood; i++) {
             numOfItemToSell[i] = goodSpinner[i].getValue();
         }

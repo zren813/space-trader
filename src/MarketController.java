@@ -351,7 +351,7 @@ public class MarketController {
 
     private boolean checkInventory(int[] numOfItemToSell) {
         for (int i = 0; i < numberOfGood; i++) {
-            if (numOfItemToSell[i] > goodSpinner[i].getValue()) {
+            if (numOfItemToSell[i] > shipInventory[i].getQuantity()) {
                 return false;
             }
         }

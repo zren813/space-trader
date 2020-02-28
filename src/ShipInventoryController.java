@@ -41,75 +41,75 @@ public class ShipInventoryController {
     @FXML
     private Text good15NameText;
     @FXML
-    public Text good1CapacityText;
+    private Text good1CapacityText;
     @FXML
-    public Text good2CapacityText;
+    private Text good2CapacityText;
     @FXML
-    public Text good3CapacityText;
+    private Text good3CapacityText;
     @FXML
-    public Text good4CapacityText;
+    private Text good4CapacityText;
     @FXML
-    public Text good5CapacityText;
+    private Text good5CapacityText;
     @FXML
-    public Text good6CapacityText;
+    private Text good6CapacityText;
     @FXML
-    public Text good7CapacityText;
+    private Text good7CapacityText;
     @FXML
-    public Text good8CapacityText;
+    private Text good8CapacityText;
     @FXML
-    public Text good9CapacityText;
+    private Text good9CapacityText;
     @FXML
-    public Text good10CapacityText;
+    private Text good10CapacityText;
     @FXML
-    public Text good11CapacityText;
+    private Text good11CapacityText;
     @FXML
-    public Text good12CapacityText;
+    private Text good12CapacityText;
     @FXML
-    public Text good13CapacityText;
+    private Text good13CapacityText;
     @FXML
-    public Text good14CapacityText;
+    private Text good14CapacityText;
     @FXML
-    public Text good15CapacityText;
+    private Text good15CapacityText;
     @FXML
-    public Text good1Quantity;
+    private Text good1Quantity;
     @FXML
-    public Text good2Quantity;
+    private Text good2Quantity;
     @FXML
-    public Text good3Quantity;
+    private Text good3Quantity;
     @FXML
-    public Text good4Quantity;
+    private Text good4Quantity;
     @FXML
-    public Text good5Quantity;
+    private Text good5Quantity;
     @FXML
-    public Text good6Quantity;
+    private Text good6Quantity;
     @FXML
-    public Text good7Quantity;
+    private Text good7Quantity;
     @FXML
-    public Text good8Quantity;
+    private Text good8Quantity;
     @FXML
-    public Text good9Quantity;
+    private Text good9Quantity;
     @FXML
-    public Text good10Quantity;
+    private Text good10Quantity;
     @FXML
-    public Text good11Quantity;
+    private Text good11Quantity;
     @FXML
-    public Text good12Quantity;
+    private Text good12Quantity;
     @FXML
-    public Text good13Quantity;
+    private Text good13Quantity;
     @FXML
-    public Text good14Quantity;
+    private Text good14Quantity;
     @FXML
-    public Text good15Quantity;
+    private Text good15Quantity;
     
     @FXML
     private Text playerInfoText;
 
     @FXML
-    private Text goodNameText[];
-    private Text goodCapacityText[];
-    private Text goodQuantityText[];
+    private Text[] goodNameText;
+    private Text[] goodCapacityText;
+    private Text[] goodQuantityText;
 
-    private Good good[];
+    private Good[] good;
 
     private Player player;
     private Good[] shipInventory;
@@ -120,22 +120,31 @@ public class ShipInventoryController {
     public void initialize() {
         Random random = new Random();
 
-        goodNameText = new Text[]{good1NameText, good2NameText, good3NameText, good4NameText, good5NameText,
-                good6NameText, good7NameText, good8NameText, good9NameText, good10NameText, good11NameText,
-                good12NameText, good13NameText, good14NameText, good15NameText};
-        goodCapacityText = new Text[]{good1CapacityText, good2CapacityText, good3CapacityText, good4CapacityText,
-                good5CapacityText, good6CapacityText, good7CapacityText, good8CapacityText, good9CapacityText,
-                good10CapacityText, good11CapacityText, good12CapacityText, good13CapacityText, good14CapacityText,
-                good15CapacityText};
-        goodQuantityText = new Text[]{good1Quantity, good2Quantity, good3Quantity, good4Quantity, good5Quantity,
-                good6Quantity, good7Quantity, good8Quantity, good9Quantity, good10Quantity, good11Quantity,
-                good12Quantity, good13Quantity, good14Quantity, good15Quantity};
+        goodNameText = new Text[]{good1NameText, good2NameText,
+            good3NameText, good4NameText, good5NameText,
+            good6NameText, good7NameText, good8NameText,
+            good9NameText, good10NameText, good11NameText,
+            good12NameText, good13NameText, good14NameText,
+            good15NameText};
+        goodCapacityText = new Text[]{good1CapacityText, good2CapacityText,
+            good3CapacityText, good4CapacityText,
+            good5CapacityText, good6CapacityText, good7CapacityText,
+            good8CapacityText, good9CapacityText,
+            good10CapacityText, good11CapacityText, good12CapacityText,
+            good13CapacityText, good14CapacityText,
+            good15CapacityText};
+        goodQuantityText = new Text[]{good1Quantity, good2Quantity,
+            good3Quantity, good4Quantity, good5Quantity,
+            good6Quantity, good7Quantity, good8Quantity,
+            good9Quantity, good10Quantity, good11Quantity,
+            good12Quantity, good13Quantity, good14Quantity,
+            good15Quantity};
 
         // initialize goods and assign good, player and the ship
-//        if (!isopened){
-//            isopened = true;
-//            goodGenerater = new GoodGenerater();
-//        }
+        //        if (!isopened){
+        //            isopened = true;
+        //            goodGenerater = new GoodGenerater();
+        //        }
         numberOfGood = goodGenerater.getNumberOfGood();
         good = goodGenerater.getGood();
         player = MapController.getPlayer();
@@ -157,11 +166,12 @@ public class ShipInventoryController {
 
     public void updateCharacterInfo() {
         String playerInfo = "";
-        playerInfo += String.format("%s(%s)", player.getName(), player.getShip().getName()) +"\n";
-        playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
-        playerInfo += String.format("Ship Capacity: %d", player.getShip().getCargoCapacity()) +"\n";
-        playerInfo += String.format("Ship Health: %d", player.getShip().getHealth()) +"\n";
-        playerInfo += String.format("Ship Fuel: %d", player.getShip().getFuelCapacity()) +"\n";
+        playerInfo += String.format("%s(%s)", player.getName(), player.getShip().getName()) + "\n";
+        playerInfo += String.format("Balance: %d", player.getBalance()) + "\n";
+        playerInfo += String.format("Ship Capacity: %d", player.getShip().getCargoCapacity())
+            + "\n";
+        playerInfo += String.format("Ship Health: %d", player.getShip().getHealth()) + "\n";
+        playerInfo += String.format("Ship Fuel: %d", player.getShip().getFuelCapacity()) + "\n";
 
         playerInfoText.setText(playerInfo);
     }

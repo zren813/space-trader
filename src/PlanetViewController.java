@@ -57,8 +57,8 @@ public class PlanetViewController {
 
     public void prevBtnPressed(ActionEvent event) throws IOException {
         index = (index - 1) % planetArray.length;
-        if (index <0){
-            index+=planetArray.length;
+        if (index < 0) {
+            index += planetArray.length;
         }
         player.setCurrentPlanet(planetArray[index]);
         planetViewCurve.setFill(planetArray[index].getPaint());

@@ -5,7 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+//import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -85,7 +85,9 @@ public class MapController {
         }
         worldGenerator = MapController.getWorldGenerator();
         planetArray = worldGenerator.getPlanetArray();
-        if(!opened) {fixPlanetCoordinates();}
+        if (!opened) {
+            fixPlanetCoordinates();
+        }
         player = MapController.getPlayer();
         updatePlayerInfo();
         for (int i = 0; i < 10; i++) {
@@ -106,10 +108,10 @@ public class MapController {
         hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate());
         hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate() - 25);
     }
-    public void updatePlayerInfo(){
-        String playerInfo = "Balance: "+ player.getBalance() + "\n"
+    public void updatePlayerInfo() {
+        String playerInfo = "Balance: " + player.getBalance() + "\n"
             + "Pilot skill point: " + player.getPilotSkill() + "\n"
-            + "Fighter skill point: " +player.getFighterSkill()+ "\n"
+            + "Fighter skill point: " + player.getFighterSkill() + "\n"
             + "Merchant skill point: " + player.getMerchantSkill() + "\n"
             + "Engineer skill point:  " + player.getEngineerSkill();
         textInfo.setText(playerInfo);

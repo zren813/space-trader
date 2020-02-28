@@ -6,8 +6,8 @@ public class Player {
     private static Ship ship;
     private static int balance;
     private static String name;
-    private Equipment equipment[];
-    private Boolean equipped[];
+    private Equipment[] equipment;
+    private Boolean[] equipped;
     // charachter's skills
     private static int pilotSkill;
     private static int fighterSkill;
@@ -108,11 +108,12 @@ public class Player {
     }
 
     public int[] getSkill() {
-        int skill[] = {this.getPilotSkill(), this.getFighterSkill(), this.getMerchantSkill(), this.getEngineerSkill()};
+        int[] skill = {this.getPilotSkill(), this.getFighterSkill(),
+                this.getMerchantSkill(), this.getEngineerSkill()};
         return skill;
     }
 
-    public void setSkill(int skill[]) {
+    public void setSkill(int[] skill) {
         this.setPilotSkill(skill[0]);
         this.setFighterSkill(skill[1]);
         this.setMerchantSkill(skill[2]);

@@ -7,7 +7,9 @@ public class Equipment {
     private int engineerAbilityIncrement;
     private String description;
 
-    public Equipment(String name, int price, int pilotAbilityIncrement, int fighterAbilityIncrement, int merchantAbilityIncrement, int engineerAbilityIncrement) {
+    public Equipment(String name, int price, int pilotAbilityIncrement,
+                     int fighterAbilityIncrement, int merchantAbilityIncrement,
+                     int engineerAbilityIncrement) {
         this.name = name;
         this.price = price;
         this.pilotAbilityIncrement = pilotAbilityIncrement;

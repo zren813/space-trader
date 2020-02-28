@@ -49,27 +49,27 @@ public class ConfigController {
     public void initialize() {
         difficultyLevel.getSelectionModel().
             selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue,
-                                Number number, Number number2) {
-                if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 2 points total): ");
-                } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 4 points total): ");
-                } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 6 points total): ");
-                } else {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 8 points total): ");
+                @Override
+                public void changed(ObservableValue<? extends Number> observableValue,
+                                    Number number, Number number2) {
+                    if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 2 points total): ");
+                    } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 4 points total): ");
+                    } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 6 points total): ");
+                    } else {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 8 points total): ");
+                    }
                 }
-            }
-        });
+            });
         difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
             "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");

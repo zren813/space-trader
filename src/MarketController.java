@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.lang.Math;
 import java.util.Random;
 
 public class MarketController {
@@ -73,35 +72,35 @@ public class MarketController {
     @FXML
     private Text good15PriceText;
     @FXML
-    public Text good1CapacityText;
+    private Text good1CapacityText;
     @FXML
-    public Text good2CapacityText;
+    private Text good2CapacityText;
     @FXML
-    public Text good3CapacityText;
+    private Text good3CapacityText;
     @FXML
-    public Text good4CapacityText;
+    private Text good4CapacityText;
     @FXML
-    public Text good5CapacityText;
+    private Text good5CapacityText;
     @FXML
-    public Text good6CapacityText;
+    private Text good6CapacityText;
     @FXML
-    public Text good7CapacityText;
+    private Text good7CapacityText;
     @FXML
-    public Text good8CapacityText;
+    private Text good8CapacityText;
     @FXML
-    public Text good9CapacityText;
+    private Text good9CapacityText;
     @FXML
-    public Text good10CapacityText;
+    private Text good10CapacityText;
     @FXML
-    public Text good11CapacityText;
+    private Text good11CapacityText;
     @FXML
-    public Text good12CapacityText;
+    private Text good12CapacityText;
     @FXML
-    public Text good13CapacityText;
+    private Text good13CapacityText;
     @FXML
-    public Text good14CapacityText;
+    private Text good14CapacityText;
     @FXML
-    public Text good15CapacityText;
+    private Text good15CapacityText;
     @FXML
     private Spinner<Integer> good1Spinner;
     @FXML
@@ -134,17 +133,16 @@ public class MarketController {
     private Spinner<Integer> good15Spinner;
     @FXML
     private Text playerInfoText;
-
     @FXML
     private Text errorMessage;
-    private Text goodNameText[];
-    private Text goodPriceText[];
-    private Text goodCapacityText[];
-    private Text goodTechLevelText[];
-    private Spinner<Integer> goodSpinner[];
-    private Text goodInfoText[];
+    private Text[] goodNameText;
+    private Text[] goodPriceText;
+    private Text[] goodCapacityText;
+    private Text[] goodTechLevelText;
+    private Spinner<Integer>[] goodSpinner;
+    private Text[] goodInfoText;
 
-    private Good good[];
+    private Good[] good;
 
     private Player player;
     private Ship ship;
@@ -163,22 +161,33 @@ public class MarketController {
     public void initialize() {
         Random random = new Random();
 
-        goodNameText = new Text[]{good1NameText, good2NameText, good3NameText, good4NameText, good5NameText,
-                good6NameText, good7NameText, good8NameText, good9NameText, good10NameText, good11NameText,
-                good12NameText, good13NameText, good14NameText, good15NameText};
-        goodPriceText = new Text[]{good1PriceText, good2PriceText, good3PriceText, good4PriceText,
-                good5PriceText, good6PriceText, good7PriceText, good8PriceText, good9PriceText, good10PriceText,
-                good11PriceText, good12PriceText, good13PriceText, good14PriceText, good15PriceText};
-        goodCapacityText = new Text[]{good1CapacityText, good2CapacityText, good3CapacityText, good4CapacityText,
-                good5CapacityText, good6CapacityText, good7CapacityText, good8CapacityText, good9CapacityText,
-                good10CapacityText, good11CapacityText, good12CapacityText, good13CapacityText, good14CapacityText,
-                good15CapacityText};
-        goodSpinner = new Spinner[]{good1Spinner, good2Spinner, good3Spinner, good4Spinner, good5Spinner,
-                good6Spinner, good7Spinner, good8Spinner, good9Spinner, good10Spinner, good11Spinner,
-                good12Spinner, good13Spinner, good14Spinner, good15Spinner};
+        goodNameText = new Text[]{good1NameText, good2NameText,
+            good3NameText, good4NameText, good5NameText,
+            good6NameText, good7NameText, good8NameText,
+            good9NameText, good10NameText, good11NameText,
+            good12NameText, good13NameText, good14NameText,
+            good15NameText};
+        goodPriceText = new Text[]{good1PriceText, good2PriceText,
+            good3PriceText, good4PriceText,
+            good5PriceText, good6PriceText, good7PriceText,
+            good8PriceText, good9PriceText, good10PriceText,
+            good11PriceText, good12PriceText, good13PriceText,
+            good14PriceText, good15PriceText};
+        goodCapacityText = new Text[]{good1CapacityText, good2CapacityText,
+            good3CapacityText, good4CapacityText,
+            good5CapacityText, good6CapacityText, good7CapacityText,
+            good8CapacityText, good9CapacityText,
+            good10CapacityText, good11CapacityText, good12CapacityText,
+            good13CapacityText, good14CapacityText,
+            good15CapacityText};
+        goodSpinner = new Spinner[]{good1Spinner, good2Spinner, good3Spinner,
+            good4Spinner, good5Spinner,
+            good6Spinner, good7Spinner, good8Spinner, good9Spinner,
+            good10Spinner, good11Spinner,
+            good12Spinner, good13Spinner, good14Spinner, good15Spinner};
 
         // initialize goods and assign good, player and the ship
-        if (!isopened){
+        if (!isopened) {
             isopened = true;
             goodGenerater = new GoodGenerater();
         }
@@ -193,12 +202,14 @@ public class MarketController {
         if (shipInventory == null) {
             shipInventory = new Good[GoodGenerater.getNumberOfGood()];
             for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
-                shipInventory[i] = new Good(good[i].getName(), good[i].getBasePrice(), good[i].getVolume(), good[i].getTechLevel());
+                shipInventory[i] = new Good(good[i].getName(),
+                    good[i].getBasePrice(), good[i].getVolume(), good[i].getTechLevel());
             }
         }
         ship.setItemInventory(shipInventory);
 
-        //calculate buying and selling prices on current market based on planet's tech level and player's data
+        //calculate buying and selling prices on current
+        //market based on planet's tech level and player's data
         //get the tech level of current planet
         currentPlanetTechLevel = player.getCurrentPlanet().getTechnologyLevel();
         //initialize two arrays that save the current prices
@@ -206,8 +217,12 @@ public class MarketController {
         currentMarketSellingPrices = new int[numberOfGood];
         //calculate prices
         for (int i = 0; i < numberOfGood; i++) {
-            currentMarketBuyingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1) * merchantDiscount);
-            currentMarketSellingPrices[i] = (int) (good[i].getBasePrice() * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1) * merchantDiscount);
+            currentMarketBuyingPrices[i] = (int) (good[i].getBasePrice()
+                * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1)
+                * merchantDiscount);
+            currentMarketSellingPrices[i] = (int) (good[i].getBasePrice()
+                * ((Math.abs(good[i].getTechLevel() - currentPlanetTechLevel)) * 0.1 + 1)
+                * merchantDiscount);
         }
 
 
@@ -222,24 +237,28 @@ public class MarketController {
             goodNameText[i].setText(good[i].getName());
             goodCapacityText[i].setText(String.valueOf(good[i].getVolume()));
             if (good[i].getTechLevel() <= currentPlanetTechLevel) {
-                goodPriceText[i].setText("$" + currentMarketBuyingPrices[i] + "/$" + (int) (currentMarketSellingPrices[i] * sellDiscount));
+                goodPriceText[i].setText("$" + currentMarketBuyingPrices[i]
+                    + "/$" + (int) (currentMarketSellingPrices[i] * sellDiscount));
             } else {
-                goodPriceText[i].setText("-"  + "/$" + (int) (currentMarketSellingPrices[i] * sellDiscount));
+                goodPriceText[i].setText("-"  + "/$"
+                    + (int) (currentMarketSellingPrices[i] * sellDiscount));
             }
         }
     }
 
     public void updateCharacterInfo() {
         String playerInfo = "";
-        playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) +"\n";
-        playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
-        playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) +"\n";
-        playerInfo += String.format("Ship Health: %d", ship.getHealth()) +"\n";
-        playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
-        playerInfo += String.format("Current Planet Tech Level: %s", player.getCurrentPlanet().getTechnologyLevel() +"\n");
-        if (!isopened){
+        playerInfo += String.format("%s(%s)", player.getName(), ship.getName()) + "\n";
+        playerInfo += String.format("Balance: %d", player.getBalance()) + "\n";
+        playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) + "\n";
+        playerInfo += String.format("Ship Health: %d", ship.getHealth()) + "\n";
+        playerInfo += String.format("Discount: %.1f", merchantDiscount) + "\n\n";
+        playerInfo += String.format("Current Planet Tech Level: %s",
+            player.getCurrentPlanet().getTechnologyLevel() + "\n");
+        if (!isopened) {
             for (int i = 0; i < numberOfGood; i++) {
-                ship.getItemInventory()[i].setQuantity(ship.getItemInventory()[i].getQuantity() + numOfItemToBuy[i] - numOfItemToSell[i]);
+                ship.getItemInventory()[i].setQuantity(ship.getItemInventory()[i].getQuantity()
+                    + numOfItemToBuy[i] - numOfItemToSell[i]);
                 numOfItemToBuy[i] = 0;
                 numOfItemToSell[i] = 0;
             }
@@ -296,23 +315,26 @@ public class MarketController {
         int totalCost = 0;
         for (int i = 0; i < numberOfGood; i++) {
             numOfItemToBuy[i] = goodSpinner[i].getValue();
-            totalCapacity += goodSpinner[i].getValue()*good[i].getVolume();
+            totalCapacity += goodSpinner[i].getValue() * good[i].getVolume();
             totalCost += goodSpinner[i].getValue() * currentMarketBuyingPrices[i];
         }
         //check if the capacity and balance are enough
-        if (totalCapacity <= ship.getCargoCapacity() && totalCost <= player.getBalance() && checkTechLevel(numOfItemToBuy)) {
+        if (totalCapacity <= ship.getCargoCapacity() && totalCost <= player.getBalance()
+            && checkTechLevel(numOfItemToBuy)) {
             // if they are enough, update balance, capacity and add items to the ship
             player.setBalance(player.getBalance() - totalCost);
             ship.setCargoCapacity(ship.getCargoCapacity() - totalCapacity);
             for (int i = 0; i < numberOfGood; i++) {
                 if (goodSpinner[i].getValue() != 0) {
-                    shipInventory[i].setQuantity(shipInventory[i].getQuantity() + goodSpinner[i].getValue());
+                    shipInventory[i].setQuantity(shipInventory[i].getQuantity()
+                        + goodSpinner[i].getValue());
                 }
             }
             ship.setItemInventory(shipInventory);
             errorMessage.setText("");
         } else {
-            errorMessage.setText("You don't have enough capacity/balance or you try to buy illegal items!");
+            errorMessage.setText("You don't have enough "
+                + "capacity/balance or you try to buy illegal items!");
         }
         //update UI
         resetSpinner();
@@ -345,7 +367,7 @@ public class MarketController {
 
     private boolean checkTechLevel(int[] numOfItemToBuy) {
         for (int i = 0; i < numberOfGood; i++) {
-            if (numOfItemToBuy[i] != 0 && good[i].getTechLevel()>currentPlanetTechLevel) {
+            if (numOfItemToBuy[i] != 0 && good[i].getTechLevel() > currentPlanetTechLevel) {
                 return false;
             }
         }

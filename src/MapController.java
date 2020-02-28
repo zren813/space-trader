@@ -45,8 +45,6 @@ public class MapController {
     @FXML
     private Text textInfo;
     @FXML
-    private Button exploreBtn;
-    @FXML
     private Rectangle rectangle;
     @FXML
     private Label hereLabel;
@@ -161,18 +159,6 @@ public class MapController {
         window.show();
     }
 
-    public void jumpBtnPressed(ActionEvent event) throws IOException {
-        MapController.setOpened(false);
-        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
-    }
     public void explore1BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 1;
         player.setCurrentPlanet(planetArray[1]);

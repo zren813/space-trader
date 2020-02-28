@@ -221,7 +221,7 @@ public class MarketController {
         for (int i = 0; i < numberOfGood; i++) {
             goodNameText[i].setText(good[i].getName());
             goodCapacityText[i].setText(String.valueOf(good[i].getVolume()));
-            if (i < (((currentPlanetTechLevel - 1) / 2 ) + 1) * 3) {
+            if (good[i].getTechLevel() <= currentPlanetTechLevel) {
                 goodPriceText[i].setText("$" + currentMarketBuyingPrices[i] + "/$" + (int) (currentMarketSellingPrices[i] * sellDiscount));
             } else {
                 goodPriceText[i].setText("-"  + "/$" + (int) (currentMarketSellingPrices[i] * sellDiscount));
@@ -310,6 +310,7 @@ public class MarketController {
                 }
             }
             ship.setItemInventory(shipInventory);
+            errorMessage.setText("");
         } else {
             errorMessage.setText("You don't have enough capacity/balance or you try to buy illegal items!");
         }
@@ -333,6 +334,7 @@ public class MarketController {
                 shipInventory[i].setQuantity(shipInventory[i].getQuantity() - numOfItemToSell[i]);
             }
             ship.setItemInventory(shipInventory);
+            errorMessage.setText("");
         } else {
             errorMessage.setText("You don't have enough items to sell!");
         }
@@ -343,7 +345,7 @@ public class MarketController {
 
     private boolean checkTechLevel(int[] numOfItemToBuy) {
         for (int i = 0; i < numberOfGood; i++) {
-            if (numOfItemToBuy[i] != 0 && i >= (currentPlanetTechLevel / 2 + 1) * 3) {
+            if (numOfItemToBuy[i] != 0 && good[i].getTechLevel()>currentPlanetTechLevel) {
                 return false;
             }
         }

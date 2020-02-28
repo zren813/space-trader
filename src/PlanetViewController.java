@@ -56,11 +56,11 @@ public class PlanetViewController {
     }
 
     public void prevBtnPressed(ActionEvent event) throws IOException {
-        index = Math.abs((index - 1) % planetArray.length);
-        player.setCurrentPlanet(planetArray[index]);
-        if (index < 0) {
-            index += planetArray.length;
+        index = (index - 1) % planetArray.length;
+        if (index <0){
+            index+=planetArray.length;
         }
+        player.setCurrentPlanet(planetArray[index]);
         planetViewCurve.setFill(planetArray[index].getPaint());
         name.setText(planetArray[index].getName());
         technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));

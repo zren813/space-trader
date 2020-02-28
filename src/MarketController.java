@@ -296,7 +296,7 @@ public class MarketController {
         int totalCost = 0;
         for (int i = 0; i < numberOfGood; i++) {
             numOfItemToBuy[i] = goodSpinner[i].getValue();
-            totalCapacity += goodSpinner[i].getValue();
+            totalCapacity += goodSpinner[i].getValue()*good[i].getVolume();
             totalCost += goodSpinner[i].getValue() * currentMarketBuyingPrices[i];
         }
         //check if the capacity and balance are enough

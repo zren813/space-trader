@@ -161,6 +161,7 @@ public class ShipInventoryController {
         playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
         playerInfo += String.format("Ship Capacity: %d", player.getShip().getCargoCapacity()) +"\n";
         playerInfo += String.format("Ship Health: %d", player.getShip().getHealth()) +"\n";
+        playerInfo += String.format("Ship Fuel: %d", player.getShip().getFuelCapacity()) +"\n";
 
         playerInfoText.setText(playerInfo);
     }

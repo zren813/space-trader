@@ -235,6 +235,7 @@ public class MarketController {
         playerInfo += String.format( "Balance: %d", player.getBalance()) +"\n";
         playerInfo += String.format("Ship Capacity: %d", ship.getCargoCapacity()) +"\n";
         playerInfo += String.format("Ship Health: %d", ship.getHealth()) +"\n";
+        playerInfo += String.format("Ship Fuel: %d", ship.getFuelCapacity()) +"\n";
         playerInfo += String.format( "Discount: %.1f", merchantDiscount) +"\n\n";
         playerInfo += String.format("Current Planet Tech Level: %s", player.getCurrentPlanet().getTechnologyLevel() +"\n");
         if (!isopened){

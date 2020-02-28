@@ -25,10 +25,10 @@
          <font>
             <Font size="16.0" />
          </font></Button>
-       <Button fx:id="jumpBtn" layoutX="870.0" layoutY="270.0" mnemonicParsing="false" onAction="#jumpBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Jump to&#10;Hyperspace&#10;(NO &#10;TURNING &#10;BACK!)" textAlignment="CENTER">
+      <!-- <Button fx:id="jumpBtn" layoutX="870.0" layoutY="270.0" mnemonicParsing="false" onAction="#jumpBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Jump to&#10;Hyperspace&#10;(NO &#10;TURNING &#10;BACK!)" textAlignment="CENTER">
            <font>
                <Font size="15.0" />
-           </font></Button>
+           </font></Button>-->
       <Text fx:id="textInfo" fill="WHITE" layoutX="261.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
          <font>
             <Font size="23.0" />

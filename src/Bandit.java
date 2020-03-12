@@ -33,8 +33,8 @@ public class Bandit {
         if (playerBalance > banditDemand) {
             playerBalance = playerBalance - banditDemand;
             player.setBalance(playerBalance);
-        } else if (ship.getItemInventory().length != 0) {
-            //TODO: the condition is not right, check if everything is 0 then proceed according to the guide
+        } else if (!ship.checkInventoryEmpty()) {
+            ship.setInventoryEmpty();
         } else {
             int banditDamage = random.nextInt(20);
             ship.setHealth(ship.getHealth() - banditDamage);

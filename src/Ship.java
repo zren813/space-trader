@@ -18,7 +18,18 @@ public class Ship {
         this.fuelCapacity = fuelCapacity;
         this.health = health;
     }
-
+    public boolean checkInventoryEmpty() {
+        int sumOfItems = 0;
+        for (Good good: shipInventory) {
+            sumOfItems = sumOfItems + good.getQuantity();
+        }
+        return sumOfItems == 0;
+    }
+    public void setInventoryEmpty() {
+        for (Good good: shipInventory) {
+            good.setQuantity(0);
+        }
+    }
     // Getters and setters
     public String getName() {
         return name;

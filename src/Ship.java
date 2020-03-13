@@ -30,6 +30,10 @@ public class Ship {
             good.setQuantity(0);
         }
     }
+    //assume the capacity requirement is met
+    public void addItems(int indexOfProduct, int numberToAdd) {
+        shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() + numberToAdd);
+    }
     // Getters and setters
     public String getName() {
         return name;

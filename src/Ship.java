@@ -34,6 +34,10 @@ public class Ship {
     public void addItems(int indexOfProduct, int numberToAdd) {
         shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() + numberToAdd);
     }
+
+    public void removeItems(int indexOfProduct, int numberToRemove) {
+        shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() - numberToRemove);
+    }
     // Getters and setters
     public String getName() {
         return name;

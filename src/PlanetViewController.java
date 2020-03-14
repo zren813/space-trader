@@ -14,91 +14,80 @@ public class PlanetViewController {
     @FXML
     private CubicCurve planetViewCurve;
     @FXML
-    private Text name;
+    private Text planetNameText;
     @FXML
-    private Text technologyLevel;
+    private Text technologyLevelText;
     @FXML
-    private Text color;
+    private Text distanceText;
     @FXML
-    private Text description;
+    private Text fuelCostText;
+    @FXML
+    private Text descriptionText;
+    @FXML
+    private Text errorMessage;
 
-    private static WorldGenerator worldGenerator;
-    private static int indexPass;
+    private PlanetGenerator planetGenerator;
     private Planet[] planetArray;
-    private int index;
-    private static Player player;
+    private int whichPlanetViewed;
 
 
     @FXML
     public void initialize() {
-        worldGenerator = MapController.getWorldGenerator();
-        player = MapController.getPlayer();
-        planetArray = worldGenerator.getPlanetArray();
-        index = MapController.getPlanetClicked();
-        planetViewCurve.setFill(player.getCurrentPlanet().getPaint());
-        name.setText(player.getCurrentPlanet().getName());
-        technologyLevel.setText(String.valueOf(player.getCurrentPlanet().getTechnologyLevel()));
-        color.setText(player.getCurrentPlanet().getPaint().toString());
-        description.setText(player.getCurrentPlanet().getDescription());
-        player.getCurrentPlanet().setVisited(true);
+        planetGenerator = MapController.getPlanetGenerator();
+        planetArray = MapController.getPlanetArray();
+        whichPlanetViewed = MapController.getPlanetClicked();
+        updateUI();
     }
 
-    public void returnBtnPressed(ActionEvent event) throws IOException {
-        worldGenerator.setPlanetArray(planetArray);
-        MapController.setOpened(true);
+    private void updateUI() {
+        planetNameText.setText(planetArray[whichPlanetViewed].getName());
+        distanceText.setText(planetGenerator.getDistanceArray()[whichPlanetViewed]+" light-years");
+        fuelCostText.setText(planetGenerator.getDistanceArray()[whichPlanetViewed]/10.0+" gallons");
+        technologyLevelText.setText(String.valueOf(planetArray[whichPlanetViewed].getTechnologyLevel()));
+        descriptionText.setText(planetArray[whichPlanetViewed].displayInfo());
+        planetViewCurve.setFill(planetArray[whichPlanetViewed].getPaint());
+        errorMessage.setText("");
+    }
+
+    public void exitBtnPressed(ActionEvent event) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
         window.setScene(configScene);
         window.show();
     }
 
-    public void prevBtnPressed(ActionEvent event) throws IOException {
-        index = (index - 1) % planetArray.length;
-        if (index < 0) {
-            index += planetArray.length;
+    public void prevBtnPressed(ActionEvent event) {
+        whichPlanetViewed = (whichPlanetViewed - 1) % planetArray.length;
+        if (whichPlanetViewed < 0) {
+            whichPlanetViewed += planetArray.length;
         }
-        player.setCurrentPlanet(planetArray[index]);
-        planetViewCurve.setFill(planetArray[index].getPaint());
-        name.setText(planetArray[index].getName());
-        technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
-        color.setText(planetArray[index].getPaint().toString());
-        description.setText(planetArray[index].getDescription());
-        planetArray[index].setVisited(true);
+        updateUI();
     }
 
-    public void nextBtnPressed(ActionEvent event) throws IOException {
-        index = (index + 1) % planetArray.length;
-        player.setCurrentPlanet(planetArray[index]);
-        planetViewCurve.setFill(planetArray[index].getPaint());
-        name.setText(planetArray[index].getName());
-        technologyLevel.setText(String.valueOf(planetArray[index].getTechnologyLevel()));
-        color.setText(planetArray[index].getPaint().toString());
-        description.setText(planetArray[index].getDescription());
-        planetArray[index].setVisited(true);
+    public void nextBtnPressed(ActionEvent event) {
+        whichPlanetViewed = (whichPlanetViewed + 1) % planetArray.length;
+        updateUI();
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {
-        indexPass = index;
-
+        if(planetArray[whichPlanetViewed].isVisited()){
+            goToMarketView(event);
+        }else{
+            errorMessage.setText("You haven't visited this planet!");
+        }
+    }
+    public void goToMarketView(ActionEvent event)throws  IOException{
         Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         window.setScene(configScene);
         window.show();
-    }
-
-    public static WorldGenerator getWorldGenerator() {
-        return worldGenerator;
-    }
-
-    public static int getIndexPass() {
-        return indexPass;
     }
 }

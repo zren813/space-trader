@@ -33,6 +33,7 @@ public class ConfigController {
     private Spinner<Integer> engineerSP;
     @FXML
     private Text errorMessage;
+    private Spinner<Integer> skillSpinner[];
 
     private static String name;
     private static String difficulty;
@@ -40,103 +41,146 @@ public class ConfigController {
     private static int fighterSkill;
     private static int merchantSkill;
     private static int engineerSkill;
-
+    private static int balance;
+    private static int skillArray[] = new int[4];
+    private static Player player;
 
     /**
      * This method is to initialize all Choiceboxes
      */
     @FXML
     public void initialize() {
-        difficultyLevel.getSelectionModel().
-            selectedIndexProperty().addListener(new ChangeListener<Number>() {
-                @Override
-                public void changed(ObservableValue<? extends Number> observableValue,
-                                    Number number, Number number2) {
-                    if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
-                        number2))) {
-                        availableSkillPoint.setText("Please allocate your "
-                            + "skill points (you have 2 points total): ");
-                    } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
-                        number2))) {
-                        availableSkillPoint.setText("Please allocate your "
-                            + "skill points (you have 4 points total): ");
-                    } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
-                        number2))) {
-                        availableSkillPoint.setText("Please allocate your "
-                            + "skill points (you have 6 points total): ");
-                    } else {
-                        availableSkillPoint.setText("Please allocate your "
-                            + "skill points (you have 8 points total): ");
-                    }
-                }
-            });
+        setUpUIObject();
+        updateUI();
+    }
+
+    public void setUpUIObject() {
+        skillSpinner = new Spinner[]{pilotSP, fighterSP, merchantSP, engineerSP};
+    }
+
+    private void updateUI() {
         difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
             "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");
+        availableSkillPoint.setText("Please allocate your skill points (you have 8 points total): ");
+        difficultyLevelListener();
+    }
 
+    private void difficultyLevelListener() {
+        difficultyLevel.getSelectionModel().
+            selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue,
+                                Number number, Number number2) {
+                if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
+                    number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                        + "skill points (you have 2 points total): ");
+                } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
+                    number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                        + "skill points (you have 4 points total): ");
+                } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
+                    number2))) {
+                    availableSkillPoint.setText("Please allocate your "
+                        + "skill points (you have 6 points total): ");
+                } else {
+                    availableSkillPoint.setText("Please allocate your "
+                        + "skill points (you have 8 points total): ");
+                }
+            }
+        });
     }
 
 
-    /**
-     * This method is to add all skill points and check if total is larger than 6
-     *
-     * @return true if total is less or equal than 6
-     */
-    public boolean calculateSkillPoints() {
-        int points = pilotSP.getValue() + fighterSP.getValue()
-            + merchantSP.getValue() + engineerSP.getValue();
-        if ("Literally Impossible".equals(difficultyLevel.getValue())) {
-            return points <= 2;
-        } else if ("Hard".equals(difficultyLevel.getValue())) {
-            return points <= 4;
-        } else if ("Medium".equals(difficultyLevel.getValue())) {
-            return points <= 6;
-        } else {
-            return points <= 8;
-        }
-    }
+//    This method is to support the continue button
 
-    /**
-     * This method is to support the continue button
-     *
-     * @param event fired when the button is pressed
-     * @throws IOException throw IOException
-     */
     public void configBtnPressed(ActionEvent event) throws IOException {
-        if (!nameTextField.getText().isEmpty() && calculateSkillPoints()) {
-            name = nameTextField.getText();
-            difficulty = difficultyLevel.getValue();
-            pilotSkill = pilotSP.getValue();
-            fighterSkill = fighterSP.getValue();
-            merchantSkill = merchantSP.getValue();
-            engineerSkill = engineerSP.getValue();
+        setUpConfig();
 
-            Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-            configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
-        }
-        if (!calculateSkillPoints() && nameTextField.getText().isEmpty()) {
-            errorMessage.setText("You need to put a name "
-                + "and overall skill points exceed the limit!!!");
-        } else if (!calculateSkillPoints()) {
+        if (nameTextField.getText().isEmpty()) {
+            errorMessage.setText("!Error: empty name!");
+        } else if (!checkSkillPoints()) {
             errorMessage.setText("Overall skill points exceed the limit!!!");
+            resetSpinner();
         } else {
-            errorMessage.setText("You need to put a name!!!");
+            if (!nameTextField.getText().isEmpty() && checkSkillPoints()) {
+                setUpPlayer();
+                goToCharacterView(event);
+            }
         }
+    }
+
+    // setup all config including name, difficulty, and skills
+    public void setUpConfig() {
+        name = nameTextField.getText();
+        difficulty = difficultyLevel.getValue();
+        pilotSkill = pilotSP.getValue();
+        fighterSkill = fighterSP.getValue();
+        merchantSkill = merchantSP.getValue();
+        engineerSkill = engineerSP.getValue();
+
+        if ("Literally Impossible".equals(ConfigController.getDifficulty())) {
+            balance = 500;
+        } else if ("Hard".equals(ConfigController.getDifficulty())) {
+            balance = 1000;
+        } else if ("Medium".equals(ConfigController.getDifficulty())) {
+            balance = 1500;
+        } else {
+            balance = 2000;
+        }
+
+        skillArray = new int[]{pilotSkill, fighterSkill, merchantSkill, engineerSkill};
+    }
+
+    // reset spinners to 0
+    public void resetSpinner() {
+        for (int i = 0; i < skillSpinner.length; i++) {
+            skillSpinner[i].getValueFactory().setValue(0);
+        }
+    }
+
+    //check if total skill points are valid
+    public boolean checkSkillPoints() {
+        int totalSkillpoint = 0;
+        for (int i = 0; i < skillArray.length; i++) {
+            totalSkillpoint += skillArray[i];
+        }
+        if ("Literally Impossible".equals(difficultyLevel.getValue())) {
+            return totalSkillpoint <= 2;
+        } else if ("Hard".equals(difficultyLevel.getValue())) {
+            return totalSkillpoint <= 4;
+        } else if ("Medium".equals(difficultyLevel.getValue())) {
+            return totalSkillpoint <= 6;
+        } else {
+            return totalSkillpoint <= 8;
+        }
+    }
+
+    private void setUpPlayer() {
+        player = new Player(name, balance, skillArray);
+    }
+
+    // Go to next view
+    public void goToCharacterView(ActionEvent event) throws IOException {
+        Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
+
+
+    //getters
+    public static String getDifficulty() {
+        return difficulty;
     }
 
     public static String getName() {
         return name;
-    }
-
-    public static String getDifficulty() {
-        return difficulty;
     }
 
     public static int getPilotSkill() {
@@ -154,4 +198,17 @@ public class ConfigController {
     public static int getEngineerSkill() {
         return engineerSkill;
     }
+
+    public static int getBalance() {
+        return balance;
+    }
+
+    public static int[] getSkillArray() {
+        return skillArray;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
 }

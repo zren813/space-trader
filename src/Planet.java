@@ -4,37 +4,42 @@ import javafx.scene.paint.Paint;
 import java.util.Random;
 
 public class Planet {
+    private int planetID;
     private String name;
     private int technologyLevel;
-    private String description;
     private int xCoordinate;
     private int yCoordinate;
     private boolean visited;
     private Paint paint;
 
-    public void setxCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public void setyCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
-    }
 
     @SuppressWarnings("checkstyle:OperatorWrap")
-    public Planet() {
-
-        Random random = new Random();
-        name = NameGenerator.getName();
-        technologyLevel = random.nextInt(10) + 1;
-        xCoordinate = random.nextInt(300);
-        yCoordinate = random.nextInt(300);
+    public Planet(int planetID, String name, int technologyLevel) {
+        this.planetID = planetID;
+        this.name = name;
+        this.technologyLevel = technologyLevel;
         visited = false;
-        String[] unit = {"thousand.", "million.", "billion."};
-        description = "This planet is called " 
-            + name + " and the technology level is " 
-            + technologyLevel + ". " + "The population on this planet is " 
-            + random.nextInt(1000) + " " + unit[random.nextInt(3)];
         paint = Color.color(Math.random(), Math.random(), Math.random());
+    }
+
+
+    public String displayInfo() {
+        Random random = new Random();
+        if (isVisited()) {
+            String description = String.format("This planet is called %s. ", name) +
+                String.format("The technology level is %d. ", technologyLevel) +
+                String.format("There are %d thousands population on the planet",
+                    random.nextInt(technologyLevel * 1000));
+            return description;
+        } else {
+            return "UNKNOWN (Please visit first)";
+        }
+    }
+
+    // Getters
+
+    public int getPlanetID() {
+        return planetID;
     }
 
     public String getName() {
@@ -45,20 +50,12 @@ public class Planet {
         return technologyLevel;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public int getXCoordinate() {
         return xCoordinate;
     }
 
     public int getYCoordinate() {
         return yCoordinate;
-    }
-
-    public void setVisited(boolean visited) {
-        this.visited = visited;
     }
 
     public boolean isVisited() {
@@ -69,12 +66,16 @@ public class Planet {
         return paint;
     }
 
-    public String displayInfo() {
-        if (isVisited()) {
-            return ("Name: " + getName() + "\n" + "Technology level" + getTechnologyLevel()
-                    + "\n" + "Description: " + getDescription());
-        } else {
-            return "UNKNOWN (Please visit first)";
-        }
+    // Setters
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    public void setxCoordinate(int xCoordinate) {
+        this.xCoordinate = xCoordinate;
+    }
+
+    public void setyCoordinate(int yCoordinate) {
+        this.yCoordinate = yCoordinate;
     }
 }

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.CubicCurve?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlanetViewController">
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PlanetViewController">
    <children>
       <GridPane hgap="10.0" layoutY="100.0" prefHeight="300.0" prefWidth="1000.0">
          <columnConstraints>
@@ -15,6 +19,7 @@
          <rowConstraints>
             <RowConstraints minHeight="30.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="65.0" minHeight="30.0" prefHeight="45.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="75.0" minHeight="24.0" prefHeight="45.33333333333334" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="75.0" minHeight="24.0" prefHeight="45.33333333333334" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="119.33333333333331" minHeight="35.666666666666686" prefHeight="117.33333333333331" />
             <RowConstraints />
@@ -31,12 +36,12 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Color: " GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Distnace:" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description: " GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Description: " GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
                </font>
@@ -56,34 +61,49 @@
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="skill2point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="skill2point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="skill4point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="skill4point" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="23.0" />
                </font>
             </Text>
-            <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="398.22900390625" GridPane.columnIndex="1">
+            <Text fx:id="planetNameText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="398.22900390625" GridPane.columnIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="technologyLevel" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="395.73046875" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Text fx:id="technologyLevelText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="395.73046875" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="color" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="distanceText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fx:id="description" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="551.48046875" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="descriptionText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" wrappingWidth="551.48046875" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Fuel Cost:" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="fuelCostText" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="errorMessage" fill="#f50303" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="733.22900390625" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Text>
          </children>
@@ -91,7 +111,7 @@
       <AnchorPane prefHeight="59.0" prefWidth="1002.0" />
       <CubicCurve fx:id="planetViewCurve" controlX1="10.609130859375" controlX2="688.61083984375" controlY1="-194.99996948242188" controlY2="-194.99996948242188" endX="941.1851806640625" endY="26.65789794921875" fill="DODGERBLUE" layoutX="150.0" layoutY="595.0" startX="-207.4814910888672" startY="26.65789794921875" stroke="BLACK" />
       <Button fx:id="prevBtn" layoutX="182.0" layoutY="400.0" mnemonicParsing="false" onAction="#prevBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Previous Planet" />
-      <Button fx:id="returnBtn" layoutX="431.0" layoutY="400.0" mnemonicParsing="false" onAction="#returnBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Return to Galaxy" />
+      <Button fx:id="exitBtn" layoutX="431.0" layoutY="400.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Exit" />
       <Button fx:id="nextBtn" layoutX="680.0" layoutY="400.0" mnemonicParsing="false" onAction="#nextBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Next Planet" />
       <Button fx:id="marketBtn" layoutX="431.0" layoutY="500.0" mnemonicParsing="false" onAction="#marketBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Enter Market" />
    </children>

@@ -332,7 +332,6 @@ public class MapController {
             
         }
         return result;
-        
     }
     
     private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
@@ -344,8 +343,8 @@ public class MapController {
         } else {
             Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
             
-            String encounter = encounterCheck();
-            if (encounter.equals("Nobody")) {
+            String whichNpc = encounterCheck();
+            if (whichNpc.equals("Nobody")) {
                 Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
                 Scene configScene = new Scene(configParent);
                 configScene.getStylesheets().add("app.css");
@@ -354,21 +353,30 @@ public class MapController {
 
                 window.setScene(configScene);
                 window.show();
-            } else if (encounter.equals("Bandit")) {
-                
-            } else if (encounter.equals("Police")) {
-                
+            } else if (whichNpc.equals("Bandit")) {
+                encounterNpcDialog(whichNpc);
+            } else if (whichNpc.equals("Police")) {
+                encounterNpcDialog(whichNpc);
             } else {
+                encounterNpcDialog(whichNpc);
                 
             }
         }
     }
+    public void encounterNpcDialog(String npcName){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!!");
+        alert.setHeaderText(String.format("You encounter a %s", npcName.toLowerCase()));
+        alert.setContentText("Take care with you action in the next step!");
+        alert.showAndWait();
+    }
 
     public void confirmTravelToAnotherPlaner(MouseEvent event, int whichPlanet)throws IOException{
+        Planet curPlanet =  player.getCurrentPlanet();
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
-        Planet curPlanet =  player.getCurrentPlanet();
         alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d)\n",
             curPlanet.getName(), curPlanet.getXCoordinate(), curPlanet.getYCoordinate(),
             planetArray[whichPlanet].getName(), planetArray[whichPlanet].getXCoordinate(),

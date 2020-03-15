@@ -1,5 +1,5 @@
 public class Player {
-    private Planet currentPlanet;
+    private static Planet currentPlanet;
     // in order to buy items from market, player needs to have a ship and balance
     private static Ship ship;
     private static int balance;
@@ -67,8 +67,8 @@ public class Player {
     }
 
     //Setters
-    public void setCurrentPlanet(Planet currentPlanet) {
-        this.currentPlanet = currentPlanet;
+    public static void setCurrentPlanet(Planet inputCurrentPlanet) {
+        currentPlanet = inputCurrentPlanet;
     }
 
     public static void setShip(Ship ship) {

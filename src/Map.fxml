@@ -26,7 +26,7 @@
                 <Font size="16.0" />
             </font>
         </Button>
-        <Text fx:id="skillInfoText" fill="WHITE" layoutX="298.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
+        <Text fx:id="skillInfoText" fill="WHITE" layoutX="388.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="477.22900390625">
             <font>
                 <Font size="23.0" />
             </font>
@@ -82,7 +82,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-      <Text fx:id="playerInfoText" fill="WHITE" layoutX="9.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
+      <Text fx:id="playerInfoText" fill="WHITE" layoutX="62.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="477.22900390625">
          <font>
             <Font size="23.0" />
          </font>

@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -103,6 +104,10 @@ public class ShipInventoryController {
     private Text good15Quantity;
     @FXML
     private Text playerInfoText;
+    @FXML
+    private Text errorMessage;
+    @FXML
+    private TextField refillTextField;
 
     private Text[] goodNameText;
     private Text[] goodCapacityText;
@@ -180,6 +185,11 @@ public class ShipInventoryController {
         window.show();
     }
 
+    public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
+        //TODO: check if textfield meets requirement
+        errorMessage.setText("The refilled gas has to be an integer");
+        errorMessage.setText("You reached the maximum of your fuel capacity");
+    }
     public void exitBtnPressed(ActionEvent actionEvent) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);

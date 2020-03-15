@@ -152,7 +152,7 @@ public class MapController {
             if (planetArray[i].isVisited()) {
                 toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                     + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                    + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                    + String.format("Distance: %d light-years\n", + planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
                     + String.format("Fuel Needed: %.1f gallons\n", (float) planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
                     + String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
             } else {
@@ -293,11 +293,22 @@ public class MapController {
         window.show();
     }
 
+    private void encounterCheck() {
+        Random random = new Random();
+        String difficulty = ConfigController.getDifficulty();
+        int difficultyLevel;
 
-    //FIX ME
+
+        //check order is Bandit -> Trader -> Police
+
+    }
+
+
     public void explore1BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 1;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -311,6 +322,8 @@ public class MapController {
     public void explore2BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 2;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -324,6 +337,8 @@ public class MapController {
     public void explore3BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 3;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -337,6 +352,8 @@ public class MapController {
     public void explore4BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 4;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -350,6 +367,8 @@ public class MapController {
     public void explore5BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 5;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -363,6 +382,8 @@ public class MapController {
     public void explore6BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 6;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -376,6 +397,8 @@ public class MapController {
     public void explore7BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 7;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -389,6 +412,8 @@ public class MapController {
     public void explore8BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 8;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -402,6 +427,8 @@ public class MapController {
     public void explore9BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 9;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -415,6 +442,8 @@ public class MapController {
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 0;
         planetGenerator.setPlanetArray(planetArray);
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+
         Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

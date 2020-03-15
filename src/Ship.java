@@ -34,7 +34,6 @@ public class Ship {
         Player.setBalance(Player.getBalance() - amount);
         setFuelCapacity(getFuelCapacity() + amount);
     }
-
     //assume the capacity requirement is met
     public void addItems(int indexOfProduct, int numberToAdd) {
         shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() + numberToAdd);

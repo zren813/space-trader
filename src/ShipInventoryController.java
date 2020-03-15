@@ -187,17 +187,28 @@ public class ShipInventoryController {
 
     public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
         //TODO: check if textfield meets requirement
+        int refillAmount = 0;
         if (refillTextField.getText().isEmpty()) {
-            errorMessage.setText("!Error: empty refill amount");
+            errorMessage.setText("Error: empty refill amount");
         }
 
         try {
-            int refillAmount = Integer.parseInt(refillTextField.getText());
+            refillAmount = Integer.parseInt(refillTextField.getText());
         } catch (NumberFormatException notInt) {
             errorMessage.setText("The refilled gas has to be an integer");
         }
-        errorMessage.setText("You reached the maximum of your fuel capacity");
+        if (refillAmount > (100 - Player.getShip().getFuelCapacity())) {
+            errorMessage.setText("You reached the maximum of your fuel capacity");
+            System.out.println(player.getShip().getFuelCapacity());
+        } else if (Player.getBalance() < refillAmount) {
+            errorMessage.setText("You don't have enough balance to refill");
+        } else {
+            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() + refillAmount);
+            Player.setBalance(Player.getBalance() - refillAmount);
+            updateCharacterInfo();
+        }
     }
+
     public void exitBtnPressed(ActionEvent actionEvent) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);

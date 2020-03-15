@@ -63,19 +63,6 @@ public class PlanetViewController {
         window.show();
     }
 
-    public void prevBtnPressed(ActionEvent event) {
-        whichPlanetViewed = (whichPlanetViewed - 1) % planetArray.length;
-        if (whichPlanetViewed < 0) {
-            whichPlanetViewed += planetArray.length;
-        }
-        updateUI();
-    }
-
-    public void nextBtnPressed(ActionEvent event) {
-        whichPlanetViewed = (whichPlanetViewed + 1) % planetArray.length;
-        updateUI();
-    }
-
     public void marketBtnPressed(ActionEvent event) throws IOException {
         if(planetArray[whichPlanetViewed].isVisited()){
             goToMarketView(event);

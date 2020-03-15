@@ -156,7 +156,7 @@ public class MapController {
             if (planetArray[i].isVisited()) {
                 toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                     + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                    + String.format("Distance: %d light-years\n", + planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                    + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
                     + String.format("Fuel Needed: %d gallons\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
                     + String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
             } else {
@@ -236,7 +236,7 @@ public class MapController {
             planetArray[i].setxCoordinate(recLayoutX + width * X);
             planetArray[i].setyCoordinate(recLayoutY + height * Y);
         }
-}
+    }
 
 
     // Getters
@@ -304,7 +304,7 @@ public class MapController {
         String difficulty = ConfigController.getDifficulty();
         int difficultyOffset;
         String result = "Nobody";
-        
+
         if ("Literally Impossible".equals(difficulty)) {
             difficultyOffset = 4;
         } else if ("Hard".equals(difficulty)) {
@@ -314,14 +314,14 @@ public class MapController {
         } else {
             difficultyOffset = 1;
         }
-        
-        
+
+
         if (random.nextBoolean()) {// 50% chance player encounters nobody
             int[] letsSeeWhoWeMeet = new int[3];
             letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
             letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
             letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
-            
+
             if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
                 result = "Bandit";
             } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
@@ -329,20 +329,20 @@ public class MapController {
             } else {
                 result = "Trader";
             }
-            
+
         }
         return result;
     }
-    
+
     private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
         planetClicked = clickedPlanet;
         planetGenerator.setPlanetArray(planetArray);
-        
+
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
             Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            
+
             String whichNpc = encounterCheck();
             if (whichNpc.equals("Nobody")) {
                 Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
@@ -359,11 +359,12 @@ public class MapController {
                 encounterNpcDialog(whichNpc);
             } else {
                 encounterNpcDialog(whichNpc);
-                
+
             }
         }
     }
-    public void encounterNpcDialog(String npcName){
+
+    public void encounterNpcDialog(String npcName) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!!");
         alert.setHeaderText(String.format("You encounter a %s", npcName.toLowerCase()));
@@ -371,9 +372,9 @@ public class MapController {
         alert.showAndWait();
     }
 
-    public void confirmTravelToAnotherPlaner(MouseEvent event, int whichPlanet)throws IOException{
-        Planet curPlanet =  player.getCurrentPlanet();
-
+    public void confirmTravelToAnotherPlaner(MouseEvent event, int whichPlanet) throws IOException {
+        Planet curPlanet = player.getCurrentPlanet();
+        if (whichPlanet == curPlanet.getPlanetID()) return;
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
@@ -387,7 +388,7 @@ public class MapController {
         );
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             travelToAnotherPlanet(event, whichPlanet);
         }
     }

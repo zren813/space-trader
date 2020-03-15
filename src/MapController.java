@@ -374,7 +374,7 @@ public class MapController {
             planetArray[whichPlanet].getName(), planetArray[whichPlanet].getXCoordinate(),
             planetArray[whichPlanet].getYCoordinate())
             + String.format("Fuel Cost = %d\n", (planetGenerator.getDistanceArray()[whichPlanet] / 10))
-            + "You may encounter NPCs(Bandit, Police, Trader)\n"
+            + "You may encounter NPCs(Bandit, Police, Trader) in the journey\n"
             + "Are you sure?"
         );
 

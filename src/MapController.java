@@ -296,10 +296,11 @@ public class MapController {
         window.show();
     }
 
-    private void encounterCheck() {
+    private String encounterCheck() {
         Random random = new Random();
         String difficulty = ConfigController.getDifficulty();
         int difficultyOffset;
+        String result = "Nobody";
         
         if ("Literally Impossible".equals(difficulty)) {
             difficultyOffset = 4;
@@ -311,62 +312,62 @@ public class MapController {
             difficultyOffset = 1;
         }
         
-        int[] letsSeeWhoWeMeet = new int[3];
-        letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
-        letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
-        letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
         
-        String result = "Trader"; //default
-        if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
-         // if bandit == police, encounter bandit
-            result = "Bandit";
-        } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
-            result = "Police";
+        if (random.nextBoolean()) {// 50% chance player encounters nobody
+            int[] letsSeeWhoWeMeet = new int[3];
+            letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
+            letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
+            letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
+            
+            if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
+                result = "Bandit";
+            } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
+                result = "Police";
+            } else {
+                result = "Trader";
+            }
+            
         }
+        return result;
         
-        if (random.nextBoolean()) {
-            result = "NOBODY"; // 50% chance player encounters nobody
-        }
+    }
+    
+    private void travelToAnotherPlanet(MouseEvent event) throws IOException {
+        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
 
-        
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
     }
 
 
     public void explore1BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 1;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore2BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 2;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
 
     }
@@ -374,152 +375,104 @@ public class MapController {
     public void explore3BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 3;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore4BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 4;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore5BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 5;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore6BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 6;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore7BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 7;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore8BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 8;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore9BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 9;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         planetClicked = 0;
         planetGenerator.setPlanetArray(planetArray);
+        String encounterRole = encounterCheck();
+        System.out.println(encounterRole);
 
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-            Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-            Scene configScene = new Scene(configParent);
-            configScene.getStylesheets().add("app.css");
-
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            window.setScene(configScene);
-            window.show();
+            travelToAnotherPlanet(event);
         }
     }
 }

@@ -85,6 +85,8 @@ public class MapController {
     private static Good[] shipInventory;
     private static boolean isOpened = false;
     private static int planetClicked;
+    
+    private static int prevPlanet;
 
 
     @FXML
@@ -257,6 +259,14 @@ public class MapController {
     public static int getPlanetClicked() {
         return planetClicked;
     }
+    
+    public static Planet getPrevPlanet() {
+        return planetArray[prevPlanet];
+    }
+    
+    public static Planet getCurrPlanet() {
+        return planetArray[planetClicked];
+    }
 
     public void setHereLabel(int x, int y) {
         hereLabel.setLayoutX(x);
@@ -332,17 +342,23 @@ public class MapController {
         
     }
     
-    private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
+    public static void setCurrPlanet(int clickedPlanet) {
+        prevPlanet = planetClicked;
         planetClicked = clickedPlanet;
         planetGenerator.setPlanetArray(planetArray);
+    }
+    
+    private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
         
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
             Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+            setCurrPlanet(clickedPlanet);
             
             String encounter = encounterCheck();
             if (encounter.equals("Nobody")) {
+                System.out.println("traveled");
                 Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
                 Scene configScene = new Scene(configParent);
                 configScene.getStylesheets().add("app.css");
@@ -352,11 +368,37 @@ public class MapController {
                 window.setScene(configScene);
                 window.show();
             } else if (encounter.equals("Bandit")) {
-                
+                System.out.println("Bandit");
+                Parent configParent = FXMLLoader.load(getClass().getResource("EncounterBandit.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(configScene);
+                window.show();
             } else if (encounter.equals("Police")) {
-                
+                System.out.println("Bandit");
+                //need to change to police (change PlanetView.fxml to some other thing)
+                Parent configParent = FXMLLoader.load(getClass().getResource("EncounterBandit.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(configScene);
+                window.show();
             } else {
-                
+                System.out.println("Bandit");
+                //need to change to trader (change PlanetView.fxml to some other thing)
+                Parent configParent = FXMLLoader.load(getClass().getResource("EncounterBandit.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
+
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                window.setScene(configScene);
+                window.show();
             }
         }
     }

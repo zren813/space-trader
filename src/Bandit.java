@@ -1,5 +1,11 @@
 import java.util.Random;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 public class Bandit {
     private String name;
     private int credit;
@@ -37,15 +43,18 @@ public class Bandit {
         if (playerBalance > banditDemand) {
             playerBalance = playerBalance - banditDemand;
             player.setBalance(playerBalance);
+            MapController.setCurrPlanet(desiredPlanet.getPlanetID());
             player.setCurrentPlanet(desiredPlanet);
             return "You have paid the bandit the desired amount of credit.";
         } else if (!ship.checkInventoryEmpty()) {
             ship.setInventoryEmpty();
+            MapController.setCurrPlanet(desiredPlanet.getPlanetID());
             player.setCurrentPlanet(desiredPlanet);
             return "You don't have enough credit. All goods in your inventory are robbed.";
         } else {
             int banditDamage = random.nextInt(20);
             ship.setHealth(ship.getHealth() - banditDamage);
+            MapController.setCurrPlanet(desiredPlanet.getPlanetID());
             player.setCurrentPlanet(desiredPlanet);
             return "You don't have enough credit, and you don't have any goods. Your ship is damaged.";
         }

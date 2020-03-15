@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EncounterBanditController">
+   <children>
+      <Text fill="WHITE" layoutX="274.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Encountered bandit" textAlignment="CENTER" wrappingWidth="451.240234375">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+       <Text fx:id="intro" fill="WHITE" layoutX="111.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
+           <font>
+               <Font size="28.0" />
+           </font>
+       </Text>
+      <Button fx:id="payBanditBtn" layoutX="125.0" layoutY="400.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="149.0" text="Pay Bandit" />
+   </children>
+</AnchorPane>

@@ -8,28 +8,94 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
-   <children>
-      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" height="458.0" layoutX="30.0" layoutY="14.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="821.0" />
-      <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore0BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet2" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore1BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet3" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore2BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet4" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore3BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet5" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore4BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet6" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore5BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet7" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore6BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet8" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore7BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet9" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore8BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-       <Circle fx:id="planet10" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore9BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="exploreBtn" layoutX="865.0" layoutY="172.0" mnemonicParsing="false" onAction="#exploreBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Visit&#10;Current&#10;Planet" textAlignment="CENTER">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
-      <Text fx:id="textInfo" fill="WHITE" layoutX="261.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="477.22900390625">
+<AnchorPane fx:id="anchorPane" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
+    <children>
+        <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" height="450.0" layoutX="9.0" layoutY="17.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+        <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore0BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet2" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore1BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet3" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore2BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet4" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore3BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet5" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore4BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet6" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore5BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet7" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore6BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet8" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore7BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet9" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore8BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Circle fx:id="planet10" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore9BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+        <Button fx:id="planetDetailBtn" layoutX="866.0" layoutY="37.0" mnemonicParsing="false" onAction="#planetDetailBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Planet&#10;Detail" textAlignment="CENTER">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+        <Text fx:id="skillInfoText" fill="WHITE" layoutX="388.0" layoutY="489.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="477.22900390625">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Text>
+        <Label fx:id="hereLabel" text="I'm here" textFill="WHITE" />
+        <Label fx:id="planet1NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="213.0" layoutY="130.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet2NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet3NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet4NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet5NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet6NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet7NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet8NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet9NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+        <Label fx:id="planet10NameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="223.0" layoutY="140.0" text="Label" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS">
+            <font>
+                <Font size="15.0" />
+            </font>
+        </Label>
+      <Text fx:id="playerInfoText" fill="WHITE" layoutX="62.0" layoutY="488.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="477.22900390625">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Label fx:id="hereLabel" text="I'm here" textFill="WHITE" />
-   </children>
+      <Button fx:id="marketBtn" layoutX="866.0" layoutY="203.0" mnemonicParsing="false" onAction="#marketBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Market" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="shipInventoryBtn" layoutX="866.0" layoutY="374.0" mnemonicParsing="false" onAction="#shipInventoryBtnPressed" prefHeight="143.0" prefWidth="109.0" text="Ship&#10;Inventory" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+    </children>
 </AnchorPane>

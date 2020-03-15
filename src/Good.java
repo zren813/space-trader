@@ -33,6 +33,7 @@ public class Good {
     public int getBasePrice() {
         return basePrice;
     }
+
     public int getTechLevel() {
         return techLevel;
     }

@@ -1,7 +1,5 @@
 public class Player {
     private Planet currentPlanet;
-    private static WorldGenerator worldGenerator;
-    private static Planet[] planetArray;
     // in order to buy items from market, player needs to have a ship and balance
     private static Ship ship;
     private static int balance;
@@ -9,134 +7,116 @@ public class Player {
     private Equipment[] equipment;
     private Boolean[] equipped;
     // charachter's skills
-    private static int pilotSkill;
-    private static int fighterSkill;
-    private static int merchantSkill;
-    private static int engineerSkill;
+    private int pilotSkill;
+    private int fighterSkill;
+    private int merchantSkill;
+    private int engineerSkill;
+    private int skillArray[] = new int[4];
 
 
-    public Player() {
-        worldGenerator = MapController.getWorldGenerator();
-        planetArray = worldGenerator.getPlanetArray();
-        currentPlanet = planetArray[0];
-        currentPlanet.setVisited(true);
-        setCurrentPlanet(planetArray[0]);
-        //initialize balance and a ship
-        this.balance = 1000;
+    public Player(String name, int balance, int skillArray[]) {
+        this.name = name;
+        this.balance = balance;
+        setSkillArray(skillArray);
         ship = new Ship("Apollo 11", 50, 100, 100);
-        this.name = ConfigController.getName();
-        //initialize skills
-        pilotSkill = ConfigController.getPilotSkill();
-        fighterSkill = ConfigController.getFighterSkill();
-        merchantSkill = ConfigController.getMerchantSkill();
-        engineerSkill = ConfigController.getEngineerSkill();
     }
 
-    public int[] getDistanceArray() {
-        int[] distanceArray = new int[10];
-        for (int i = 0; i < 10; i++) {
-            distanceArray[i] = (int) Math.sqrt(Math.pow(planetArray[i].getXCoordinate()
-                - currentPlanet.getXCoordinate(), 2) + Math.pow(planetArray[i].getYCoordinate()
-                - currentPlanet.getYCoordinate(), 2));
-        }
-        return distanceArray;
-    }
-
-    // Getters and setters
+    // Getters
     public Planet getCurrentPlanet() {
         return currentPlanet;
     }
 
-    public void setCurrentPlanet(Planet currentPlanet) {
-        this.currentPlanet = currentPlanet;
-    }
-
-    public Ship getShip() {
+    public static Ship getShip() {
         return ship;
     }
 
-    public void setShip(Ship ship) {
-        this.ship = ship;
-    }
-
-    public int getBalance() {
+    public static int getBalance() {
         return balance;
     }
 
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
-    public String getName() {
+    public static String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPilotSkill() {
-        return pilotSkill;
-    }
-
-    public void setPilotSkill(int pilotSkill) {
-        this.pilotSkill = pilotSkill;
-    }
-
-    public int getFighterSkill() {
-        return fighterSkill;
-    }
-
-    public void setFighterSkill(int fighterSkill) {
-        this.fighterSkill = fighterSkill;
-    }
-
-    public int getMerchantSkill() {
-        return merchantSkill;
-    }
-
-    public void setMerchantSkill(int merchantSkill) {
-        this.merchantSkill = merchantSkill;
-    }
-
-    public int getEngineerSkill() {
-        return engineerSkill;
-    }
-
-    public void setEngineerSkill(int engineerSkill) {
-        this.engineerSkill = engineerSkill;
-    }
-
-    public int[] getSkill() {
-        int[] skill = {this.getPilotSkill(), this.getFighterSkill(),
-                this.getMerchantSkill(), this.getEngineerSkill()};
-        return skill;
-    }
-
-    public void setSkill(int[] skill) {
-        this.setPilotSkill(skill[0]);
-        this.setFighterSkill(skill[1]);
-        this.setMerchantSkill(skill[2]);
-        this.setEngineerSkill(skill[3]);
     }
 
     public Equipment[] getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(Equipment[] equipment) {
-        this.equipment = equipment;
-    }
-
     public Boolean[] getEquipped() {
         return equipped;
+    }
+
+    public int getPilotSkill() {
+        return pilotSkill;
+    }
+
+    public int getFighterSkill() {
+        return fighterSkill;
+    }
+
+    public int getMerchantSkill() {
+        return merchantSkill;
+    }
+
+    public int getEngineerSkill() {
+        return engineerSkill;
+    }
+
+    public int[] getSkillArray() {
+        return skillArray;
+    }
+
+    //Setters
+    public void setCurrentPlanet(Planet currentPlanet) {
+        this.currentPlanet = currentPlanet;
+    }
+
+    public static void setShip(Ship ship) {
+        Player.ship = ship;
+    }
+
+    public static void setBalance(int balance) {
+        Player.balance = balance;
+    }
+
+    public void setEquipment(Equipment[] equipment) {
+        this.equipment = equipment;
     }
 
     public void setEquipped(Boolean[] equipped) {
         this.equipped = equipped;
     }
 
-    public void setEquipped(int whichItem, boolean equipped) {
-        this.equipped[whichItem] = equipped;
+    public void setEquipped(int whichEquip, boolean equipped) {
+        this.equipped[whichEquip] = equipped;
+    }
+
+    public void setPilotSkill(int pilotSkill) {
+        this.pilotSkill = pilotSkill;
+        this.skillArray[0] = pilotSkill;
+    }
+
+    public void setFighterSkill(int fighterSkill) {
+        this.fighterSkill = fighterSkill;
+        this.skillArray[1] = fighterSkill;
+    }
+
+    public void setMerchantSkill(int merchantSkill) {
+        this.merchantSkill = merchantSkill;
+        this.skillArray[2] = merchantSkill;
+    }
+
+    public void setEngineerSkill(int engineerSkill) {
+        this.engineerSkill = engineerSkill;
+        this.skillArray[3] = engineerSkill;
+    }
+
+    public void setSkillArray(int[] skillArray) {
+        this.pilotSkill = skillArray[0];
+        this.fighterSkill = skillArray[1];
+        this.merchantSkill = skillArray[2];
+        this.engineerSkill = skillArray[3];
+        this.skillArray = skillArray;
+
     }
 }

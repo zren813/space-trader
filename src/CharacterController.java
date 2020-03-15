@@ -11,47 +11,42 @@ import java.io.IOException;
 
 public class CharacterController {
     @FXML
-    private Text name;
+    private Text nameText;
     @FXML
-    private Text difficulty;
+    private Text difficultyText;
     @FXML
-    private Text credits;
+    private Text creditsText;
     @FXML
-    private Text textpilotSP;
+    private Text pilotText;
     @FXML
-    private Text textfighterSP;
+    private Text fighterText;
     @FXML
-    private Text textmerchantSP;
+    private Text merchantText;
     @FXML
-    private Text textengineerSP;
+    private Text engineerText;
 
     /**
      * This method is to initialize all numbers
      */
     @FXML
     public void initialize() {
-        name.setText(ConfigController.getName());
-        difficulty.setText(ConfigController.getDifficulty());
-        if ("Literally Impossible".equals(ConfigController.getDifficulty())) {
-            credits.setText("500");
-        } else if ("Hard".equals(ConfigController.getDifficulty())) {
-            credits.setText("1000");
-        } else if ("Medium".equals(ConfigController.getDifficulty())) {
-            credits.setText("1500");
-        } else {
-            credits.setText("2000");
-        }
-        textpilotSP.setText(Integer.toString(ConfigController.getPilotSkill()));
-        textfighterSP.setText(Integer.toString(ConfigController.getFighterSkill()));
-        textmerchantSP.setText(Integer.toString(ConfigController.getMerchantSkill()));
-        textengineerSP.setText(Integer.toString(ConfigController.getEngineerSkill()));
+        updateUI();
+    }
+
+    private void updateUI() {
+        nameText.setText(ConfigController.getName());
+        difficultyText.setText(ConfigController.getDifficulty());
+        creditsText.setText(String.valueOf(ConfigController.getBalance()));
+        pilotText.setText(Integer.toString(ConfigController.getPilotSkill()));
+        fighterText.setText(Integer.toString(ConfigController.getFighterSkill()));
+        merchantText.setText(Integer.toString(ConfigController.getMerchantSkill()));
+        engineerText.setText(Integer.toString(ConfigController.getEngineerSkill()));
     }
 
     public void startBtnPressed(ActionEvent event) throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
-        configScene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
         Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

@@ -18,7 +18,6 @@ public class Main extends Application {
         primaryStage.setTitle("Space Trader");
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add("app.css");
-        scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

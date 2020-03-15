@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class ShipInventoryController {
@@ -100,26 +101,32 @@ public class ShipInventoryController {
     private Text good14Quantity;
     @FXML
     private Text good15Quantity;
-    
     @FXML
     private Text playerInfoText;
 
-    @FXML
     private Text[] goodNameText;
     private Text[] goodCapacityText;
     private Text[] goodQuantityText;
-
     private Good[] good;
 
     private Player player;
     private Good[] shipInventory;
     private int numberOfGood;
-    private static GoodGenerater goodGenerater;
-    private static boolean isopened = false;
 
     public void initialize() {
-        Random random = new Random();
+        setUpUIObject();
 
+        player = MapController.getPlayer();
+        shipInventory = MapController.getPlayer().getShip().getItemInventory();
+        good = MapController.getGood();
+        numberOfGood = good.length;
+
+        // set up layout of the UI
+        updateGoodInfo();
+        updateCharacterInfo();
+    }
+
+    private void setUpUIObject() {
         goodNameText = new Text[]{good1NameText, good2NameText,
             good3NameText, good4NameText, good5NameText,
             good6NameText, good7NameText, good8NameText,
@@ -139,20 +146,6 @@ public class ShipInventoryController {
             good9Quantity, good10Quantity, good11Quantity,
             good12Quantity, good13Quantity, good14Quantity,
             good15Quantity};
-
-        // initialize goods and assign good, player and the ship
-        //        if (!isopened){
-        //            isopened = true;
-        //            goodGenerater = new GoodGenerater();
-        //        }
-        numberOfGood = goodGenerater.getNumberOfGood();
-        good = goodGenerater.getGood();
-        player = MapController.getPlayer();
-        shipInventory = MapController.getPlayer().getShip().getItemInventory();
-
-        // set up layout of the UI
-        updateGoodInfo();
-        updateCharacterInfo();
     }
 
     public void updateGoodInfo() {
@@ -165,19 +158,18 @@ public class ShipInventoryController {
     }
 
     public void updateCharacterInfo() {
-        String playerInfo = "";
-        playerInfo += String.format("%s(%s)", player.getName(), player.getShip().getName()) + "\n";
-        playerInfo += String.format("Balance: %d", player.getBalance()) + "\n";
-        playerInfo += String.format("Ship Capacity: %d", player.getShip().getCargoCapacity())
-            + "\n";
-        playerInfo += String.format("Ship Health: %d", player.getShip().getHealth()) + "\n";
-        playerInfo += String.format("Ship Fuel: %d", player.getShip().getFuelCapacity()) + "\n";
+        String characterInfo = String.format("Player: %s\n", player.getName())
+            + String.format("Ship: %s\n", player.getShip().getName())
+            + String.format("Balance: %d\n", player.getBalance())
+            + String.format("Ship Capacity: %d\n", player.getShip().getCargoCapacity())
+            + String.format("Ship Health: %d\n", player.getShip().getHealth())
+            + String.format("Ship Fuel: %d\n", player.getShip().getFuelCapacity());
 
-        playerInfoText.setText(playerInfo);
+        playerInfoText.setText(characterInfo);
     }
 
 
-    public void exitBtnPressed(ActionEvent actionEvent) throws Exception {
+    public void marketBtnPressed(ActionEvent actionEvent) throws Exception {
         Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -188,4 +180,14 @@ public class ShipInventoryController {
         window.show();
     }
 
+    public void exitBtnPressed(ActionEvent actionEvent) throws IOException {
+        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
+    }
 }

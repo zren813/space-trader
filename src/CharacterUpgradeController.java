@@ -81,13 +81,7 @@ public class CharacterUpgradeController {
 
     public void initialize() {
         // save all ui item into arrays
-        itemNameText = new Text[]{item1NameText, item2NameText, item3NameText, item4NameText};
-        itemPriceText = new Text[]{item1PriceText, item2PriceText, item3PriceText, item4PriceText};
-        itemAbilityText = new Text[]{item1AbilityText, item2AbilityText,
-            item3AbilityText, item4AbilityText};
-        itemCheckBox = new CheckBox[]{item1CheckBox, item2CheckBox, item3CheckBox, item4CheckBox};
-        itemEquippedCheckBox = new CheckBox[]{item1EquippedCheckBox,
-            item2EquippedCheckBox, item3EquippedCheckBox, item4EquippedCheckBox};
+        setUpUIObject();
 
         // initialize equipments
         if (!isopened) {
@@ -96,15 +90,29 @@ public class CharacterUpgradeController {
         }
 
         // assign all needed objects
-        player = MapController.getPlayer();
-        equipmentNumber = equipmentGenerater.getEquipmentNumber();
-        equipment = equipmentGenerater.getEquipment();
-        playerEquipment = player.getEquipment();
+        setUpNeededObject();
 
         // initialize UI info
         updateEquipmentInfo();
         resetCheckBox();
         updateCharacterInfo();
+    }
+
+    private void setUpNeededObject() {
+        player = MapController.getPlayer();
+        equipmentNumber = equipmentGenerater.getEquipmentNumber();
+        equipment = equipmentGenerater.getEquipment();
+        playerEquipment = player.getEquipment();
+    }
+
+    private void setUpUIObject() {
+        itemNameText = new Text[]{item1NameText, item2NameText, item3NameText, item4NameText};
+        itemPriceText = new Text[]{item1PriceText, item2PriceText, item3PriceText, item4PriceText};
+        itemAbilityText = new Text[]{item1AbilityText, item2AbilityText,
+            item3AbilityText, item4AbilityText};
+        itemCheckBox = new CheckBox[]{item1CheckBox, item2CheckBox, item3CheckBox, item4CheckBox};
+        itemEquippedCheckBox = new CheckBox[]{item1EquippedCheckBox,
+            item2EquippedCheckBox, item3EquippedCheckBox, item4EquippedCheckBox};
     }
 
     public void updateEquipmentInfo() {
@@ -151,7 +159,7 @@ public class CharacterUpgradeController {
     }
 
     public void exitPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

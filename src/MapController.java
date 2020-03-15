@@ -189,8 +189,8 @@ public class MapController {
             Color.hsb(25, 0.5, 0.5),
             CornerRadii.EMPTY, Insets.EMPTY));
         hereLabel.setBackground(background);
-        hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate()-20);
-        hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate()+20);
+        hereLabel.setLayoutX(player.getCurrentPlanet().getXCoordinate() - 20);
+        hereLabel.setLayoutY(player.getCurrentPlanet().getYCoordinate() + 20);
     }
 
     public void updateInfo() {
@@ -292,6 +292,8 @@ public class MapController {
         window.setScene(configScene);
         window.show();
     }
+
+
 
 
     //FIX ME

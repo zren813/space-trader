@@ -36,6 +36,8 @@ public class PlanetViewController {
         planetGenerator = MapController.getPlanetGenerator();
         planetArray = MapController.getPlanetArray();
         whichPlanetViewed = MapController.getPlanetClicked();
+        planetArray[whichPlanetViewed].setVisited(true);
+        Player.setCurrentPlanet(planetArray[whichPlanetViewed]);
         updateUI();
     }
 
@@ -50,6 +52,7 @@ public class PlanetViewController {
     }
 
     public void exitBtnPressed(ActionEvent event) throws IOException {
+        PlanetGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
@@ -58,19 +61,6 @@ public class PlanetViewController {
 
         window.setScene(configScene);
         window.show();
-    }
-
-    public void prevBtnPressed(ActionEvent event) {
-        whichPlanetViewed = (whichPlanetViewed - 1) % planetArray.length;
-        if (whichPlanetViewed < 0) {
-            whichPlanetViewed += planetArray.length;
-        }
-        updateUI();
-    }
-
-    public void nextBtnPressed(ActionEvent event) {
-        whichPlanetViewed = (whichPlanetViewed + 1) % planetArray.length;
-        updateUI();
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {

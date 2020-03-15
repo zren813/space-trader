@@ -25,7 +25,9 @@ public class Trader {
             traderGoodNumber[i] = mask;
         }
     }
-
+    public String encounterTrader() {
+        return "My name is " + name + ". I have some goods you might you want to take a look.";
+    }
     public String buyFromTrader(Player player, Ship ship, int numberOfItem) {//the number is 0, 1 or 2
         if (traderGoodPrice[numberOfItem] <= player.getBalance() &&
                 ship.getCargoCapacity() >= traderGood[numberOfItem].getVolume()) {

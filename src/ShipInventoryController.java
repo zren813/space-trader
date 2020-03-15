@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -103,6 +104,10 @@ public class ShipInventoryController {
     private Text good15Quantity;
     @FXML
     private Text playerInfoText;
+    @FXML
+    private Text errorMessage;
+    @FXML
+    private TextField refillTextField;
 
     private Text[] goodNameText;
     private Text[] goodCapacityText;
@@ -178,6 +183,30 @@ public class ShipInventoryController {
 
         window.setScene(configScene);
         window.show();
+    }
+
+    public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
+        //TODO: check if textfield meets requirement
+        int refillAmount = 0;
+        if (refillTextField.getText().isEmpty()) {
+            errorMessage.setText("Error: empty refill amount");
+        }
+
+        try {
+            refillAmount = Integer.parseInt(refillTextField.getText());
+        } catch (NumberFormatException notInt) {
+            errorMessage.setText("The refilled gas has to be an integer");
+        }
+        if (refillAmount > (100 - Player.getShip().getFuelCapacity())) {
+            errorMessage.setText("You reached the maximum of your fuel capacity");
+            System.out.println(player.getShip().getFuelCapacity());
+        } else if (Player.getBalance() < refillAmount) {
+            errorMessage.setText("You don't have enough balance to refill");
+        } else {
+            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() + refillAmount);
+            Player.setBalance(Player.getBalance() - refillAmount);
+            updateCharacterInfo();
+        }
     }
 
     public void exitBtnPressed(ActionEvent actionEvent) throws IOException {

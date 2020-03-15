@@ -6,12 +6,16 @@ public class Bandit {
     private Random random = new Random();
     private Planet previousPlanet;
     private Planet desiredPlanet;
+    private int banditDemand = random.nextInt(1000);
 
     public Bandit (Planet previousPlanet, Planet desiredPlanet) {
-        name = NpcNameGenerator.getName();
-        credit = random.nextInt(1000);
         this.previousPlanet = previousPlanet;
         this.desiredPlanet = desiredPlanet;
+        name = NpcNameGenerator.getName();
+        credit = random.nextInt(1000);
+    }
+    public String encounterBandit() {
+        return "My name is " + name + ". Give me " + banditDemand + " credits and I will let you go.";
     }
 
     public String getName() {
@@ -29,7 +33,6 @@ public class Bandit {
      * @return return the message describing what was going on
      */
     public String payBandit(Player player, Ship ship) {
-        int banditDemand = random.nextInt(1000);
         int playerBalance =  player.getBalance();
         if (playerBalance > banditDemand) {
             playerBalance = playerBalance - banditDemand;

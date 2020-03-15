@@ -5,7 +5,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -70,6 +71,8 @@ public class MapController {
     private Label planet9NameLabel;
     @FXML
     private Label planet10NameLabel;
+    @FXML
+    private Text errorMessage;
 
     private Circle[] circleArray;
     private Tooltip[] toolTipArray;
@@ -144,6 +147,7 @@ public class MapController {
         setUpToolTip();
         setUpHereLabel();
         setUpNameLabel();
+        errorMessage.setText("");
     }
 
     private void setUpToolTip() {
@@ -152,7 +156,7 @@ public class MapController {
             if (planetArray[i].isVisited()) {
                 toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                     + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                    + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                    + String.format("Distance: %d light-years\n", + planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
                     + String.format("Fuel Needed: %.1f gallons\n", (float) planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
                     + String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
             } else {
@@ -213,25 +217,26 @@ public class MapController {
     // 14x7 grid and randomly generate coordinates for planets
     //  won't be overlap
     public void fixPlanetCoordinates() {
-        Set<Integer[]> grid = new HashSet<>();
+        Set<Integer> xGrid = new HashSet<>();
+        Set<Integer> yGrid = new HashSet<>();
         int width = 60;
         int height = 60;
         Random random = new Random();
         int recLayoutX = (int) rectangle.getLayoutX() + 20;
         int recLayoutY = (int) rectangle.getLayoutY() + 20;
         for (int i = 0; i < planetArray.length; i++) {
-            Integer X = random.nextInt(14);
-            Integer Y = random.nextInt(7);
-            while (grid.contains(new Integer[]{X, Y})) {
+            int X = random.nextInt(14);
+            int Y = random.nextInt(7);
+            while (xGrid.contains(X) && yGrid.contains(Y)) {
                 X = random.nextInt(14);
                 Y = random.nextInt(7);
             }
-            grid.add(new Integer[]{X, Y});
+            xGrid.add(X);
+            yGrid.add(Y);
             planetArray[i].setxCoordinate(recLayoutX + width * X);
             planetArray[i].setyCoordinate(recLayoutY + height * Y);
-
         }
-    }
+}
 
 
     // Getters
@@ -294,136 +299,128 @@ public class MapController {
     }
 
 
-
-
-    //FIX ME
-    public void explore1BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 1;
+    private String encounterCheck() {
+        Random random = new Random();
+        String difficulty = ConfigController.getDifficulty();
+        int difficultyOffset;
+        String result = "Nobody";
+        
+        if ("Literally Impossible".equals(difficulty)) {
+            difficultyOffset = 4;
+        } else if ("Hard".equals(difficulty)) {
+            difficultyOffset = 3;
+        } else if ("Medium".equals(difficulty)) {
+            difficultyOffset = 2;
+        } else {
+            difficultyOffset = 1;
+        }
+        
+        
+        if (random.nextBoolean()) {// 50% chance player encounters nobody
+            int[] letsSeeWhoWeMeet = new int[3];
+            letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
+            letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
+            letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
+            
+            if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
+                result = "Bandit";
+            } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
+                result = "Police";
+            } else {
+                result = "Trader";
+            }
+            
+        }
+        return result;
+        
+    }
+    
+    private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
+        planetClicked = clickedPlanet;
         planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
+        
+        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
+            errorMessage.setText("You don't have enough fuel left. Please refill.");
+        } else {
+            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+            
+            String encounter = encounterCheck();
+            if (encounter.equals("Nobody")) {
+                Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(configScene);
-        window.show();
+                window.setScene(configScene);
+                window.show();
+            } else if (encounter.equals("Bandit")) {
+                
+            } else if (encounter.equals("Police")) {
+                
+            } else {
+                
+            }
+        }
+    }
+
+    public void confirmTravelToAnotherPlaner(MouseEvent event, int whichPlanet)throws IOException{
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("TRAVEL REQUEST");
+        Planet curPlanet =  player.getCurrentPlanet();
+        alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d)\n",
+            curPlanet.getName(), curPlanet.getXCoordinate(), curPlanet.getYCoordinate(),
+            planetArray[whichPlanet].getName(), planetArray[whichPlanet].getXCoordinate(),
+            planetArray[whichPlanet].getYCoordinate())
+            + String.format("Fuel Cost = %d\n", (planetGenerator.getDistanceArray()[whichPlanet] / 10))
+            + "You may encounter NPCs(Bandit, Police, Trader)\n"
+            + "Are you sure?"
+        );
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            travelToAnotherPlanet(event, whichPlanet);
+        }
+    }
+
+    public void explore1BtnPressed(MouseEvent event) throws IOException {
+        confirmTravelToAnotherPlaner(event, 1);
     }
 
     public void explore2BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 2;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 2);
     }
 
     public void explore3BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 3;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 3);
     }
 
     public void explore4BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 4;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 4);
     }
 
     public void explore5BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 5;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 5);
     }
 
     public void explore6BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 6;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 6);
     }
 
     public void explore7BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 7;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 7);
     }
 
     public void explore8BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 8;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 8);
     }
 
     public void explore9BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 9;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 9);
     }
 
     public void explore0BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 0;
-        planetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
-
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-        window.setScene(configScene);
-        window.show();
+        confirmTravelToAnotherPlaner(event, 0);
     }
 }

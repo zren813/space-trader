@@ -216,7 +216,8 @@ public class MapController {
     // 14x7 grid and randomly generate coordinates for planets
     //  won't be overlap
     public void fixPlanetCoordinates() {
-        Set<Integer[]> grid = new HashSet<>();
+        Set<Integer> xGrid = new HashSet<>();
+        Set<Integer> yGrid = new HashSet<>();
         int width = 60;
         int height = 60;
         Random random = new Random();
@@ -225,16 +226,16 @@ public class MapController {
         for (int i = 0; i < planetArray.length; i++) {
             int X = random.nextInt(14);
             int Y = random.nextInt(7);
-            while (grid.contains(new Integer[]{X, Y})) {
+            while (xGrid.contains(X) && yGrid.contains(Y)) {
                 X = random.nextInt(14);
                 Y = random.nextInt(7);
             }
-            grid.add(new Integer[]{X, Y});
+            xGrid.add(X);
+            yGrid.add(Y);
             planetArray[i].setxCoordinate(recLayoutX + width * X);
             planetArray[i].setyCoordinate(recLayoutY + height * Y);
-
         }
-    }
+}
 
 
     // Getters

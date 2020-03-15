@@ -36,6 +36,8 @@ public class PlanetViewController {
         planetGenerator = MapController.getPlanetGenerator();
         planetArray = MapController.getPlanetArray();
         whichPlanetViewed = MapController.getPlanetClicked();
+        planetArray[whichPlanetViewed].setVisited(true);
+        Player.setCurrentPlanet(planetArray[whichPlanetViewed]);
         updateUI();
     }
 
@@ -50,6 +52,7 @@ public class PlanetViewController {
     }
 
     public void exitBtnPressed(ActionEvent event) throws IOException {
+        PlanetGenerator.setPlanetArray(planetArray);
         Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

@@ -67,6 +67,7 @@ public class Police {
             ship.setHealth(ship.getHealth() - random.nextInt(50));
             player.setCurrentPlanet(currentPlanet);
             return "You lost the fights. You lose all your credit. Your ship is damaged and your items are confiscated.";
+
         }
     }
 

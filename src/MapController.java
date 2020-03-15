@@ -220,8 +220,8 @@ public class MapController {
         int recLayoutX = (int) rectangle.getLayoutX() + 20;
         int recLayoutY = (int) rectangle.getLayoutY() + 20;
         for (int i = 0; i < planetArray.length; i++) {
-            Integer X = random.nextInt(14);
-            Integer Y = random.nextInt(7);
+            int X = random.nextInt(14);
+            int Y = random.nextInt(7);
             while (grid.contains(new Integer[]{X, Y})) {
                 X = random.nextInt(14);
                 Y = random.nextInt(7);

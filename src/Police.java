@@ -12,7 +12,7 @@ public class Police {
     public Police (Planet currentPlanet, Planet desiredPlanet, Ship ship) {
         this.currentPlanet = currentPlanet;
         this.desiredPlanet = desiredPlanet;
-        name = NameGenerator.getName();
+        name = NpcNameGenerator.getName();
         Good[] shipInventory = ship.getItemInventory();
         for (int i = 0; i < 15; i++) {
             if (shipInventory[i].getQuantity() != 0 ) {

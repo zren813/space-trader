@@ -187,7 +187,15 @@ public class ShipInventoryController {
 
     public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
         //TODO: check if textfield meets requirement
-        errorMessage.setText("The refilled gas has to be an integer");
+        if (refillTextField.getText().isEmpty()) {
+            errorMessage.setText("!Error: empty refill amount");
+        }
+
+        try {
+            int refillAmount = Integer.parseInt(refillTextField.getText());
+        } catch (NumberFormatException notInt) {
+            errorMessage.setText("The refilled gas has to be an integer");
+        }
         errorMessage.setText("You reached the maximum of your fuel capacity");
     }
     public void exitBtnPressed(ActionEvent actionEvent) throws IOException {

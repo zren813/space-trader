@@ -95,5 +95,6 @@
          </font>
       </Button>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+      <Text fx:id="errorMessage" fill="RED" layoutX="88.0" layoutY="442.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
     </children>
 </AnchorPane>

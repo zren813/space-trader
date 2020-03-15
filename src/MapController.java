@@ -332,147 +332,83 @@ public class MapController {
         
     }
     
-    private void travelToAnotherPlanet(MouseEvent event) throws IOException {
-        Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-        Scene configScene = new Scene(configParent);
-        configScene.getStylesheets().add("app.css");
+    private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
+        planetClicked = clickedPlanet;
+        planetGenerator.setPlanetArray(planetArray);
+        
+        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
+            errorMessage.setText("You don't have enough fuel left. Please refill.");
+        } else {
+            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+            
+            String encounter = encounterCheck();
+            if (encounter.equals("Nobody")) {
+                Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
 
-        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        window.setScene(configScene);
-        window.show();
+                window.setScene(configScene);
+                window.show();
+            } else if (encounter.equals("Bandit")) {
+                
+            } else if (encounter.equals("Police")) {
+                
+            } else {
+                
+            }
+        }
     }
 
 
     public void explore1BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 1;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 1);
     }
 
     public void explore2BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 2;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
-
+        
+        travelToAnotherPlanet(event, 2);
     }
 
     public void explore3BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 3;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 3);
     }
 
     public void explore4BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 4;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 4);
     }
 
     public void explore5BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 5;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 5);
     }
 
     public void explore6BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 6;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 6);
     }
 
     public void explore7BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 7;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 7);
     }
 
     public void explore8BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 8;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 8);
     }
 
     public void explore9BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 9;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 9);
     }
 
     public void explore0BtnPressed(MouseEvent event) throws IOException {
-        planetClicked = 0;
-        planetGenerator.setPlanetArray(planetArray);
-        String encounterRole = encounterCheck();
-        System.out.println(encounterRole);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
-            errorMessage.setText("You don't have enough fuel left. Please refill.");
-        } else {
-            travelToAnotherPlanet(event);
-        }
+        
+        travelToAnotherPlanet(event, 0);
     }
 }

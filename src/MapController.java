@@ -5,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-//import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
@@ -296,11 +295,36 @@ public class MapController {
     private void encounterCheck() {
         Random random = new Random();
         String difficulty = ConfigController.getDifficulty();
-        int difficultyLevel;
+        int difficultyOffset;
+        
+        if ("Literally Impossible".equals(difficulty)) {
+            difficultyOffset = 4;
+        } else if ("Hard".equals(difficulty)) {
+            difficultyOffset = 3;
+        } else if ("Medium".equals(difficulty)) {
+            difficultyOffset = 2;
+        } else {
+            difficultyOffset = 1;
+        }
+        
+        int[] letsSeeWhoWeMeet = new int[3];
+        letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
+        letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
+        letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
+        
+        String result = "Trader"; //default
+        if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
+         // if bandit == police, encounter bandit
+            result = "Bandit";
+        } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
+            result = "Police";
+        }
+        
+        if (random.nextBoolean()) {
+            result = "NOBODY"; // 50% chance player encounters nobody
+        }
 
-
-        //check order is Bandit -> Trader -> Police
-
+        
     }
 
 

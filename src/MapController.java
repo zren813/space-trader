@@ -157,13 +157,13 @@ public class MapController {
                 toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                     + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
                     + String.format("Distance: %d light-years\n", + planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
-                    + String.format("Fuel Needed: %.1f gallons\n", (float) planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
+                    + String.format("Fuel Needed: %d gallons\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
                     + String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
             } else {
                 toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                     + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
                     + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
-                    + String.format("Fuel Needed: %.1f gallons\n", (float) planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
+                    + String.format("Fuel Needed: %d gallons\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
                     + String.format("Tech Level: unknown -__-||");
             }
             toolTipArray[i] = new Tooltip(toolTipMessage);

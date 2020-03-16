@@ -8,9 +8,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.Random;
-
-public class MarketController {
+public class MarketViewController {
 
     @FXML
     private Text good1NameText;
@@ -171,9 +169,9 @@ public class MarketController {
 
     public void setUpNeededObjects() {
         // initialize goods and assign good, player and the ship
-        player = MapController.getPlayer();
+        player = MapViewController.getPlayer();
         ship = player.getShip();
-        good = MapController.getGood();
+        good = MapViewController.getGood();
         shipInventory = ship.getItemInventory();
 
         numberOfGood = good.length;
@@ -247,7 +245,7 @@ public class MarketController {
     }
 
     public void exitBtnPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 
@@ -258,7 +256,7 @@ public class MarketController {
     }
 
     public void shipInventoryBtnPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("ShipInventory.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("ShipInventoryView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

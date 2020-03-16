@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         player.setAutoPlay(true);
         player.play();
-        Parent root = FXMLLoader.load(getClass().getResource("Welcome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("WelcomeView.fxml"));
         primaryStage.setTitle("Space Trader");
         Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add("app.css");

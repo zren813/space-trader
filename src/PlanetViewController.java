@@ -33,9 +33,9 @@ public class PlanetViewController {
 
     @FXML
     public void initialize() {
-        planetGenerator = MapController.getPlanetGenerator();
-        planetArray = MapController.getPlanetArray();
-        whichPlanetViewed = MapController.getPlanetClicked();
+        planetGenerator = MapViewController.getPlanetGenerator();
+        planetArray = MapViewController.getPlanetArray();
+        whichPlanetViewed = MapViewController.getPlanetClicked();
         planetArray[whichPlanetViewed].setVisited(true);
         Player.setCurrentPlanet(planetArray[whichPlanetViewed]);
         updateUI();
@@ -53,7 +53,7 @@ public class PlanetViewController {
 
     public void exitBtnPressed(ActionEvent event) throws IOException {
         PlanetGenerator.setPlanetArray(planetArray);
-        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 
@@ -71,7 +71,7 @@ public class PlanetViewController {
         }
     }
     public void goToMarketView(ActionEvent event)throws  IOException{
-        Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MarketView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

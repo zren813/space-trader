@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class WelcomeController {
+public class WelcomeViewController {
 
     /**
      * this method is used to switch to the next page.
@@ -16,7 +16,7 @@ public class WelcomeController {
      * @throws IOException some possible exception
      */
     public void welcomeBtnPressed(ActionEvent event) throws IOException {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Configuration.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("ConfigurationView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

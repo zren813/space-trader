@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ConfigController {
+public class ConfigViewController {
 
     @FXML
     private TextField nameTextField;
@@ -120,11 +120,11 @@ public class ConfigController {
         merchantSkill = merchantSP.getValue();
         engineerSkill = engineerSP.getValue();
 
-        if ("Literally Impossible".equals(ConfigController.getDifficulty())) {
+        if ("Literally Impossible".equals(ConfigViewController.getDifficulty())) {
             balance = 500;
-        } else if ("Hard".equals(ConfigController.getDifficulty())) {
+        } else if ("Hard".equals(ConfigViewController.getDifficulty())) {
             balance = 1000;
-        } else if ("Medium".equals(ConfigController.getDifficulty())) {
+        } else if ("Medium".equals(ConfigViewController.getDifficulty())) {
             balance = 1500;
         } else {
             balance = 2000;
@@ -163,7 +163,7 @@ public class ConfigController {
 
     // Go to next view
     public void goToCharacterView(ActionEvent event) throws IOException {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Character.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("CharacterView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

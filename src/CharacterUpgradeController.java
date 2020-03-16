@@ -99,7 +99,7 @@ public class CharacterUpgradeController {
     }
 
     private void setUpNeededObject() {
-        player = MapController.getPlayer();
+        player = MapViewController.getPlayer();
         equipmentNumber = equipmentGenerater.getEquipmentNumber();
         equipment = equipmentGenerater.getEquipment();
         playerEquipment = player.getEquipment();
@@ -148,7 +148,7 @@ public class CharacterUpgradeController {
     }
 
     public void marketBtnPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Market.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MarketView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 
@@ -159,7 +159,7 @@ public class CharacterUpgradeController {
     }
 
     public void exitPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

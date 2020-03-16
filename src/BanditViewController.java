@@ -1,7 +1,6 @@
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class EncounterBanditController {
+public class BanditViewController {
     @FXML
     public Text intro;
     @FXML
@@ -23,7 +22,7 @@ public class EncounterBanditController {
 
     @FXML
     public void initialize() {
-        bandit = new Bandit(MapController.getPrevPlanet(), MapController.getCurrPlanet());
+        bandit = new Bandit(MapViewController.getPrevPlanet(), MapViewController.getCurrPlanet());
         intro.setText(bandit.encounterBandit());
         message.setText("");
         
@@ -33,8 +32,8 @@ public class EncounterBanditController {
         
         message.setText(
                 bandit.payBandit(
-                        MapController.getPlayer(), 
-                        MapController.getPlayer().getShip())
+                        MapViewController.getPlayer(),
+                        MapViewController.getPlayer().getShip())
                 );
         goToPlanet(event);
     }

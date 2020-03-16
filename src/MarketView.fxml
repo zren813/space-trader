@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MarketController">
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MarketViewController">
    <children>
       <Button fx:id="characterUpgradeBtn" layoutX="51.0" layoutY="84.0" mnemonicParsing="false" onAction="#characterUpgradeBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Character Upgrade" />
       <Button fx:id="exitBtn" layoutX="51.0" layoutY="300.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Exit" />

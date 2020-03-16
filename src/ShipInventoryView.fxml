@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShipInventoryController">
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ShipInventoryViewController">
    <children>
       <Button fx:id="marketBtn" layoutX="51.0" layoutY="113.0" mnemonicParsing="false" onAction="#marketBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Market" />
       <Button fx:id="exitBtn" layoutX="51.0" layoutY="237.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="47.0" prefWidth="137.0" text="Exit" />

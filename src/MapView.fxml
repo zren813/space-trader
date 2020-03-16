@@ -5,7 +5,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapController">
+<AnchorPane fx:id="anchorPane" minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MapViewController">
     <children>
         <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" height="450.0" layoutX="9.0" layoutY="17.0" opacity="0.63" stroke="BLACK" strokeType="INSIDE" width="850.0" />
         <Circle fx:id="planet1" centerX="50.0" centerY="50.0" fill="DODGERBLUE" onMouseClicked="#explore0BtnPressed" radius="20.0" stroke="BLACK" strokeType="INSIDE" />

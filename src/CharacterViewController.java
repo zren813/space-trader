@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CharacterController {
+public class CharacterViewController {
     @FXML
     private Text nameText;
     @FXML
@@ -34,17 +34,17 @@ public class CharacterController {
     }
 
     private void updateUI() {
-        nameText.setText(ConfigController.getName());
-        difficultyText.setText(ConfigController.getDifficulty());
-        creditsText.setText(String.valueOf(ConfigController.getBalance()));
-        pilotText.setText(Integer.toString(ConfigController.getPilotSkill()));
-        fighterText.setText(Integer.toString(ConfigController.getFighterSkill()));
-        merchantText.setText(Integer.toString(ConfigController.getMerchantSkill()));
-        engineerText.setText(Integer.toString(ConfigController.getEngineerSkill()));
+        nameText.setText(ConfigViewController.getName());
+        difficultyText.setText(ConfigViewController.getDifficulty());
+        creditsText.setText(String.valueOf(ConfigViewController.getBalance()));
+        pilotText.setText(Integer.toString(ConfigViewController.getPilotSkill()));
+        fighterText.setText(Integer.toString(ConfigViewController.getFighterSkill()));
+        merchantText.setText(Integer.toString(ConfigViewController.getMerchantSkill()));
+        engineerText.setText(Integer.toString(ConfigViewController.getEngineerSkill()));
     }
 
     public void startBtnPressed(ActionEvent event) throws IOException {
-        Parent configParent = FXMLLoader.load(getClass().getResource("Map.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

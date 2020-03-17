@@ -16,6 +16,8 @@ import java.io.IOException;
 
 public class TraderViewController {
     @FXML
+    public Button negotiateBtn;
+    @FXML
     private Text introText;
     @FXML
     private Text good1NameText;
@@ -56,7 +58,6 @@ public class TraderViewController {
         player = MapViewController.getPlayer();
         ship = player.getShip();
         introText.setText(trader.getDescription());
-
         setUpUI();
     }
 
@@ -80,7 +81,6 @@ public class TraderViewController {
     }
 
     public void ignoreBtnPressed(ActionEvent actionEvent) throws IOException {
-        trader.beingIgnored(player);
         goToMapView(actionEvent);
     }
 
@@ -91,9 +91,10 @@ public class TraderViewController {
     }
 
     public void negotiateBtnPressed(ActionEvent actionEvent) {
-        String result= trader.getNegotiated(player);
+        String result = trader.getNegotiated(player);
         resultDialog(result);
         setUpUI();
+        negotiateBtn.setVisible(false);
     }
 
     public void goToMapView(ActionEvent actionEvent) throws IOException {

@@ -34,14 +34,19 @@ public class Ship {
         Player.setBalance(Player.getBalance() - amount);
         setFuelCapacity(getFuelCapacity() + amount);
     }
-    //assume the capacity requirement is met
-    public void addItems(int indexOfProduct, int numberToAdd) {
-        shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() + numberToAdd);
+
+    public void addRandomGood(Good[] randomGood, int[] numOfGood){
+        for (int i = 0; i < randomGood.length; i++) {
+            for (int j = 0; j < shipInventory.length; j++) {
+                if (shipInventory[j].getName().equals(randomGood[i].getName())) {
+                    int previousQuantity = shipInventory[j].getQuantity();
+                    shipInventory[j].setQuantity(previousQuantity + numOfGood[i]);
+                }
+            }
+        }
+
     }
 
-    public void removeItems(int indexOfProduct, int numberToRemove) {
-        shipInventory[indexOfProduct].setQuantity(shipInventory[indexOfProduct].getQuantity() - numberToRemove);
-    }
     // Getters and setters
     public String getName() {
         return name;

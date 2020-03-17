@@ -382,12 +382,11 @@ public class MapViewController {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
-        alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d) which will takes %d gallons fuel.\n",
+        alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d) which will take %d gallons fuel.\n",
             curPlanet.getName(), curPlanet.getXCoordinate(), curPlanet.getYCoordinate(),
             planetArray[destinationPlanetID].getName(), planetArray[destinationPlanetID].getXCoordinate(),
             planetArray[destinationPlanetID].getYCoordinate(), (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
-            + "You may encounter NPCs(Bandit, Police, Trader) in the journey.\n"
-            + "Are you sure?");
+            + "You may encounter NPCs(Bandit, Police, Trader) in the journey. Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {

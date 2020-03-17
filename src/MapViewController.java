@@ -1,3 +1,4 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -86,9 +87,8 @@ public class MapViewController {
     private static Good[] good;
     private static Good[] shipInventory;
     private static boolean isOpened = false;
-    private static int planetClicked;
-    
-    private static int prevPlanet;
+    private static int planetClickedID;
+
 
 
     @FXML
@@ -98,7 +98,7 @@ public class MapViewController {
             isOpened = true;
             // setup planets
             planetGenerator = new PlanetGenerator();
-            planetArray = planetGenerator.getPlanetArray();
+            planetArray = PlanetGenerator.getPlanetArray();
             fixPlanetCoordinates();
 
             //get player and ship
@@ -106,26 +106,24 @@ public class MapViewController {
             initializePlayerPlanet();
 
             //set up good and ship's goodInventory
-            ship = player.getShip();
+            ship = Player.getShip();
             initializeGood();
         }
-
+        planetClickedID = player.getCurrentPlanet().getPlanetID();
         setUpUIObject();
         setUpMap();
         updateInfo();
-        planetClicked = player.getCurrentPlanet().getPlanetID();
     }
 
     private void initializeGood() {
         goodGenerater = new GoodGenerater();
-        good = goodGenerater.getGood();
+        good = GoodGenerater.getGood();
         shipInventory = new Good[GoodGenerater.getNumberOfGood()];
         for (int i = 0; i < GoodGenerater.getNumberOfGood(); i++) {
             shipInventory[i] = new Good(good[i].getName(), good[i].getBasePrice(),
                 good[i].getVolume(), good[i].getTechLevel());
         }
         ship.setItemInventory(shipInventory);
-        player.setShip(ship);
     }
 
     private void initializePlayerPlanet() {
@@ -258,21 +256,8 @@ public class MapViewController {
         return good;
     }
 
-    public static int getPlanetClicked() {
-        return planetClicked;
-    }
-    
-    public static Planet getPrevPlanet() {
-        return planetArray[prevPlanet];
-    }
-    
-    public static Planet getCurrPlanet() {
-        return planetArray[planetClicked];
-    }
-
-    public void setHereLabel(int x, int y) {
-        hereLabel.setLayoutX(x);
-        hereLabel.setLayoutY(y);
+    public static int getPlanetClickedID() {
+        return planetClickedID;
     }
 
     public void planetDetailBtnPressed(ActionEvent actionEvent) throws IOException {
@@ -344,67 +329,39 @@ public class MapViewController {
         return result;
     }
 
-    public static void setCurrPlanet(int clickedPlanet) {
-        prevPlanet = planetClicked;
-        planetClicked = clickedPlanet;
-        planetGenerator.setPlanetArray(planetArray);
-    }
-    
 
 
-    private void travelToAnotherPlanet(MouseEvent event, int clickedPlanet) throws IOException {
-        planetClicked = clickedPlanet;
-        planetGenerator.setPlanetArray(planetArray);
-
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClicked] / 10)) {
+    private void travelToAnotherPlanet(MouseEvent event) throws IOException {
+        //check if ship has enough fuel
+        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClickedID] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClicked] / 10));
+            // adjust ship fuel
+            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClickedID] / 10));
 
-            String whichNpc = encounterNpcCheck();
-            if (whichNpc.equals("Nobody")) {
-                Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
-                Scene configScene = new Scene(configParent);
-                configScene.getStylesheets().add("app.css");
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                window.setScene(configScene);
-                window.show();
-            } else if (whichNpc.equals("Bandit")) {
-                encounterNpcDialog(whichNpc);
-                Parent configParent = FXMLLoader.load(getClass().getResource("BanditView.fxml"));
-                Scene configScene = new Scene(configParent);
-                configScene.getStylesheets().add("app.css");
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                window.setScene(configScene);
-                window.show();
-            } else if (whichNpc.equals("Police")) {
-                encounterNpcDialog(whichNpc);
-                //need to change to police (change PlanetView.fxml to some other thing)
-                Parent configParent = FXMLLoader.load(getClass().getResource("BanditView.fxml"));
-                Scene configScene = new Scene(configParent);
-                configScene.getStylesheets().add("app.css");
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                window.setScene(configScene);
-                window.show();
+            String npcName = encounterNpcCheck();
+            if (npcName.equals("Nobody")) {
+                npcName = "Planet";
             } else {
-                encounterNpcDialog(whichNpc);
-                //need to change to trader (change PlanetView.fxml to some other thing)
-                Parent configParent = FXMLLoader.load(getClass().getResource("BanditView.fxml"));
-                Scene configScene = new Scene(configParent);
-                configScene.getStylesheets().add("app.css");
-
-                Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-                window.setScene(configScene);
-                window.show();
+                encounterNpcDialog(npcName);
             }
+            goToNpcView(event, npcName);
         }
+    }
+
+    public void goToNpcView(MouseEvent event, String npcName) throws IOException {
+        //fix
+        npcName = "Bandit";
+        //
+        String fxmlName = npcName + "View.fxml";
+        Parent configParent = FXMLLoader.load(getClass().getResource(fxmlName));
+        Scene configScene = new Scene(configParent);
+        configScene.getStylesheets().add("app.css");
+
+        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        window.setScene(configScene);
+        window.show();
     }
 
     public void encounterNpcDialog(String npcName) {
@@ -415,62 +372,64 @@ public class MapViewController {
         alert.showAndWait();
     }
 
-    public void confirmTravelToAnotherPlanerDialog(MouseEvent event, int whichPlanet) throws IOException {
+    public void confirmTravelToAnotherPlanetDialog(MouseEvent event, int destinationPlanetID) throws IOException {
+        planetClickedID = destinationPlanetID;
+
         Planet curPlanet = player.getCurrentPlanet();
-        if (whichPlanet == curPlanet.getPlanetID()) return;
+        if (destinationPlanetID == curPlanet.getPlanetID()) return;
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
         alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d) which will takes %d gallons fuel.\n",
             curPlanet.getName(), curPlanet.getXCoordinate(), curPlanet.getYCoordinate(),
-            planetArray[whichPlanet].getName(), planetArray[whichPlanet].getXCoordinate(),
-            planetArray[whichPlanet].getYCoordinate(), (planetGenerator.getDistanceArray()[whichPlanet] / 10))
+            planetArray[destinationPlanetID].getName(), planetArray[destinationPlanetID].getXCoordinate(),
+            planetArray[destinationPlanetID].getYCoordinate(), (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
             + "You may encounter NPCs(Bandit, Police, Trader) in the journey.\n"
             + "Are you sure?");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
-            travelToAnotherPlanet(event, whichPlanet);
+            travelToAnotherPlanet(event);
         }
     }
 
     public void explore1BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 1);
+        confirmTravelToAnotherPlanetDialog(event, 1);
     }
 
     public void explore2BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 2);
+        confirmTravelToAnotherPlanetDialog(event, 2);
     }
 
     public void explore3BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 3);
+        confirmTravelToAnotherPlanetDialog(event, 3);
     }
 
     public void explore4BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 4);
+        confirmTravelToAnotherPlanetDialog(event, 4);
     }
 
     public void explore5BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 5);
+        confirmTravelToAnotherPlanetDialog(event, 5);
     }
 
     public void explore6BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 6);
+        confirmTravelToAnotherPlanetDialog(event, 6);
     }
 
     public void explore7BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 7);
+        confirmTravelToAnotherPlanetDialog(event, 7);
     }
 
     public void explore8BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 8);
+        confirmTravelToAnotherPlanetDialog(event, 8);
     }
 
     public void explore9BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 9);
+        confirmTravelToAnotherPlanetDialog(event, 9);
     }
 
     public void explore0BtnPressed(MouseEvent event) throws IOException {
-        confirmTravelToAnotherPlanerDialog(event, 0);
+        confirmTravelToAnotherPlanetDialog(event, 0);
     }
 }

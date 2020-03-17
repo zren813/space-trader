@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class CharacterUpgradeController {
+public class CharacterUpgradeViewController {
     @FXML
     private Text item1NameText;
     @FXML

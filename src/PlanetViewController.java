@@ -35,7 +35,7 @@ public class PlanetViewController {
     public void initialize() {
         planetGenerator = MapViewController.getPlanetGenerator();
         planetArray = MapViewController.getPlanetArray();
-        whichPlanetViewed = MapViewController.getPlanetClicked();
+        whichPlanetViewed = MapViewController.getPlanetClickedID();
         planetArray[whichPlanetViewed].setVisited(true);
         Player.setCurrentPlanet(planetArray[whichPlanetViewed]);
         updateUI();

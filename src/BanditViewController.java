@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -14,35 +15,37 @@ public class BanditViewController {
     @FXML
     public Text intro;
     @FXML
-    private Text message;
-    @FXML
-    public Button payBanditBtn;
-    
     private Bandit bandit;
 
     @FXML
     public void initialize() {
-        bandit = new Bandit(MapViewController.getPrevPlanet(), MapViewController.getCurrPlanet());
-        intro.setText(bandit.encounterBandit());
-        message.setText("");
-        
+        bandit = new Bandit();
+        intro.setText(bandit.getDescription());
     }
-    
-    public void payBanditBtnPressed(ActionEvent event) throws IOException {
-        
-        message.setText(
-                bandit.payBandit(
-                        MapViewController.getPlayer(),
-                        MapViewController.getPlayer().getShip())
-                );
-        goToPlanet(event);
+
+    public void payMoneyBtnPressed(ActionEvent actionEvent) throws IOException {
+        String message = bandit.chargeCredit(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        resultDialog(message);
+        goToMapView(actionEvent);
     }
-    
-    public void goToPlanet(ActionEvent event) throws IOException {
-        
+
+    public void fleeBackBtnPressed(ActionEvent actionEvent) throws IOException {
+        String message = bandit.dealWithFleeingPlayer(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        resultDialog(message);
+        goToMapView(actionEvent);
+    }
+
+    public void fightOffBtnPressed(ActionEvent actionEvent) throws IOException {
+        String message = bandit.fightWithPlayer(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        resultDialog(message);
+        goToMapView(actionEvent);
+    }
+
+    public void goToMapView(ActionEvent event) throws IOException {
+
         //desired = true, go to desiredPlanet
         //desired = false, go to previousPlanet
-        Parent configParent = FXMLLoader.load(getClass().getResource("PlanetView.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 
@@ -50,5 +53,13 @@ public class BanditViewController {
 
         window.setScene(configScene);
         window.show();
+    }
+
+    public void resultDialog(String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Bandit");
+        alert.setHeaderText("Result");
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

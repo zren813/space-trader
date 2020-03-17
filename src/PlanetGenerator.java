@@ -18,7 +18,7 @@ public class PlanetGenerator {
         }
     }
 
-    public void calculateDistanceArray(Planet currentPlanet) {
+    public static void calculateDistanceArray(Planet currentPlanet) {
         int curX = currentPlanet.getXCoordinate(), curY = currentPlanet.getYCoordinate();
         for (int i = 0; i < distanceArray.length; i++) {
             int tarX = planetArray[i].getXCoordinate(), tarY = planetArray[i].getYCoordinate();
@@ -27,16 +27,16 @@ public class PlanetGenerator {
     }
 
     // Getters
-    public int[] getDistanceArray(Planet currentPlanet) {
+    public static int[] getDistanceArray(Planet currentPlanet) {
         calculateDistanceArray(currentPlanet);
         return distanceArray;
     }
 
-    public int[] getDistanceArray() {
+    public static int[] getDistanceArray() {
         return distanceArray;
     }
 
-    public Planet[] getPlanetArray() {
+    public static Planet[] getPlanetArray() {
         return planetArray;
     }
 

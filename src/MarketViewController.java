@@ -233,7 +233,7 @@ public class MarketViewController {
     }
 
     public void characterUpgradeBtnPressed(ActionEvent actionEvent) throws Exception {
-        Parent configParent = FXMLLoader.load(getClass().getResource("CharacterUpgrade.fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource("CharacterUpgradeView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

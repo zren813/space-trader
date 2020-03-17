@@ -7,23 +7,18 @@
 
 <AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BanditViewController">
    <children>
-      <Text fill="WHITE" layoutX="274.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Encountered bandit" textAlignment="CENTER" wrappingWidth="451.240234375">
+      <Text fill="WHITE" layoutX="274.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NPC: Bandit" textAlignment="CENTER" wrappingWidth="451.240234375">
          <font>
             <Font size="43.0" />
          </font>
       </Text>
-      <Text fx:id="intro" fill="WHITE" layoutX="111.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
+      <Text fx:id="introText" fill="WHITE" layoutX="111.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
           <font>
-              <Font size="22.0" />
+              <Font size="21.0" />
           </font>
       </Text>
-      <Button fx:id="payMoneyBtn" layoutX="125.0" layoutY="400.0" mnemonicParsing="false" onAction="#payMoneyBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Pay Money" />
-      <Text fx:id="message" fill="WHITE" layoutX="136.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="352.87945556640625">
-         <font>
-            <Font size="28.0" />
-         </font>
-      </Text>
-      <Button fx:id="fleeBackBtn" layoutX="385.0" layoutY="400.0" mnemonicParsing="false" onAction="#fleeBackBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Flee Back" />
-      <Button fx:id="fightOffBtn" layoutX="603.0" layoutY="400.0" mnemonicParsing="false" onAction="#fightOffBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Fight Off" />
+      <Button fx:id="payMoneyBtn" layoutX="125.0" layoutY="459.0" mnemonicParsing="false" onAction="#payMoneyBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Pay Money" />
+      <Button fx:id="fleeBackBtn" layoutX="425.0" layoutY="459.0" mnemonicParsing="false" onAction="#fleeBackBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Flee Back" />
+      <Button fx:id="fightOffBtn" layoutX="725.0" layoutY="459.0" mnemonicParsing="false" onAction="#fightOffBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Fight Off" />
    </children>
 </AnchorPane>

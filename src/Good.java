@@ -34,6 +34,10 @@ public class Good {
         return basePrice;
     }
 
+    public void setBasePrice(int basePrice) {
+        this.basePrice = basePrice;
+    }
+
     public int getTechLevel() {
         return techLevel;
     }

@@ -11,7 +11,7 @@ public class Bandit {
     public Bandit() {
         this.credit = 1000;
         this.shipDamage = random.nextInt(20);
-        this.description = String.format("This is a notorious  Bandit. There are 3 actions you can take.\n\n" +
+        this.description = String.format("This is a notorious Bandit. There are 3 actions you can take.\n\n" +
             "1. Pay me %d. If you dont have enough credit, just turn in all of your items in the ship. " +
             "If you dot't have either enough credit or ship, I will ruin your ship. Don't mess around me!\n\n" +
             "2. Flee like a coward, but you better have a good pilot skill. " +

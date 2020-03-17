@@ -1,81 +1,130 @@
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class Trader {
-    private String name;
     private Random random = new Random();
-    private Planet previousPlanet;
-    private Planet desiredPlanet;
     private Good[] traderGood;
-    private int[] traderGoodPrice;
-    private int[] traderGoodNumber;
+    private String description;
+    private Player player;
+    private Ship ship;
+    private Planet[] planetArray;
+    private double chanceToGetNegotiated;
+    private double chanceToGetBeat;
 
-    public Trader(Planet previousPlanet, Planet desiredPlanet) {
-        this.previousPlanet = previousPlanet;
-        this.desiredPlanet = desiredPlanet;
-        name = NpcNameGenerator.getName();
-        Good[] goodFromGenerator = GoodGenerater.getGood();
-        traderGood = new Good[3];
-        traderGoodPrice = new int[3];
-        traderGoodNumber = new int[3];
+    public Trader() {
+        this.player = MapViewController.getPlayer();
+        ship = MapViewController.getShip();
+        this.planetArray = MapViewController.getPlanetArray();
+        this.chanceToGetNegotiated = player.getMerchantSkill() / 10.0;
+        this.chanceToGetBeat = player.getFighterSkill() / 10.0;
+        setUpTraderGood();
+        this.description = String.format("This is a trader. There are 3 actions you can take.\n\n" +
+                "1. Buy the item you choose. (Balance: %d, Cargo capacity = %d) \n" +
+                "2. Ignore the trader and carry on your journey.\n" +
+                "3. Rob trader. The trader has some good stuffs. You have %.1f probability to win the fight." +
+                "If you lose, the trader will get angry and ruin your ship.\n" +
+                "4. Negotiate price. You have one chance to negotiate the price. " +
+                "You have %.1f probability to get 50 percent off for all goods." +
+                "However, the price will double if you fail to negotiate.\n",
+            player.getBalance(), ship.getCargoCapacity(), chanceToGetBeat, chanceToGetNegotiated
+        );
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    private void setUpTraderGood() {
+        int numberOfGood = 3;
+        Good[] allGood = GoodGenerater.getGood().clone();
+        traderGood = new Good[numberOfGood];
         //choose three good randomly from all goods from the generator
-        for (int i = 0; i < 3; i++) {
-            int mask = random.nextInt(15);
-            traderGood[i] = goodFromGenerator[mask];
-            traderGoodPrice[i] = traderGood[i].getBasePrice() * (random.nextInt(40) + 80) / 100;
-            traderGoodNumber[i] = mask;
+        for (int i = 0; i < numberOfGood; i++) {
+            Set<Integer> set = new HashSet<>();
+            int goodPicked = random.nextInt(allGood.length);
+            while (set.contains(goodPicked)) {
+                goodPicked = random.nextInt(allGood.length);
+            }
+            set.add(goodPicked);
+            traderGood[i] = allGood[goodPicked];
         }
     }
-    public String encounterTrader() {
-        return "My name is " + name + ". I have some goods you might you want to take a look.";
-    }
-    public String buyFromTrader(Player player, Ship ship, int numberOfItem) {//the number is 0, 1 or 2
-        if (traderGoodPrice[numberOfItem] <= player.getBalance() &&
-                ship.getCargoCapacity() >= traderGood[numberOfItem].getVolume()) {
-            player.setBalance(player.getBalance() - traderGoodPrice[numberOfItem]);
-            ship.setCargoCapacity(ship.getCargoCapacity() - traderGood[numberOfItem].getVolume());
-            ship.addItems(traderGoodNumber[numberOfItem], 1);
-            return "You have successfully bought the item.";
+
+
+    public String sellGoodsToPlayer(Player player, Ship ship, int[] numberOfGoodToBuy) {
+        int totalCost = 0;
+        int totalVolume = 0;
+        String message;
+        for (int i = 0; i < numberOfGoodToBuy.length; i++) {
+            totalCost += traderGood[i].getBasePrice() * numberOfGoodToBuy[i];
+            totalVolume += traderGood[i].getVolume();
+        }
+        if (totalCost > player.getBalance()) {
+            message = "You don't have enough money. You missed the chance to buy";
+        } else if (totalVolume > ship.getCargoCapacity()) {
+            message = "You don't have enough cargo capacity. You missed the chance to buy";
+
         } else {
-            return "You failed to buy this item because you don't have enough space or cargo capacity.";
-        }
-    }
-
-    public void ignoreTrader(Player player, Ship ship) {
-        player.setCurrentPlanet(desiredPlanet);
-    }
-
-    public String robTrader(Player player, Ship ship) {
-        int mask = random.nextInt(10);
-        if (player.getFighterSkill() > mask) {
-            for (int i = 0; i < 3; i++) {
-                if (ship.getCargoCapacity() >= traderGood[i].getVolume()) {
-                    ship.setCargoCapacity(ship.getCargoCapacity() - traderGood[i].getVolume());
-                    ship.addItems(traderGoodNumber[i], 1);
-                    player.setCurrentPlanet(desiredPlanet);
-                    return "You have robbed successfully. One good is added to your inventory.";
+            player.setBalance(player.getBalance() - totalCost);
+            ship.setCargoCapacity(ship.getCargoCapacity() - totalVolume);
+            for (int i = 0; i < numberOfGoodToBuy.length; i++) {
+                for (int j = 0; j < ship.getItemInventory().length; j++) {
+                    if (ship.getItemInventory()[j].getName().equals(traderGood[i].getName())) {
+                        int previousQuantity = ship.getItemInventory()[j].getQuantity();
+                        Good[] shipInventory = ship.getItemInventory();
+                        shipInventory[j].setQuantity(previousQuantity + numberOfGoodToBuy[i]);
+                        ship.setItemInventory(shipInventory);
+                        numberOfGoodToBuy[i] = 0;
+                    }
                 }
             }
-            return "You have robbed successfully, but your inventory is full.";
-        } else {
-            ship.setHealth(ship.getHealth() - random.nextInt(20));
-            player.setCurrentPlanet(desiredPlanet);
-            return "You failed to rob. Your ship is damaged.";
+            message = "You have successfully bought the item.";
         }
+
+        return message;
     }
 
-    public String negotiateTrader(Player player, Ship ship) {
+    public void beingIgnored(Player player) {
+        player.setCurrentPlanet(planetArray[MapViewController.getPlanetClickedID()]);
+    }
+
+    public String getRobbed(Player player, Ship ship) {
+//        int mask = random.nextInt(10);
+//        if (player.getFighterSkill() > mask) {
+//            for (int i = 0; i < 3; i++) {
+//                if (ship.getCargoCapacity() >= traderGood[i].getVolume()) {
+//                    ship.setCargoCapacity(ship.getCargoCapacity() - traderGood[i].getVolume());
+//                    ship.addItems(traderGoodNumber[i], 1);
+//                    return "You have robbed successfully. One good is added to your inventory.";
+//                }
+//            }
+//            return "You have robbed successfully, but your inventory is full.";
+//        } else {
+//            ship.setHealth(ship.getHealth() - random.nextInt(20));
+//            return "You failed to rob. Your ship is damaged.";
+//        }
+        return "";
+    }
+
+    public String getNegotiated(Player player) {
         int mask = random.nextInt(10);
         if (player.getMerchantSkill() > mask) {
-            for (int i = 0; i < 3; i++) {
-                traderGoodPrice[i] = (int) (traderGoodPrice[i] * 0.85);
+            for (int i = 0; i < traderGood.length; i++) {
+                traderGood[i].setBasePrice((int) (traderGood[i].getBasePrice() * 0.5));
             }
-            return "You have successfully negotiated the price.";
+            return "You have successfully negotiated the price. The price is half now.";
         } else {
-            for (int i = 0; i < 3; i++) {
-                traderGoodPrice[i] = (int) (traderGoodPrice[i] * 1.20);
+            for (int i = 0; i < traderGood.length; i++) {
+                traderGood[i].setBasePrice((int) (traderGood[i].getBasePrice() * 2.0));
             }
-            return "The trader is upset. The price is rising.";
+            return "The trader is upset. The price is doubled.";
         }
     }
 
+    public Good[] getTraderGood() {
+        return traderGood;
+    }
 }

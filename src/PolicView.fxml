@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PolicView">
+   <children>
+      <Text fill="WHITE" layoutX="294.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NPC: Police" textAlignment="CENTER" wrappingWidth="451.240234375">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Text>
+      <Text fx:id="introText" fill="WHITE" layoutX="131.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Text>
+      <Button fx:id="admitBtn" layoutX="145.0" layoutY="479.0" mnemonicParsing="false" onAction="#buyItemsBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Admit" />
+      <Button fx:id="fleeBackBtn" layoutX="445.0" layoutY="479.0" mnemonicParsing="false" onAction="#fleeBackBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Flee Back" />
+      <Button fx:id="fightOffBtn" layoutX="745.0" layoutY="479.0" mnemonicParsing="false" onAction="#fightOffBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Fight Off" />
+   </children>
+</AnchorPane>

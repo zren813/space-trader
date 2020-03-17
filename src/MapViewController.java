@@ -90,7 +90,6 @@ public class MapViewController {
     private static int planetClickedID;
 
 
-
     @FXML
     public void initialize() {
         // First time, generate planets
@@ -256,6 +255,10 @@ public class MapViewController {
         return good;
     }
 
+    public static Ship getShip() {
+        return ship;
+    }
+
     public static int getPlanetClickedID() {
         return planetClickedID;
     }
@@ -330,7 +333,6 @@ public class MapViewController {
     }
 
 
-
     private void travelToAnotherPlanet(MouseEvent event) throws IOException {
         //check if ship has enough fuel
         if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClickedID] / 10)) {
@@ -351,7 +353,7 @@ public class MapViewController {
 
     public void goToNpcView(MouseEvent event, String npcName) throws IOException {
         //fix
-        npcName = "Bandit";
+        npcName = "Trader";
         //
         String fxmlName = npcName + "View.fxml";
         Parent configParent = FXMLLoader.load(getClass().getResource(fxmlName));

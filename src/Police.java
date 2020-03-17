@@ -1,7 +1,6 @@
 import java.util.Random;
 
 public class Police {
-    private String name;
     private Random random = new Random();
     private Planet currentPlanet;
     private Planet desiredPlanet;
@@ -12,7 +11,6 @@ public class Police {
     public Police (Planet currentPlanet, Planet desiredPlanet, Ship ship) {
         this.currentPlanet = currentPlanet;
         this.desiredPlanet = desiredPlanet;
-        name = NpcNameGenerator.getName();
         Good[] shipInventory = ship.getItemInventory();
         for (int i = 0; i < 15; i++) {
             if (shipInventory[i].getQuantity() != 0 ) {
@@ -25,7 +23,7 @@ public class Police {
     }
 
     public String encounterPolice() {
-        return "I am Officer " + name + ". We suspect your " + wantedGoodNum + " " + wantedGood.getName()
+        return "I am Officer "  + ". We suspect your " + wantedGoodNum + " " + wantedGood.getName()
                 + " are stolen items. We are going to take them back.";
     }
 

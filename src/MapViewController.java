@@ -88,6 +88,7 @@ public class MapViewController {
     private static Good[] shipInventory;
     private static boolean isOpened = false;
     private static int planetClickedID;
+    private double saveFuelPercent;
     Random random = new Random();
 
 
@@ -110,6 +111,7 @@ public class MapViewController {
             initializeGood();
         }
         planetClickedID = player.getCurrentPlanet().getPlanetID();
+        saveFuelPercent = 1 - player.getPilotSkill() / 10.0;
         setUpUIObject();
         setUpMap();
         updateInfo();
@@ -152,19 +154,14 @@ public class MapViewController {
 
     private void setUpToolTip() {
         for (int i = 0; i < planetArray.length; i++) {
-            String toolTipMessage = "";
+            String toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
+                + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
+                + String.format("Distance: %d light-years\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                + String.format("Fuel Needed: %d gallons\n", (int) (planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10 * saveFuelPercent));
             if (planetArray[i].isVisited()) {
-                toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
-                    + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                    + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
-                    + String.format("Fuel Needed: %d gallons\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
-                    + String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
+                toolTipMessage += String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
             } else {
-                toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
-                    + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                    + String.format("Distance: %d light-years\n", +planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
-                    + String.format("Fuel Needed: %d gallons\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10)
-                    + String.format("Tech Level: unknown -__-||");
+                toolTipMessage += String.format("Tech Level: unknown -__-||");
             }
             toolTipArray[i] = new Tooltip(toolTipMessage);
             Tooltip.install(circleArray[i], toolTipArray[i]);
@@ -206,7 +203,8 @@ public class MapViewController {
                 + "Ship health: " + player.getShip().getHealth();
         playerInfoText.setText(playerInfo);
         String skillInfo =
-            "Pilot skill point: " + player.getPilotSkill() + '\n'
+            "Pilot skill point: " + player.getPilotSkill() +
+                String.format(" (save %.0f%% fuel)", (1 - saveFuelPercent) * 100) + '\n'
                 + "Fighter skill point: " + player.getFighterSkill() + '\n'
                 + "Merchant skill point: " + player.getMerchantSkill() + '\n'
                 + "Engineer skill point:  " + player.getEngineerSkill();
@@ -321,11 +319,12 @@ public class MapViewController {
 
     private void travelToAnotherPlanet(MouseEvent event) throws IOException {
         //check if ship has enough fuel
-        if (player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClickedID] / 10)) {
+        int fuelCost = (int) ((planetGenerator.getDistanceArray()[planetClickedID] / 10) * saveFuelPercent);
+        if (player.getShip().getFuelCapacity() < fuelCost) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
             // adjust ship fuel
-            player.getShip().setFuelCapacity(player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClickedID] / 10));
+            player.getShip().setFuelCapacity((int) (player.getShip().getFuelCapacity() - fuelCost));
 
             String npcName = encounterNpcCheck();
             if (npcName.equals("Nobody")) {

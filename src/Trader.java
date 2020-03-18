@@ -91,7 +91,6 @@ public class Trader {
             if (ship.getCargoCapacity() < totalVolume) {
                 return "You have robbed successfully, but your inventory is full.";
             } else {
-                player.setBalance(player.getBalance() - totalCost);
                 ship.setCargoCapacity(ship.getCargoCapacity() - totalVolume);
                 ship.addSpecificGood(traderGood, numberOfGoodToRob);
                 return String.format("Success! You robbed %d of %s, %d of %s, and %d of %s",

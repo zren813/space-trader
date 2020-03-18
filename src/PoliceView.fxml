@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PolicView">
+<AnchorPane minHeight="600.0" minWidth="1000.0" prefHeight="400.0" prefWidth="600.0" styleClass="cus-root" stylesheets="@app.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PoliceViewController">
    <children>
       <Text fill="WHITE" layoutX="294.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NPC: Police" textAlignment="CENTER" wrappingWidth="451.240234375">
          <font>

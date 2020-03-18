@@ -30,21 +30,26 @@ public class Ship {
             good.setQuantity(0);
         }
     }
-    public void refillFuel(int amount) {
-        Player.setBalance(Player.getBalance() - amount);
-        setFuelCapacity(getFuelCapacity() + amount);
-    }
 
-    public void addRandomGood(Good[] randomGood, int[] numOfGood){
-        for (int i = 0; i < randomGood.length; i++) {
+    public void addSpecificGood(Good[] goodList, int[] numOfGood){
+        for (int i = 0; i < goodList.length; i++) {
             for (int j = 0; j < shipInventory.length; j++) {
-                if (shipInventory[j].getName().equals(randomGood[i].getName())) {
+                if (shipInventory[j].getName().equals(goodList[i].getName())) {
                     int previousQuantity = shipInventory[j].getQuantity();
                     shipInventory[j].setQuantity(previousQuantity + numOfGood[i]);
                 }
             }
         }
-
+    }
+    public void subtractSpecificGood(Good[] goodList, int[] numOfGood){
+        for (int i = 0; i < goodList.length; i++) {
+            for (int j = 0; j < shipInventory.length; j++) {
+                if (shipInventory[j].getName().equals(goodList[i].getName())) {
+                    int previousQuantity = shipInventory[j].getQuantity();
+                    shipInventory[j].setQuantity(previousQuantity - numOfGood[i]);
+                }
+            }
+        }
     }
 
     // Getters and setters

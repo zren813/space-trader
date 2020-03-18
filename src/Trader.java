@@ -69,7 +69,7 @@ public class Trader {
         } else {
             player.setBalance(player.getBalance() - totalCost);
             ship.setCargoCapacity(ship.getCargoCapacity() - totalVolume);
-            ship.addRandomGood(traderGood, numberOfGoodToBuy);
+            ship.addSpecificGood(traderGood, numberOfGoodToBuy);
             return "You have successfully bought the item.";
         }
     }
@@ -93,7 +93,7 @@ public class Trader {
             } else {
                 player.setBalance(player.getBalance() - totalCost);
                 ship.setCargoCapacity(ship.getCargoCapacity() - totalVolume);
-                ship.addRandomGood(traderGood, numberOfGoodToRob);
+                ship.addSpecificGood(traderGood, numberOfGoodToRob);
                 return String.format("Success! You robbed %d of %s, %d of %s, and %d of %s",
                     numberOfGoodToRob[0], traderGood[0].getName(),
                     numberOfGoodToRob[1], traderGood[1].getName(),

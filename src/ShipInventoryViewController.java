@@ -196,14 +196,14 @@ public class ShipInventoryViewController {
         } catch (NumberFormatException notInt) {
             errorMessage.setText("The refilled gas has to be an integer");
         }
-        if (refillAmount > (100 - Player.getShip().getFuelCapacity())) {
+        if (refillAmount > (100 - player.getShip().getFuelCapacity())) {
             errorMessage.setText("You reached the maximum of your fuel capacity");
             System.out.println(player.getShip().getFuelCapacity());
-        } else if (Player.getBalance() < refillAmount) {
+        } else if (player.getBalance() < refillAmount) {
             errorMessage.setText("You don't have enough balance to refill");
         } else {
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() + refillAmount);
-            Player.setBalance(Player.getBalance() - refillAmount);
+            player.getShip().setFuelCapacity(player.getShip().getFuelCapacity() + refillAmount);
+            player.setBalance(player.getBalance() - refillAmount);
             updateCharacterInfo();
         }
     }

@@ -88,6 +88,7 @@ public class MapViewController {
     private static Good[] shipInventory;
     private static boolean isOpened = false;
     private static int planetClickedID;
+    Random random = new Random();
 
 
     @FXML
@@ -105,7 +106,7 @@ public class MapViewController {
             initializePlayerPlanet();
 
             //set up good and ship's goodInventory
-            ship = Player.getShip();
+            ship = player.getShip();
             initializeGood();
         }
         planetClickedID = player.getCurrentPlanet().getPlanetID();
@@ -298,36 +299,21 @@ public class MapViewController {
 
 
     private String encounterNpcCheck() {
-        Random random = new Random();
-        String difficulty = ConfigViewController.getDifficulty();
-        int difficultyOffset;
         String result = "Nobody";
-
-        if ("Literally Impossible".equals(difficulty)) {
-            difficultyOffset = 4;
-        } else if ("Hard".equals(difficulty)) {
-            difficultyOffset = 3;
-        } else if ("Medium".equals(difficulty)) {
-            difficultyOffset = 2;
-        } else {
-            difficultyOffset = 1;
-        }
-
-
-        if (random.nextBoolean()) {// 50% chance player encounters nobody
-            int[] letsSeeWhoWeMeet = new int[3];
-            letsSeeWhoWeMeet[0] = random.nextInt(3) * difficultyOffset; // [0] bandit
-            letsSeeWhoWeMeet[1] = random.nextInt(3) * difficultyOffset; // [1] police
-            letsSeeWhoWeMeet[2] = random.nextInt(8); // [2] trader
-
-            if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[0]) {
-                result = "Bandit";
-            } else if (letsSeeWhoWeMeet[2] < letsSeeWhoWeMeet[1]) {
-                result = "Police";
-            } else {
-                result = "Trader";
+        // 50% chance player encounters nobody
+        if (random.nextBoolean()) {
+            int npcID = random.nextInt(3);
+            switch (npcID) {
+                case 0:
+                    result = "Bandit";
+                    break;
+                case 1:
+                    result = "Trader";
+                    break;
+                case 2:
+                    result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
+                    break;
             }
-
         }
         return result;
     }
@@ -335,11 +321,11 @@ public class MapViewController {
 
     private void travelToAnotherPlanet(MouseEvent event) throws IOException {
         //check if ship has enough fuel
-        if (Player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClickedID] / 10)) {
+        if (player.getShip().getFuelCapacity() < (planetGenerator.getDistanceArray()[planetClickedID] / 10)) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
             // adjust ship fuel
-            Player.getShip().setFuelCapacity(Player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClickedID] / 10));
+            player.getShip().setFuelCapacity(player.getShip().getFuelCapacity() - (planetGenerator.getDistanceArray()[planetClickedID] / 10));
 
             String npcName = encounterNpcCheck();
             if (npcName.equals("Nobody")) {
@@ -352,9 +338,6 @@ public class MapViewController {
     }
 
     public void goToNpcView(MouseEvent event, String npcName) throws IOException {
-        //fix
-        npcName = "Trader";
-        //
         String fxmlName = npcName + "View.fxml";
         Parent configParent = FXMLLoader.load(getClass().getResource(fxmlName));
         Scene configScene = new Scene(configParent);

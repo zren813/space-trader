@@ -26,15 +26,15 @@ public class Player {
         return currentPlanet;
     }
 
-    public static Ship getShip() {
+    public Ship getShip() {
         return ship;
     }
 
-    public static int getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 

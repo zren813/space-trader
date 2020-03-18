@@ -37,7 +37,6 @@ public class Planet {
     }
 
     // Getters
-
     public int getPlanetID() {
         return planetID;
     }

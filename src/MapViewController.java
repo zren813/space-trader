@@ -357,10 +357,9 @@ public class MapViewController {
     }
 
     public void confirmTravelToAnotherPlanetDialog(MouseEvent event, int destinationPlanetID) throws IOException {
-
-
         Planet curPlanet = player.getCurrentPlanet();
         if (destinationPlanetID == curPlanet.getPlanetID()) return;
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
@@ -369,8 +368,8 @@ public class MapViewController {
             planetArray[destinationPlanetID].getName(), planetArray[destinationPlanetID].getXCoordinate(),
             planetArray[destinationPlanetID].getYCoordinate(), (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
             + "You may encounter NPCs(Bandit, Police, Trader) in the journey. Are you sure?");
-
         Optional<ButtonType> result = alert.showAndWait();
+
         if (result.get() == ButtonType.OK) {
             planetClickedID = destinationPlanetID;
             travelToAnotherPlanet(event);

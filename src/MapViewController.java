@@ -357,7 +357,7 @@ public class MapViewController {
     }
 
     public void confirmTravelToAnotherPlanetDialog(MouseEvent event, int destinationPlanetID) throws IOException {
-        planetClickedID = destinationPlanetID;
+
 
         Planet curPlanet = player.getCurrentPlanet();
         if (destinationPlanetID == curPlanet.getPlanetID()) return;
@@ -372,6 +372,7 @@ public class MapViewController {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK) {
+            planetClickedID = destinationPlanetID;
             travelToAnotherPlanet(event);
         }
     }

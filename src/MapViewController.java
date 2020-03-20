@@ -1,4 +1,3 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,7 +76,7 @@ public class MapViewController {
 
     private Circle[] circleArray;
     private Tooltip[] toolTipArray;
-    private Label planetNameLabel[];
+    private Label[] planetNameLabel;
 
     private static PlanetGenerator planetGenerator;
     private static Planet[] planetArray;
@@ -89,7 +88,7 @@ public class MapViewController {
     private static boolean isOpened = false;
     private static int planetClickedID;
     private double saveFuelPercent;
-    Random random = new Random();
+    private Random random = new Random();
 
 
     @FXML
@@ -139,8 +138,10 @@ public class MapViewController {
     private void setUpUIObject() {
         circleArray = new Circle[]{planet1, planet2, planet3, planet4, planet5,
             planet6, planet7, planet8, planet9, planet10};
-        planetNameLabel = new Label[]{planet1NameLabel, planet2NameLabel, planet3NameLabel, planet4NameLabel,
-            planet5NameLabel, planet6NameLabel, planet7NameLabel, planet8NameLabel, planet9NameLabel, planet10NameLabel};
+        planetNameLabel = new Label[]{planet1NameLabel,
+            planet2NameLabel, planet3NameLabel, planet4NameLabel,
+            planet5NameLabel, planet6NameLabel, planet7NameLabel,
+            planet8NameLabel, planet9NameLabel, planet10NameLabel};
         toolTipArray = new Tooltip[circleArray.length];
     }
 
@@ -155,11 +156,16 @@ public class MapViewController {
     private void setUpToolTip() {
         for (int i = 0; i < planetArray.length; i++) {
             String toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
-                + String.format("Coordinate: (%d, %d)\n", planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
-                + String.format("Distance: %d light-years\n", planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
-                + String.format("Fuel Needed: %d gallons\n", (int) (planetGenerator.getDistanceArray(player.getCurrentPlanet())[i] / 10 * saveFuelPercent));
+                + String.format("Coordinate: (%d, %d)\n",
+                    planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
+                + String.format("Distance: %d light-years\n",
+                    planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                + String.format("Fuel Needed: %d gallons\n",
+                    (int) (planetGenerator.getDistanceArray(
+                            player.getCurrentPlanet())[i] / 10 * saveFuelPercent));
             if (planetArray[i].isVisited()) {
-                toolTipMessage += String.format("Tech Level: %d", planetArray[i].getTechnologyLevel());
+                toolTipMessage += String.format("Tech Level: %d",
+                        planetArray[i].getTechnologyLevel());
             } else {
                 toolTipMessage += String.format("Tech Level: unknown -__-||");
             }
@@ -203,8 +209,8 @@ public class MapViewController {
                 + "Ship health: " + player.getShip().getHealth();
         playerInfoText.setText(playerInfo);
         String skillInfo =
-            "Pilot skill point: " + player.getPilotSkill() +
-                String.format(" (save %.0f%% fuel)", (1 - saveFuelPercent) * 100) + '\n'
+            "Pilot skill point: " + player.getPilotSkill()
+                    + String.format(" (save %.0f%% fuel)", (1 - saveFuelPercent) * 100) + '\n'
                 + "Fighter skill point: " + player.getFighterSkill() + '\n'
                 + "Merchant skill point: " + player.getMerchantSkill() + '\n'
                 + "Engineer skill point:  " + player.getEngineerSkill();
@@ -223,16 +229,16 @@ public class MapViewController {
         int recLayoutX = (int) rectangle.getLayoutX() + 20;
         int recLayoutY = (int) rectangle.getLayoutY() + 20;
         for (int i = 0; i < planetArray.length; i++) {
-            int X = random.nextInt(14);
-            int Y = random.nextInt(7);
-            while (xGrid.contains(X) && yGrid.contains(Y)) {
-                X = random.nextInt(14);
-                Y = random.nextInt(7);
+            int x = random.nextInt(14);
+            int y = random.nextInt(7);
+            while (xGrid.contains(x) && yGrid.contains(y)) {
+                x = random.nextInt(14);
+                y = random.nextInt(7);
             }
-            xGrid.add(X);
-            yGrid.add(Y);
-            planetArray[i].setxCoordinate(recLayoutX + width * X);
-            planetArray[i].setyCoordinate(recLayoutY + height * Y);
+            xGrid.add(x);
+            yGrid.add(y);
+            planetArray[i].setxCoordinate(recLayoutX + width * x);
+            planetArray[i].setyCoordinate(recLayoutY + height * y);
         }
     }
 
@@ -302,15 +308,15 @@ public class MapViewController {
         if (random.nextBoolean()) {
             int npcID = random.nextInt(3);
             switch (npcID) {
-                case 0:
-                    result = "Bandit";
-                    break;
-                case 1:
-                    result = "Trader";
-                    break;
-                case 2:
-                    result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
-                    break;
+            case 0:
+                result = "Bandit";
+                break;
+            case 1:
+                result = "Trader";
+                break;
+            default:
+                result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
+                break;
             }
         }
         return result;
@@ -319,7 +325,8 @@ public class MapViewController {
 
     private void travelToAnotherPlanet(MouseEvent event) throws IOException {
         //check if ship has enough fuel
-        int fuelCost = (int) ((planetGenerator.getDistanceArray()[planetClickedID] / 10) * saveFuelPercent);
+        int fuelCost = (int) ((planetGenerator.getDistanceArray()
+                [planetClickedID] / 10) * saveFuelPercent);
         if (player.getShip().getFuelCapacity() < fuelCost) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
@@ -356,17 +363,24 @@ public class MapViewController {
         alert.showAndWait();
     }
 
-    public void confirmTravelToAnotherPlanetDialog(MouseEvent event, int destinationPlanetID) throws IOException {
+    public void confirmTravelToAnotherPlanetDialog(MouseEvent event,
+                                                   int destinationPlanetID) throws IOException {
         Planet curPlanet = player.getCurrentPlanet();
-        if (destinationPlanetID == curPlanet.getPlanetID()) return;
+        if (destinationPlanetID == curPlanet.getPlanetID()) {
+            return;
+        }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
-        alert.setContentText(String.format("You are going to travel from %s(%d, %d) to %s(%d, %d) which will take %d gallons fuel.\n",
-            curPlanet.getName(), curPlanet.getXCoordinate(), curPlanet.getYCoordinate(),
-            planetArray[destinationPlanetID].getName(), planetArray[destinationPlanetID].getXCoordinate(),
-            planetArray[destinationPlanetID].getYCoordinate(), (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
+        alert.setContentText(String.format("You are going to travel "
+                        + "from %s(%d, %d) to %s(%d, %d) which will take %d gallons fuel.\n",
+            curPlanet.getName(), curPlanet.getXCoordinate(),
+                curPlanet.getYCoordinate(),
+            planetArray[destinationPlanetID].getName(),
+                planetArray[destinationPlanetID].getXCoordinate(),
+            planetArray[destinationPlanetID].getYCoordinate(),
+                (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
             + "You may encounter NPCs(Bandit, Police, Trader) in the journey. Are you sure?");
         Optional<ButtonType> result = alert.showAndWait();
 

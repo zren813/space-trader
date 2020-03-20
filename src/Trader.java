@@ -1,7 +1,3 @@
-
-import javafx.fxml.FXML;
-
-import java.awt.*;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -22,14 +18,20 @@ public class Trader {
         double chanceToGetNegotiated = player.getMerchantSkill() / 10.0;
         double chanceToGetBeat = player.getFighterSkill() / 10.0;
         setUpTraderGood();
-        this.description = String.format("This is a trader. There are 3 actions you can take.\n\n" +
-                "1. Buy the item you choose. (Status: Balance = %d, Cargo capacity = %d) \n" +
-                "2. Ignore the trader and carry on your journey.\n" +
-                "3. Rob trader. The trader has some good stuffs. You have %.1f probability to win the fight. " +
-                "If you lose, the trader will get angry and ruin your ship.\n" +
-                "4. Negotiate price. You have one chance to negotiate the price. " +
-                "You have %.1f probability to get 50 percent off for all goods. " +
-                "However, the price will double if you fail to negotiate.\n",
+        this.description = String.format("This is a trader. There are 3 "
+                        + "actions you can take.\n\n"
+                        + "1. Buy the item you choose. (Status: Balance "
+                        + "= %d, Cargo capacity = %d) \n"
+                        + "2. Ignore the trader and carry on your journey.\n"
+                        + "3. Rob trader. The trader has some good stuffs. You "
+                        + "have %.1f probability to win the fight. "
+                        + "If you lose, the trader will get angry "
+                        + "and ruin your ship.\n"
+                        + "4. Negotiate price. You have one chance "
+                        + "to negotiate the price. "
+                        + "You have %.1f probability to get 50 percent "
+                        + "off for all goods. "
+                        + "However, the price will double if you fail to negotiate.\n",
             player.getBalance(), ship.getCargoCapacity(), chanceToGetBeat, chanceToGetNegotiated
         );
     }
@@ -79,7 +81,7 @@ public class Trader {
         int mask = random.nextInt(10);
         int totalCost = 0;
         int totalVolume = 0;
-        int numberOfGoodToRob[] = new int[traderGood.length];
+        int[] numberOfGoodToRob = new int[traderGood.length];
 
         if (player.getFighterSkill() > mask) {
             for (int i = 0; i < traderGood.length; i++) {

@@ -43,9 +43,12 @@ public class PlanetViewController {
 
     private void updateUI() {
         planetNameText.setText(planetArray[whichPlanetViewed].getName());
-        distanceText.setText(planetGenerator.getDistanceArray()[whichPlanetViewed]+" light-years");
-        fuelCostText.setText(planetGenerator.getDistanceArray()[whichPlanetViewed]/10.0+" gallons");
-        technologyLevelText.setText(String.valueOf(planetArray[whichPlanetViewed].getTechnologyLevel()));
+        distanceText.setText(planetGenerator.getDistanceArray()
+                [whichPlanetViewed] + " light-years");
+        fuelCostText.setText(planetGenerator.getDistanceArray()
+                [whichPlanetViewed] / 10.0 + " gallons");
+        technologyLevelText.setText(String.valueOf(
+                planetArray[whichPlanetViewed].getTechnologyLevel()));
         descriptionText.setText(planetArray[whichPlanetViewed].displayInfo());
         planetViewCurve.setFill(planetArray[whichPlanetViewed].getPaint());
         errorMessage.setText("");
@@ -64,13 +67,13 @@ public class PlanetViewController {
     }
 
     public void marketBtnPressed(ActionEvent event) throws IOException {
-        if(planetArray[whichPlanetViewed].isVisited()){
+        if (planetArray[whichPlanetViewed].isVisited()) {
             goToMarketView(event);
-        }else{
+        } else {
             errorMessage.setText("You haven't visited this planet!");
         }
     }
-    public void goToMarketView(ActionEvent event)throws  IOException{
+    public void goToMarketView(ActionEvent event)throws IOException {
         Parent configParent = FXMLLoader.load(getClass().getResource("MarketView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

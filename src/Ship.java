@@ -31,7 +31,7 @@ public class Ship {
         }
     }
 
-    public void addSpecificGood(Good[] goodList, int[] numOfGood){
+    public void addSpecificGood(Good[] goodList, int[] numOfGood) {
         for (int i = 0; i < goodList.length; i++) {
             for (int j = 0; j < shipInventory.length; j++) {
                 if (shipInventory[j].getName().equals(goodList[i].getName())) {
@@ -41,7 +41,7 @@ public class Ship {
             }
         }
     }
-    public void subtractSpecificGood(Good[] goodList, int[] numOfGood){
+    public void subtractSpecificGood(Good[] goodList, int[] numOfGood) {
         for (int i = 0; i < goodList.length; i++) {
             for (int j = 0; j < shipInventory.length; j++) {
                 if (shipInventory[j].getName().equals(goodList[i].getName())) {

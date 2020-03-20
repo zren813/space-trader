@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.imageio.event.IIOWriteProgressListener;
 import java.io.IOException;
 
 public class PoliceViewController {

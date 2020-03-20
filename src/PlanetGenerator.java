@@ -19,9 +19,11 @@ public class PlanetGenerator {
     }
 
     public static void calculateDistanceArray(Planet currentPlanet) {
-        int curX = currentPlanet.getXCoordinate(), curY = currentPlanet.getYCoordinate();
+        int curX = currentPlanet.getXCoordinate();
+        int curY = currentPlanet.getYCoordinate();
         for (int i = 0; i < distanceArray.length; i++) {
-            int tarX = planetArray[i].getXCoordinate(), tarY = planetArray[i].getYCoordinate();
+            int tarX = planetArray[i].getXCoordinate();
+            int tarY = planetArray[i].getYCoordinate();
             distanceArray[i] = (int) Math.sqrt(Math.pow(curX - tarX, 2) + Math.pow(curY - tarY, 2));
         }
     }

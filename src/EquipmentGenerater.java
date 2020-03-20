@@ -3,7 +3,8 @@ public class EquipmentGenerater {
     private static  Equipment[] equipment = new Equipment[equipmentNumber];
     private static  String[] equipmentName = {"Red Bull", "sword", "scroll", "wrench"};
     private static int[] equipmentPrice = {500, 400, 300, 200};
-    private static int[][] skillincrement = {{5, 0, 0, 0}, {0, 4, 0, 0}, {0, 0, 3, 0}, {0, 0, 0, 2}};
+    private static int[][] skillincrement = {{5, 0, 0, 0},
+        {0, 4, 0, 0}, {0, 0, 3, 0}, {0, 0, 0, 2}};
     private static Player player;
 
     public EquipmentGenerater() {

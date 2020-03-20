@@ -33,7 +33,7 @@ public class ConfigViewController {
     private Spinner<Integer> engineerSP;
     @FXML
     private Text errorMessage;
-    private Spinner<Integer> skillSpinner[];
+    private Spinner<Integer>[] skillSpinner;
 
     private static String name;
     private static String difficulty;
@@ -42,7 +42,7 @@ public class ConfigViewController {
     private static int merchantSkill;
     private static int engineerSkill;
     private static int balance;
-    private static int skillArray[] = new int[4];
+    private static int[] skillArray = new int[4];
     private static Player player;
 
     /**
@@ -62,38 +62,39 @@ public class ConfigViewController {
         difficultyLevel.setItems(FXCollections.observableArrayList("Easy",
             "Medium", "Hard", "Literally Impossible"));
         difficultyLevel.setValue("Easy");
-        availableSkillPoint.setText("Please allocate your skill points (you have 8 points total): ");
+        availableSkillPoint.setText("Please allocate your skill "
+                + "points (you have 8 points total): ");
         difficultyLevelListener();
     }
 
     private void difficultyLevelListener() {
         difficultyLevel.getSelectionModel().
             selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
+                @Override
             public void changed(ObservableValue<? extends Number> observableValue,
                                 Number number, Number number2) {
-                if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 2 points total): ");
-                } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 4 points total): ");
-                } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
-                    number2))) {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 6 points total): ");
-                } else {
-                    availableSkillPoint.setText("Please allocate your "
-                        + "skill points (you have 8 points total): ");
+                    if ("Literally Impossible".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 2 points total): ");
+                    } else if ("Hard".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 4 points total): ");
+                    } else if ("Medium".equals(difficultyLevel.getItems().get((Integer)
+                        number2))) {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 6 points total): ");
+                    } else {
+                        availableSkillPoint.setText("Please allocate your "
+                            + "skill points (you have 8 points total): ");
+                    }
                 }
-            }
-        });
+            });
     }
 
 
-//    This method is to support the continue button
+    // This method is to support the continue button
 
     public void configBtnPressed(ActionEvent event) throws IOException {
         setUpConfig();

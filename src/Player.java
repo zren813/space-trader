@@ -11,10 +11,10 @@ public class Player {
     private int fighterSkill;
     private int merchantSkill;
     private int engineerSkill;
-    private int skillArray[] = new int[4];
+    private int[] skillArray = new int[4];
 
 
-    public Player(String name, int balance, int skillArray[]) {
+    public Player(String name, int balance, int[] skillArray) {
         this.name = name;
         this.balance = balance;
         setSkillArray(skillArray);

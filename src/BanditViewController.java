@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 public class BanditViewController {
     @FXML
-    public Text introText;
+    private Text introText;
     @FXML
     private Bandit bandit;
 
@@ -23,19 +23,22 @@ public class BanditViewController {
     }
 
     public void payMoneyBtnPressed(ActionEvent actionEvent) throws IOException {
-        String message = bandit.chargeCredit(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        String message = bandit.chargeCredit(MapViewController.getPlayer(),
+                MapViewController.getPlayer().getShip());
         resultDialog(message);
         goToMapView(actionEvent);
     }
 
     public void fleeBackBtnPressed(ActionEvent actionEvent) throws IOException {
-        String message = bandit.dealWithFleeingPlayer(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        String message = bandit.dealWithFleeingPlayer(MapViewController.getPlayer(),
+                MapViewController.getPlayer().getShip());
         resultDialog(message);
         goToMapView(actionEvent);
     }
 
     public void fightOffBtnPressed(ActionEvent actionEvent) throws IOException {
-        String message = bandit.fightWithPlayer(MapViewController.getPlayer(), MapViewController.getPlayer().getShip());
+        String message = bandit.fightWithPlayer(MapViewController.getPlayer(),
+                MapViewController.getPlayer().getShip());
         resultDialog(message);
         goToMapView(actionEvent);
     }

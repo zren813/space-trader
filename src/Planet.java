@@ -26,9 +26,9 @@ public class Planet {
     public String displayInfo() {
         Random random = new Random();
         if (isVisited()) {
-            String description = String.format("This planet is called %s. ", name) +
-                String.format("The technology level is %d. ", technologyLevel) +
-                String.format("There are %d thousands population on the planet",
+            String description = String.format("This planet is called %s. ", name)
+                    + String.format("The technology level is %d. ", technologyLevel)
+                    + String.format("There are %d thousands population on the planet",
                     random.nextInt(technologyLevel * 1000));
             return description;
         } else {

@@ -185,7 +185,6 @@ public class ShipInventoryViewController {
     }
 
     public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
-        //TODO: check if textfield meets requirement
         int refillAmount = 0;
         if (refillTextField.getText().isEmpty()) {
             errorMessage.setText("Error: empty refill amount");

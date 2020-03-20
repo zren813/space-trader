@@ -222,7 +222,8 @@ public class MarketViewController {
             + String.format("Ship Capacity: %d\n", ship.getCargoCapacity())
             + String.format("Ship Health: %d\n", ship.getHealth())
             + String.format("Discount: %.1f\n\n", merchantDiscount)
-            + String.format("Current Planet Tech Level: %s\n", player.getCurrentPlanet().getTechnologyLevel());
+            + String.format("Current Planet Tech Level: %s\n",
+                player.getCurrentPlanet().getTechnologyLevel());
         playerInfoText.setText(characterInfo);
     }
 

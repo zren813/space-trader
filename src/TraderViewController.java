@@ -1,5 +1,3 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.collections.MapChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +14,7 @@ import java.io.IOException;
 
 public class TraderViewController {
     @FXML
-    public Button negotiateBtn;
+    private Button negotiateBtn;
     @FXML
     private Text introText;
     @FXML
@@ -74,7 +72,8 @@ public class TraderViewController {
     }
 
     public void buyItemsBtnPressed(ActionEvent actionEvent) throws IOException {
-        int[] numOfGoodToBuy = new int[]{good1Spinner.getValue(), good2Spinner.getValue(), good3Spinner.getValue()};
+        int[] numOfGoodToBuy = new int[]{good1Spinner.getValue(),
+                good2Spinner.getValue(), good3Spinner.getValue()};
         String result = trader.sellGoodsToPlayer(player, ship, numOfGoodToBuy);
         resultDialog(result);
         goToMapView(actionEvent);
@@ -98,7 +97,8 @@ public class TraderViewController {
     }
 
     public void goToMapView(ActionEvent actionEvent) throws IOException {
-        player.setCurrentPlanet(MapViewController.getPlanetArray()[MapViewController.getPlanetClickedID()]);
+        player.setCurrentPlanet(MapViewController.getPlanetArray()
+                [MapViewController.getPlanetClickedID()]);
         Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

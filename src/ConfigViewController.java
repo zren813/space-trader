@@ -37,6 +37,7 @@ public class ConfigViewController {
 
     private static String name;
     private static String difficulty;
+    private static int difficultyIndex;
     private static int pilotSkill;
     private static int fighterSkill;
     private static int merchantSkill;
@@ -123,12 +124,16 @@ public class ConfigViewController {
 
         if ("Literally Impossible".equals(ConfigViewController.getDifficulty())) {
             balance = 500;
+            difficultyIndex = 3;
         } else if ("Hard".equals(ConfigViewController.getDifficulty())) {
             balance = 1000;
+            difficultyIndex = 2;
         } else if ("Medium".equals(ConfigViewController.getDifficulty())) {
             balance = 1500;
+            difficultyIndex = 1;
         } else {
             balance = 2000;
+            difficultyIndex = 0;
         }
 
         skillArray = new int[]{pilotSkill, fighterSkill, merchantSkill, engineerSkill};
@@ -182,6 +187,10 @@ public class ConfigViewController {
 
     public static String getName() {
         return name;
+    }
+
+    public static int getDifficultyIndex() {
+        return difficultyIndex;
     }
 
     public static int getPilotSkill() {

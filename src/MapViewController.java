@@ -304,8 +304,8 @@ public class MapViewController {
 
     private String encounterNpcCheck() {
         String result = "Nobody";
-        // 50% chance player encounters nobody
-        if (random.nextBoolean()) {
+        //here make sure player has higher chance to encounter NPC when the game is more difficult
+        if (random.nextInt(2 + ConfigViewController.getDifficultyIndex()) >= 1) {
             int npcID = random.nextInt(3);
             switch (npcID) {
             case 0:

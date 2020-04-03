@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -23,6 +24,8 @@ import java.io.IOException;
 import java.util.*;
 
 public class MapViewController {
+    @FXML
+    private AnchorPane anchorPane;
     @FXML
     private Circle planet1;
     @FXML
@@ -92,7 +95,7 @@ public class MapViewController {
 
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         // First time, generate planets
         if (!isOpened) {
             isOpened = true;
@@ -157,15 +160,15 @@ public class MapViewController {
         for (int i = 0; i < planetArray.length; i++) {
             String toolTipMessage = String.format("Name: %s\n", planetArray[i].getName())
                 + String.format("Coordinate: (%d, %d)\n",
-                    planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
+                planetArray[i].getXCoordinate(), planetArray[i].getYCoordinate())
                 + String.format("Distance: %d light-years\n",
-                    planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
+                planetGenerator.getDistanceArray(player.getCurrentPlanet())[i])
                 + String.format("Fuel Needed: %d gallons\n",
-                    (int) (planetGenerator.getDistanceArray(
-                            player.getCurrentPlanet())[i] / 10 * saveFuelPercent));
+                (int) (planetGenerator.getDistanceArray(
+                    player.getCurrentPlanet())[i] / 10 * saveFuelPercent));
             if (planetArray[i].isVisited()) {
                 toolTipMessage += String.format("Tech Level: %d",
-                        planetArray[i].getTechnologyLevel());
+                    planetArray[i].getTechnologyLevel());
             } else {
                 toolTipMessage += String.format("Tech Level: unknown -__-||");
             }
@@ -210,7 +213,7 @@ public class MapViewController {
         playerInfoText.setText(playerInfo);
         String skillInfo =
             "Pilot skill point: " + player.getPilotSkill()
-                    + String.format(" (save %.0f%% fuel)", (1 - saveFuelPercent) * 100) + '\n'
+                + String.format(" (save %.0f%% fuel)", (1 - saveFuelPercent) * 100) + '\n'
                 + "Fighter skill point: " + player.getFighterSkill() + '\n'
                 + "Merchant skill point: " + player.getMerchantSkill() + '\n'
                 + "Engineer skill point:  " + player.getEngineerSkill();
@@ -302,21 +305,22 @@ public class MapViewController {
     }
 
 
+
     private String encounterNpcCheck() {
         String result = "Nobody";
         //here make sure player has higher chance to encounter NPC when the game is more difficult
         if (random.nextInt(2 + ConfigViewController.getDifficultyIndex()) >= 1) {
             int npcID = random.nextInt(3);
             switch (npcID) {
-            case 0:
-                result = "Bandit";
-                break;
-            case 1:
-                result = "Trader";
-                break;
-            default:
-                result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
-                break;
+                case 0:
+                    result = "Bandit";
+                    break;
+                case 1:
+                    result = "Trader";
+                    break;
+                default:
+                    result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
+                    break;
             }
         }
         return result;
@@ -326,7 +330,7 @@ public class MapViewController {
     private void travelToAnotherPlanet(MouseEvent event) throws IOException {
         //check if ship has enough fuel
         int fuelCost = (int) ((planetGenerator.getDistanceArray()
-                [planetClickedID] / 10) * saveFuelPercent);
+            [planetClickedID] / 10) * saveFuelPercent);
         if (player.getShip().getFuelCapacity() < fuelCost) {
             errorMessage.setText("You don't have enough fuel left. Please refill.");
         } else {
@@ -355,6 +359,8 @@ public class MapViewController {
         window.show();
     }
 
+
+
     public void encounterNpcDialog(String npcName) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!!");
@@ -374,13 +380,13 @@ public class MapViewController {
         alert.setTitle("Confirmation");
         alert.setHeaderText("TRAVEL REQUEST");
         alert.setContentText(String.format("You are going to travel "
-                        + "from %s(%d, %d) to %s(%d, %d) which will take %d gallons fuel.\n",
+                + "from %s(%d, %d) to %s(%d, %d) which will take %d gallons fuel.\n",
             curPlanet.getName(), curPlanet.getXCoordinate(),
-                curPlanet.getYCoordinate(),
+            curPlanet.getYCoordinate(),
             planetArray[destinationPlanetID].getName(),
-                planetArray[destinationPlanetID].getXCoordinate(),
+            planetArray[destinationPlanetID].getXCoordinate(),
             planetArray[destinationPlanetID].getYCoordinate(),
-                (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
+            (planetGenerator.getDistanceArray()[destinationPlanetID] / 10))
             + "You may encounter NPCs(Bandit, Police, Trader) in the journey. Are you sure?");
         Optional<ButtonType> result = alert.showAndWait();
 

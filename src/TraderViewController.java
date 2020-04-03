@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class TraderViewController {
     @FXML
@@ -76,17 +78,17 @@ public class TraderViewController {
                 good2Spinner.getValue(), good3Spinner.getValue()};
         String result = trader.sellGoodsToPlayer(player, ship, numOfGoodToBuy);
         resultDialog(result);
-        goToMapView(actionEvent);
+        goToNextView(actionEvent);
     }
 
     public void ignoreBtnPressed(ActionEvent actionEvent) throws IOException {
-        goToMapView(actionEvent);
+        goToNextView(actionEvent);
     }
 
     public void robTraderBtnPressed(ActionEvent actionEvent) throws IOException {
         String result = trader.getRobbed(player, ship);
         resultDialog(result);
-        goToMapView(actionEvent);
+        goToNextView(actionEvent);
     }
 
     public void negotiateBtnPressed(ActionEvent actionEvent) {
@@ -96,10 +98,16 @@ public class TraderViewController {
         negotiateBtn.setVisible(false);
     }
 
-    public void goToMapView(ActionEvent actionEvent) throws IOException {
-        player.setCurrentPlanet(MapViewController.getPlanetArray()
-                [MapViewController.getPlanetClickedID()]);
-        Parent configParent = FXMLLoader.load(getClass().getResource("MapView.fxml"));
+
+    public void goToNextView(ActionEvent actionEvent)throws IOException {
+        String viewName;
+        if(MapViewController.getShip().getHealth() < 0){
+            viewName = "WelcomeView";
+            gameOverDialog();
+        }else{
+            viewName = "MapView";
+        }
+        Parent configParent = FXMLLoader.load(getClass().getResource(viewName+".fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 
@@ -109,6 +117,24 @@ public class TraderViewController {
         window.show();
     }
 
+    public void gameOverDialog() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!!");
+        alert.setHeaderText("Game Over");
+        alert.setContentText("Your ship's health is below 0. Restart a new game?");
+        ButtonType buttonTypeOne = new ButtonType("Restart");
+        ButtonType buttonTypeTwo = new ButtonType("Cancel");
+
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeOne) {
+//            goToWelcomeView();
+        } else if (result.get() == buttonTypeTwo) {
+            System.exit(0);
+        }
+    }
+
     public void resultDialog(String content) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Trader");
@@ -116,4 +142,6 @@ public class TraderViewController {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
 }

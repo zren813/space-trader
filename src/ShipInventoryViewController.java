@@ -107,6 +107,8 @@ public class ShipInventoryViewController {
     private Text errorMessage;
     @FXML
     private TextField refillTextField;
+    @FXML
+    private TextField repairTextField;
 
     private Text[] goodNameText;
     private Text[] goodCapacityText;
@@ -184,7 +186,7 @@ public class ShipInventoryViewController {
         window.show();
     }
 
-    public void refillBtnPressed(ActionEvent actionEvent) throws Exception {
+    public void refillBtnPressed(ActionEvent actionEvent) {
         int refillAmount = 0;
         if (refillTextField.getText().isEmpty()) {
             errorMessage.setText("Error: empty refill amount");
@@ -216,5 +218,23 @@ public class ShipInventoryViewController {
 
         window.setScene(configScene);
         window.show();
+    }
+
+    public void repairBtnPressed(ActionEvent actionEvent) {
+        int repairAmount = 0;
+        try {
+            repairAmount = Integer.parseInt(repairTextField.getText());
+        } catch (NumberFormatException notInt) {
+            errorMessage.setText("The amount has to be an integer");
+        }
+        if (repairAmount > (100 - player.getShip().getHealth())) {
+            errorMessage.setText("You reached the maximum of ship's health");
+        } else if (player.getBalance() < repairAmount) {
+            errorMessage.setText("You don't have enough balance to repair");
+        } else {
+            player.getShip().setHealth(player.getShip().getHealth() + repairAmount);
+            player.setBalance((int) (player.getBalance() - repairAmount*100 * (1- player.getEngineerSkill()/10.0)));
+            updateCharacterInfo();
+        }
     }
 }

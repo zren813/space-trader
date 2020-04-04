@@ -101,7 +101,7 @@ public class TraderViewController {
 
     public void goToNextView(ActionEvent actionEvent)throws IOException {
         String viewName;
-        if(MapViewController.getShip().getHealth() < 0){
+        if(MapViewController.getShip().getHealth() <= 0){
             viewName = "WelcomeView";
             gameOverDialog();
         }else{

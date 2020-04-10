@@ -4,13 +4,13 @@ public class GoodGenerater {
     private static String[] goodName = {"Purified Water", "Oil", "Natural Gas",
         "Microwave", "Bicycle", "Fridge", "Solar Cell", "Computer", "Internet",
         "Cloning Tech", "Quantum Comp", "Space Shuttle",
-        "Nuclear Reactor", "Time Travel Kit", "AI"};
+        "Nuclear Reactor", "Time Travel Kit", "Infinity Gaunlet"};
     private static int[] price = {10, 20, 30, 50, 80, 100,
-        300, 800, 800, 1000, 2000, 5000, 10000, 20000, 20000};
+        300, 800, 800, 1000, 2000, 5000, 10000, 20000, 2000000};
     private static int[] capacity = {1, 2, 2, 5, 5, 10, 20,
-        20, 20, 50, 80, 100, 150, 100, 200};
+        20, 20, 50, 80, 100, 150, 100, 400};
     private static int[] techLevel = {1, 1, 2, 3, 3, 4, 5,
-        5, 6, 7, 8, 8, 9, 10, 10};
+        5, 6, 7, 8, 8, 9, 10, 1};
 
     public GoodGenerater() {
         for (int i = 0; i < numberOfGood; i++) {

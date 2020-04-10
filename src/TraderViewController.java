@@ -82,6 +82,7 @@ public class TraderViewController {
     }
 
     public void ignoreBtnPressed(ActionEvent actionEvent) throws IOException {
+        trader.getIgnored(player);
         goToNextView(actionEvent);
     }
 

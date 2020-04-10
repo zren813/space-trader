@@ -122,6 +122,10 @@ public class Trader {
         }
     }
 
+    public void getIgnored(Player player) {
+        player.setCurrentPlanet(planetArray[MapViewController.getPlanetClickedID()]);
+    }
+
 
     public Good[] getTraderGood() {
         return traderGood;

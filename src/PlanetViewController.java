@@ -28,7 +28,7 @@ public class PlanetViewController {
 
     private PlanetGenerator planetGenerator;
     private Planet[] planetArray;
-    private int whichPlanetViewed;
+    private static int whichPlanetViewed;
 
 
     @FXML

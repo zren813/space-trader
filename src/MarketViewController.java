@@ -299,6 +299,10 @@ public class MarketViewController {
                 shipInventory[i].setQuantity(shipInventory[i].getQuantity() + numOfItemToBuy[i]);
                 numOfItemToBuy[i] = 0;
             }
+            if (shipInventory[numberOfGood-1].getQuantity() > 0) {
+                System.exit(0);
+                //TODO: goes to the win screen
+            }
             ship.setItemInventory(shipInventory);
             errorMessage.setText("");
         } else {

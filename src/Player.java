@@ -18,7 +18,7 @@ public class Player {
         this.name = name;
         this.balance = balance;
         setSkillArray(skillArray);
-        ship = new Ship("Apollo 11", 2000, 100, 1);
+        ship = new Ship("Apollo 11", 2000, 100, 10);
     }
 
     // Getters

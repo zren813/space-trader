@@ -103,7 +103,7 @@ public class TraderViewController {
     public void goToNextView(ActionEvent actionEvent)throws IOException {
         String viewName;
         if(MapViewController.getShip().getHealth() <= 0){
-            viewName = "WelcomeView";
+            viewName = "Result";
             gameOverDialog();
         }else{
             viewName = "MapView";
@@ -122,19 +122,8 @@ public class TraderViewController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!!");
         alert.setHeaderText("Game Over");
-        alert.setContentText("The balance you currently own is " + player.getBalance() + ".\n" +
-                "Your ship's health is below 0. Restart a new game?");
-        ButtonType buttonTypeOne = new ButtonType("Restart");
-        ButtonType buttonTypeTwo = new ButtonType("Cancel");
-
-        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonTypeOne) {
-//            goToWelcomeView();
-        } else if (result.get() == buttonTypeTwo) {
-            System.exit(0);
-        }
+        alert.setContentText("Your ship's health is below 0.");
+        ButtonType buttonTypeOne = new ButtonType("Continue");
     }
 
     public void resultDialog(String content) {

@@ -73,6 +73,7 @@ public class PoliceViewController {
         alert.setHeaderText("Game Over");
         alert.setContentText("Your ship's health is below 0.");
         ButtonType buttonTypeOne = new ButtonType("Continue");
+        alert.showAndWait();
     }
 
 }

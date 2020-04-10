@@ -435,4 +435,8 @@ public class MapViewController {
     public void explore0BtnPressed(MouseEvent event) throws IOException {
         confirmTravelToAnotherPlanetDialog(event, 0);
     }
+
+    public static void setIsOpened(boolean isOpened) {
+        MapViewController.isOpened = isOpened;
+    }
 }

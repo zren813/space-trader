@@ -20,12 +20,18 @@ public class ResultController {
     private Player player = MapViewController.getPlayer();
 
     public void initialize() {
+        int health = player.getShip().getHealth();
+        if (health < 0) {
+            health = 0;
+        }
         introText.setText("The balance you currently own is " + player.getBalance() + ".\n"
-                + "Ship's Health is " + player.getShip().getHealth() + ".\n"
+                + "Ship's Health is " + health + ".\n"
                 + "Do you want to restart a new game?");
     }
 
     public void restartBtnPressed(ActionEvent actionEvent) throws Exception {
+        MapViewController.setIsOpened(false);
+
         Parent configParent = FXMLLoader.load(getClass().getResource("WelcomeView.fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");

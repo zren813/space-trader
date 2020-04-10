@@ -332,6 +332,7 @@ public class MarketViewController {
         alert.setHeaderText("YOU JUST WIN THE GAME!!");
         alert.setContentText("Congratulations!");
         ButtonType buttonTypeOne = new ButtonType("Continue");
+        alert.showAndWait();
     }
 
     public void goodSellBtnPressed(ActionEvent actionEvent) {

@@ -312,15 +312,15 @@ public class MapViewController {
         if (random.nextInt(2 + ConfigViewController.getDifficultyIndex()) >= 1) {
             int npcID = random.nextInt(3);
             switch (npcID) {
-                case 0:
-                    result = "Bandit";
-                    break;
-                case 1:
-                    result = "Trader";
-                    break;
-                default:
-                    result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
-                    break;
+            case 0:
+                result = "Bandit";
+                break;
+            case 1:
+                result = "Trader";
+                break;
+            default:
+                result = ship.checkInventoryEmpty() ? "Nobody" : "Police";
+                break;
             }
         }
         return result;

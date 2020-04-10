@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.Optional;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,13 +46,13 @@ public class BanditViewController {
 
     public void goToNextView(ActionEvent actionEvent)throws IOException {
         String viewName;
-        if(MapViewController.getShip().getHealth() <= 0){
+        if (MapViewController.getShip().getHealth() <= 0) {
             viewName = "Result";
             gameOverDialog();
-        }else{
+        } else {
             viewName = "MapView";
         }
-        Parent configParent = FXMLLoader.load(getClass().getResource(viewName+".fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource(viewName + ".fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

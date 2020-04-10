@@ -1,4 +1,3 @@
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +9,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 public class PoliceViewController {
     @FXML
@@ -43,13 +40,13 @@ public class PoliceViewController {
 
     public void goToNextView(ActionEvent actionEvent)throws IOException {
         String viewName;
-        if(MapViewController.getShip().getHealth() <= 0){
+        if (MapViewController.getShip().getHealth() <= 0) {
             viewName = "Result";
             gameOverDialog();
-        }else{
+        } else {
             viewName = "MapView";
         }
-        Parent configParent = FXMLLoader.load(getClass().getResource(viewName+".fxml"));
+        Parent configParent = FXMLLoader.load(getClass().getResource(viewName + ".fxml"));
         Scene configScene = new Scene(configParent);
         configScene.getStylesheets().add("app.css");
 

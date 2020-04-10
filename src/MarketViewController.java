@@ -154,6 +154,7 @@ public class MarketViewController {
     private double sellDiscount = 0.8;
     private double merchantDiscount;
     private int numberOfGood;
+    private int currentPlanet;
 
     public void initialize() {
         setUpUIObjectArray();
@@ -202,7 +203,8 @@ public class MarketViewController {
 
     public void updateGoodInfo() {
         // update all ui texts
-        for (int i = 0; i < numberOfGood; i++) {
+        currentPlanet = player.getCurrentPlanet().getPlanetID();
+        for (int i = 0; i < numberOfGood - 1; i++) {
             goodNameText[i].setText(good[i].getName());
             goodCapacityText[i].setText(good[i].getVolume() + "");
             // only showing the good whose level match the tech level of the current planet
@@ -213,6 +215,16 @@ public class MarketViewController {
                 goodPriceText[i].setText("-" + "/$"
                     + (int) (currentMarketSellingPrices[i] * sellDiscount));
             }
+        }
+        int i = numberOfGood - 1;
+        goodNameText[i].setText(good[i].getName());
+        goodCapacityText[i].setText(good[i].getVolume() + "");
+        if (currentPlanet == 0) {
+            goodPriceText[i].setText("$" + currentMarketBuyingPrices[i]
+                    + "/" + "-");
+        } else {
+            goodPriceText[i].setText("-" + "/"
+                    + "-");
         }
     }
 

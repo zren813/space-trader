@@ -11,12 +11,17 @@
                 <Font size="43.0" />
             </font>
         </Text>
-        <Text fx:id="introText" fill="WHITE" layoutX="131.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
+        <Text fx:id="title" fill="WHITE" layoutX="131.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
             <font>
                 <Font size="21.0" />
             </font>
         </Text>
-        <Button layoutX="294.0" layoutY="319.0" mnemonicParsing="false" onAction="#restartBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Restart" />
-        <Button layoutX="596.0" layoutY="319.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Exit Game" />
+        <Text fx:id="introText" fill="WHITE" layoutX="131.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="778.240234375">
+            <font>
+                <Font size="21.0" />
+            </font>
+        </Text>
+        <Button layoutX="294.0" layoutY="500.0" mnemonicParsing="false" onAction="#restartBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Restart" />
+        <Button layoutX="596.0" layoutY="500.0" mnemonicParsing="false" onAction="#exitBtnPressed" prefHeight="62.0" prefWidth="149.0" text="Exit Game" />
     </children>
 </AnchorPane>

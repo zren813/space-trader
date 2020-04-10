@@ -13,6 +13,8 @@ public class ResultController {
     @FXML
     private Text introText;
     @FXML
+    private Text title;
+    @FXML
     private Button restartBtn;
     @FXML
     private Button exitBtn;
@@ -24,6 +26,13 @@ public class ResultController {
         if (health < 0) {
             health = 0;
         }
+        title.setText("Game made by Team 20 of CS 2340 in Spring 2020 at Georgia Tech\n"
+                + "Credit:\n"
+                + "        Jingyi Wan\n"
+                + "        Chiche Tsai\n"
+                + "        Ziyao Ren\n"
+                + "        Kehan Wang\n"
+                + "        Qifan Yang");
         introText.setText("The balance you currently own is " + player.getBalance() + ".\n"
                 + "Ship's Health is " + health + ".\n"
                 + "Do you want to restart a new game?");

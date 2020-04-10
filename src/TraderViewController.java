@@ -121,7 +121,8 @@ public class TraderViewController {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning!!");
         alert.setHeaderText("Game Over");
-        alert.setContentText("Your ship's health is below 0. Restart a new game?");
+        alert.setContentText("The balance you currently own is " + player.getBalance() + ".\n" +
+                "Your ship's health is below 0. Restart a new game?");
         ButtonType buttonTypeOne = new ButtonType("Restart");
         ButtonType buttonTypeTwo = new ButtonType("Cancel");
 

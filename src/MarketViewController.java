@@ -4,9 +4,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Spinner;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MarketViewController {
 
@@ -280,7 +284,7 @@ public class MarketViewController {
     }
 
 
-    public void goodBuyBtnPressed(ActionEvent actionEvent) {
+    public void goodBuyBtnPressed(ActionEvent actionEvent) throws IOException {
         numOfItemToBuy = new int[numberOfGood];
         int totalCapacity = 0;
         int totalCost = 0;
@@ -299,9 +303,17 @@ public class MarketViewController {
                 shipInventory[i].setQuantity(shipInventory[i].getQuantity() + numOfItemToBuy[i]);
                 numOfItemToBuy[i] = 0;
             }
-            if (shipInventory[numberOfGood-1].getQuantity() > 0) {
-                System.exit(0);
-                //TODO: goes to the win screen
+            if (shipInventory[numberOfGood - 1].getQuantity() > 0) {
+                winingDialog();
+
+                Parent configParent = FXMLLoader.load(getClass().getResource("result.fxml"));
+                Scene configScene = new Scene(configParent);
+                configScene.getStylesheets().add("app.css");
+
+                Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+                window.setScene(configScene);
+                window.show();
             }
             ship.setItemInventory(shipInventory);
             errorMessage.setText("");
@@ -312,6 +324,14 @@ public class MarketViewController {
         //update UI
         resetSpinner();
         updateCharacterInfo();
+    }
+
+    public void winingDialog() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("YOU WIN!!!");
+        alert.setHeaderText("YOU JUST WIN THE GAME!!");
+        alert.setContentText("Congratulations!");
+        ButtonType buttonTypeOne = new ButtonType("Continue");
     }
 
     public void goodSellBtnPressed(ActionEvent actionEvent) {

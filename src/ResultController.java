@@ -20,8 +20,9 @@ public class ResultController {
     private Player player = MapViewController.getPlayer();
 
     public void initialize() {
-        introText.setText("The balance you currently own is " + player.getBalance() + ".\n" +
-                "Do you want to restart a new game?");
+        introText.setText("The balance you currently own is " + player.getBalance() + ".\n"
+                + "Ship's Health is " + player.getShip().getHealth() + ".\n"
+                + "Do you want to restart a new game?");
     }
 
     public void restartBtnPressed(ActionEvent actionEvent) throws Exception {
